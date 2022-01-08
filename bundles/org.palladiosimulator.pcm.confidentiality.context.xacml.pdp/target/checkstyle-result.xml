@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.29">
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.pdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/pdp/result/DecisionType.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.pdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/pdp/result/PDPResult.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.pdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/pdp/Activator.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.pdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/pdp/Evaluate.java">
+</file>
+</checkstyle>

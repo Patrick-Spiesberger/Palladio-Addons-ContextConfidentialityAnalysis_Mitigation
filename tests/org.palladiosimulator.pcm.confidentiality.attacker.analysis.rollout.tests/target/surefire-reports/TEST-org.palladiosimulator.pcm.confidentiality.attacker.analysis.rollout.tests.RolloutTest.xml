@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="org.palladiosimulator.pcm.confidentiality.attacker.analysis.rollout.tests.RolloutTest" time="1.81" tests="4" errors="0" skipped="0" failures="0">
+  <properties/>
+  <testcase name="testRollOutRole" classname="org.palladiosimulator.pcm.confidentiality.attacker.analysis.rollout.tests.RolloutTest" time="1.709"/>
+  <testcase name="testNoRollOut" classname="org.palladiosimulator.pcm.confidentiality.attacker.analysis.rollout.tests.RolloutTest" time="0.033"/>
+  <testcase name="testRollOutVulnerability" classname="org.palladiosimulator.pcm.confidentiality.attacker.analysis.rollout.tests.RolloutTest" time="0.023"/>
+  <testcase name="testRollOutNonglobalCommunication" classname="org.palladiosimulator.pcm.confidentiality.attacker.analysis.rollout.tests.RolloutTest" time="0.025"/>
+</testsuite>

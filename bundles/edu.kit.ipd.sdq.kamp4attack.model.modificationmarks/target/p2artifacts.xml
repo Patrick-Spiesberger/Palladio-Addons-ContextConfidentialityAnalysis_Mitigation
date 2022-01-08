@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='2'>
+  <artifact classifier='osgi.bundle' id='edu.kit.ipd.sdq.kamp4attack.model.modificationmarks' version='1.0.0.202201062232'>
+    <properties size='5'>
+      <property name='artifact.size' value='52968'/>
+      <property name='download.size' value='52968'/>
+      <property name='maven-groupId' value='org.palladiosimulator.pcm.confidentiality.context.analysis'/>
+      <property name='maven-artifactId' value='edu.kit.ipd.sdq.kamp4attack.model.modificationmarks'/>
+      <property name='maven-version' value='1.0.0-SNAPSHOT'/>
+    </properties>
+  </artifact>
+  <artifact classifier='osgi.bundle' id='edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.source' version='1.0.0.202201062232'>
+    <properties size='6'>
+      <property name='artifact.size' value='41609'/>
+      <property name='download.size' value='41609'/>
+      <property name='maven-groupId' value='org.palladiosimulator.pcm.confidentiality.context.analysis'/>
+      <property name='maven-artifactId' value='edu.kit.ipd.sdq.kamp4attack.model.modificationmarks'/>
+      <property name='maven-version' value='1.0.0-SNAPSHOT'/>
+      <property name='maven-classifier' value='sources'/>
+    </properties>
+  </artifact>
+</artifacts>

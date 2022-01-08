@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.tests.DataTest" time="2.15" tests="8" errors="0" skipped="0" failures="0">
+  <properties/>
+  <testcase name="testExtractionSEFFExternalCallParametersReturnValue" classname="org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.tests.DataTest" time="1.966"/>
+  <testcase name="testExtractionSEFFParametersReturnValue" classname="org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.tests.DataTest" time="0.029"/>
+  <testcase name="testExtractionExternalCallParametersReturnValue" classname="org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.tests.DataTest" time="0.034"/>
+  <testcase name="testExtractionRepositoryParameters" classname="org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.tests.DataTest" time="0.02"/>
+  <testcase name="testExtractionRepositoryParametersReturnValue" classname="org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.tests.DataTest" time="0.022"/>
+  <testcase name="testExtractionRepositoryReturnValuesComplex" classname="org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.tests.DataTest" time="0.018"/>
+  <testcase name="testExtractionRepositoryReturnValuesDefault" classname="org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.tests.DataTest" time="0.016"/>
+  <testcase name="testExtractionRepositoryReturnValuesInteger" classname="org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.tests.DataTest" time="0.019"/>
+</testsuite>

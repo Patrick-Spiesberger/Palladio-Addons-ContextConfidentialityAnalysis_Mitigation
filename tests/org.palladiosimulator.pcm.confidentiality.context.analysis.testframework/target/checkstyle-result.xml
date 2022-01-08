@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.29">
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/tests/org.palladiosimulator.pcm.confidentiality.context.analysis.testframework/src/org/palladiosimulator/pcm/confidentiality/context/analysis/testframework/TestInitializer.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+<error line="13" severity="warning" message="Die Klasse TestInitializer sollte als final deklariert werden." source="com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/tests/org.palladiosimulator.pcm.confidentiality.context.analysis.testframework/src/org/palladiosimulator/pcm/confidentiality/context/analysis/testframework/BaseTest.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/tests/org.palladiosimulator.pcm.confidentiality.context.analysis.testframework/src/org/palladiosimulator/pcm/confidentiality/context/analysis/testframework/XMLLoaderTask.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/tests/org.palladiosimulator.pcm.confidentiality.context.analysis.testframework/src/org/palladiosimulator/pcm/confidentiality/context/analysis/testframework/Activator.java">
+</file>
+</checkstyle>

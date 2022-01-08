@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.29">
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/Activator.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+<error line="52" column="53" severity="warning" message="Die Variable &apos;graph&apos; verbirgt ein Feld." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="55" column="45" severity="warning" message="Die Variable &apos;roll&apos; verbirgt ein Feld." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/config/ScenarioAnalysisWorkflowConfig.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/config/ContextAnalysisWorkflowConfig.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/config/AttackerAnalysisWorkflowConfig.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/ScenarioAnalysisWorkflow.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/AttackerAnalysisWorkflow.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/job/CreateGraphJob.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/job/LoadPCMAttack.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/job/LoadPCMJob.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/job/LoadModifacationMarkJob.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/job/SaveOutputModelJob.java">
+<error line="42" column="44" severity="warning" message="Nach &apos;-&apos; fehlt ein Leerzeichen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="42" column="44" severity="warning" message="Vor &apos;-&apos; fehlt ein Leerzeichen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/job/LoadPCMScenario.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/job/LoadAttackerModel.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/job/VulnerabilityRollOutComponentsJob.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/job/AttackerAnalysisJob.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/job/ScenarioAnalysisJob.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/job/SaveAttackerModelJob.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/job/LoadContextJob.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.execution/src/org/palladiosimulator/pcm/confidentiality/context/analysis/execution/workflow/job/AbstractLoadModelJob.java">
+</file>
+</checkstyle>

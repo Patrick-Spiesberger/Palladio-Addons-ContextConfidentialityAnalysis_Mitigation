@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Api
+Bundle-SymbolicName: edu.kit.kastel.sdq.kamp4attack.graph.api
+Bundle-Version: 1.0.0.202201062232
+Bundle-Activator: edu.kit.kastel.sdq.kamp4attack.graph.api.Activator
+Require-Bundle: org.eclipse.core.runtime,edu.kit.ipd.sdq.kamp4attack.mod
+ el.modificationmarks
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: edu.kit.kastel.sdq.kamp4attack.graph.api
+Bundle-ActivationPolicy: lazy
+Export-Package: edu.kit.kastel.sdq.kamp4attack.graph.api
+Bundle-License: The Apache License, Version 2.0;link="http://www.apache.
+ org/licenses/LICENSE-2.0.txt"
+

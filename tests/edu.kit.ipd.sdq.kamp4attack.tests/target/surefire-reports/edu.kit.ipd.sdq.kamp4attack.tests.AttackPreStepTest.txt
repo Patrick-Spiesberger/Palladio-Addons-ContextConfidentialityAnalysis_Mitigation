@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: edu.kit.ipd.sdq.kamp4attack.tests.AttackPreStepTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.379 s - in edu.kit.ipd.sdq.kamp4attack.tests.AttackPreStepTest
+testOnlyStartAssembly  Time elapsed: 0.127 s
+testAttackerOnlyStartAttribute  Time elapsed: 0.023 s
+testNoNullValue  Time elapsed: 0.226 s

@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests
+Bundle-SymbolicName: org.palladiosimulator.pcm.confidentiality.attacker.
+ analysis.rollout.tests
+Bundle-Version: 1.0.0.202201062232
+Automatic-Module-Name: org.palladiosimulator.pcm.confidentiality.attacke
+ r.analysis.rollout.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: org.eclipse.core.runtime,org.eclipse.emf.compare;bundle-
+ version="1.2.2",org.eclipse.core.resources;bundle-version="3.7.101",org
+ .eclipse.emf.compare.rcp;bundle-version="2.3.0",org.junit.jupiter.api,o
+ rg.junit,org.apache.log4j,org.eclipse.emf.ecore,org.palladiosimulator.p
+ cm.confidentiality.context,org.palladiosimulator.pcm.confidentiality.at
+ tacker;bundle-version="0.1.0",org.palladiosimulator.generator.fluent;bu
+ ndle-version="5.0.0",org.palladiosimulator.pcm.confidentiality.attacker
+ .analysis.rollout;bundle-version="1.0.0",org.palladiosimulator.pcm.conf
+ identiality.context.scenarioanalysis.api
+Bundle-License: The Apache License, Version 2.0;link="http://www.apache.
+ org/licenses/LICENSE-2.0.txt"
+

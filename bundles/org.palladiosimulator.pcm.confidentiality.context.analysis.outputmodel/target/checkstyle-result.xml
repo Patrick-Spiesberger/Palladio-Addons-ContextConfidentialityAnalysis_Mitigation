@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.29">
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/OutputmodelPackage.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+<error line="58" severity="info" message="Zeile ist 145 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/OutputmodelFactory.java">
+<error line="23" severity="info" message="Zeile ist 145 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/util/OutputmodelAdapterFactory.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+<error line="12" severity="warning" message="Stern-Importe der Form &apos;.*&apos; sollten vermieden werden - org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/util/OutputmodelSwitch.java">
+<error line="10" severity="warning" message="Stern-Importe der Form &apos;.*&apos; sollten vermieden werden - org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/impl/OutputmodelPackageImpl.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+<error line="115" severity="info" message="Zeile ist 212 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="313" severity="info" message="Zeile ist 142 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="314" severity="info" message="Zeile ist 142 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="315" severity="info" message="Zeile ist 146 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="325" severity="info" message="Zeile ist 147 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="326" severity="info" message="Zeile ist 285 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="327" severity="info" message="Zeile ist 310 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="328" severity="info" message="Zeile ist 310 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="329" severity="info" message="Zeile ist 284 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="330" severity="info" message="Zeile ist 229 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="331" severity="info" message="Zeile ist 245 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="333" severity="info" message="Zeile ist 150 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="334" severity="info" message="Zeile ist 285 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/impl/OutputmodelFactoryImpl.java">
+<error line="14" severity="warning" message="Stern-Importe der Form &apos;.*&apos; sollten vermieden werden - org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+<error line="36" severity="info" message="Zeile ist 154 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="73" severity="info" message="Zeile ist 133 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="90" severity="info" message="Zeile ist 139 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="107" severity="info" message="Zeile ist 139 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/impl/ScenarioOutputImpl.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/impl/AnalysisResultsImpl.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/ScenarioOutput.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/AnalysisResults.java">
+</file>
+</checkstyle>

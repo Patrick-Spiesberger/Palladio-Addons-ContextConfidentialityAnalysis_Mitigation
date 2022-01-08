@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?><target name="temporary-tp">
+  <locations>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.palladio-simulator.com/palladio-supporting-branding/releases/2.1.0/"/>
+      <unit id="org.palladiosimulator.branding.feature.feature.group" version="2.0.0"/>
+      <unit id="org.palladiosimulator.branding.feature.source.feature.group" version="2.0.0"/>
+      <unit id="org.palladiosimulator.license.feature.group" version="1.0.0"/>
+      <unit id="org.palladiosimulator.license.epl2.feature.group" version="1.0.0"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.mdsd.tools/build-licensefeature/releases/latest/"/>
+      <unit id="tools.mdsd.license.epl2.feature.group" version="0.0.0"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.palladio-simulator.com/palladio-analyzer-framework/nightly/"/>
+      <unit id="org.palladiosimulator.analyzer.workflow" version="5.1.0.202201060152"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.palladio-simulator.com/palladio-thirdparty-emfprofiles/nightly/"/>
+      <unit id="org.modelversioning.emfprofile.feature.feature.group" version="5.1.0.202201060042"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.palladio-simulator.com/palladio-core-pcm/nightly/"/>
+      <unit id="org.palladiosimulator.pcm.feature.feature.group" version="5.1.0.202201060140"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.palladio-simulator.com/palladio-core-commons/nightly/"/>
+      <unit id="de.uka.ipd.sdq.identifier.feature.feature.group" version="5.1.0.202201061202"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.palladio-simulator.com/fluidtrust/palladio-addons-contextconfidentiality-metamodel/nightly/"/>
+      <unit id="org.palladiosimulator.pcm.confidentiality.context.editor.feature.feature.group" version="0.2.0.202201060012"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.palladio-simulator.com/palladio-supporting-workflowengine/nightly/"/>
+      <unit id="de.uka.ipd.sdq.workflow.feature.mdsd.feature.group" version="5.1.0.202201060129"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://download.eclipse.org/releases/2021-12/202112081000/"/>
+      <unit id="org.eclipse.egit.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.compare.egit.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.ecoretools.design.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.xsd.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.compare.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.uml2.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.oomph.setup.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.ocl.all.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.compare.ide.ui.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.cdo.epp.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.query.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.ecp.emfforms.sdk.feature.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.validation.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.mwe2.launcher.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.parsley.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.parsley.sdk.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.compare.diagram.sirius.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.pde.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.transaction.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.mylyn.wikitext_feature.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.gef.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.epp.mpc.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.tips.feature.feature.group" version="0.0.0"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.mdsd.tools/library-standaloneinitialization/nightly/"/>
+      <unit id="tools.mdsd.library.standalone.initialization.log4j.feature.feature.group" version="0.2.0.202201062207"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://raw.githubusercontent.com/KAMP-Research/KAMP/gh-pages"/>
+      <unit id="edu.kit.ipd.sdq.kamp.feature.feature.group" version="1.0.0.202004141307"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.palladio-simulator.com/palladio-supporting-mdsdprofiles/nightly/"/>
+      <unit id="org.palladiosimulator.mdsdprofiles.feature.feature.group" version="5.1.0.202201060129"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20210602031627/repository"/>
+      <unit id="jakarta.activation" version="2.0.0.v20201118-1818"/>
+      <unit id="com.sun.xml.bind" version="2.3.3.v20201118-1818"/>
+      <unit id="org.apache.commons.codec" version="1.14.0.v20200818-1422"/>
+      <unit id="com.sun.xml.bind" version="2.3.3.v20201118-1818"/>
+      <unit id="org.apache.commons.lang3" version="3.1.0.v201403281430"/>
+      <unit id="org.slf4j.api" version="1.7.30.v20200204-2150"/>
+      <unit id="org.apache.logging.log4j" version="2.8.2.v20200818-1118"/>
+      <unit id="org.glassfish.hk2.osgi-resource-locator" version="2.5.0.v20161103-1916"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.mdsd.tools/ecore-workflow/releases/0.3.0/"/>
+      <unit id="tools.mdsd.ecoreworkflow.mwe2lib.feature.feature.group" version="0.0.0"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.mdsd.tools/library-emfeditutils/nightly/"/>
+      <unit id="tools.mdsd.library.emfeditutils" version="0.1.0.202201062208"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://download.eclipse.org/tools/orbit/downloads/2021-12/"/>
+      <unit id="javax.xml.bind" version="0.0.0"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.palladio-simulator.com/palladio-addons-fluentapimodelgenerator/nightly/"/>
+      <unit id="org.palladiosimulator.generator.fluent.feature.feature.group" version="5.1.0.202201060148"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.palladio-simulator.com/palladio-supporting-featuremodel/nightly/"/>
+      <unit id="de.uka.ipd.sdq.featureconfig" version="5.1.0.202201060129"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <repository location="https://updatesite.palladio-simulator.com/palladio-editors-commons/nightly/"/>
+      <unit id="org.palladiosimulator.pcm.edit" version="0.0.0"/>
+    </location>
+  </locations>
+</target>

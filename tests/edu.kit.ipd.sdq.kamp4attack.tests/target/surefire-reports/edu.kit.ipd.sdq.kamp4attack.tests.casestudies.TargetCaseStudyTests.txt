@@ -1,0 +1,6 @@
+-------------------------------------------------------------------------------
+Test set: edu.kit.ipd.sdq.kamp4attack.tests.casestudies.TargetCaseStudyTests
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.995 s - in edu.kit.ipd.sdq.kamp4attack.tests.casestudies.TargetCaseStudyTests
+defaultCase  Time elapsed: 1.584 s
+defaultCaseCorrectAssemblyNumber  Time elapsed: 0.41 s

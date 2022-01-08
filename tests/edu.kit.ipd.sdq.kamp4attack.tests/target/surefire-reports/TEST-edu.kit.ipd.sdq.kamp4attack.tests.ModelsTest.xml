@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.kit.ipd.sdq.kamp4attack.tests.ModelsTest" time="3.283" tests="4" errors="0" skipped="0" failures="0">
+  <properties/>
+  <testcase name="testCorrectReturnValues" classname="edu.kit.ipd.sdq.kamp4attack.tests.ModelsTest" time="2.192"/>
+  <testcase name="testCorrectReturnTypes" classname="edu.kit.ipd.sdq.kamp4attack.tests.ModelsTest" time="0.376"/>
+  <testcase name="testCorrectReturnSize" classname="edu.kit.ipd.sdq.kamp4attack.tests.ModelsTest" time="0.327"/>
+  <testcase name="testNoNullValue" classname="edu.kit.ipd.sdq.kamp4attack.tests.ModelsTest" time="0.294"/>
+</testsuite>

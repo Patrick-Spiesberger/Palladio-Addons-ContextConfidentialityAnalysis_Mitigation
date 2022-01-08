@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.palladiosimulator.pcm.confidentiality.context.a
+ nalysis.outputmodel.edit;singleton:=true
+Automatic-Module-Name: org.palladiosimulator.pcm.confidentiality.context
+ .analysis.outputmodel.edit
+Bundle-Version: 1.0.0.202201062232
+Bundle-ClassPath: .
+Bundle-Activator: org.palladiosimulator.pcm.confidentiality.context.anal
+ ysis.outputmodel.provider.OutputmodelEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: org.palladiosimulator.pcm.confidentiality.context.analys
+ is.outputmodel.provider
+Require-Bundle: org.eclipse.core.runtime,org.palladiosimulator.pcm.confi
+ dentiality.context.analysis.outputmodel;visibility:=reexport,org.eclips
+ e.emf.edit;visibility:=reexport,org.palladiosimulator.pcm.confidentiali
+ ty.context;visibility:=reexport,org.palladiosimulator.pcm.confidentiali
+ ty.context.edit;visibility:=reexport,de.uka.ipd.sdq.identifier;visibili
+ ty:=reexport,de.uka.ipd.sdq.identifier.edit;visibility:=reexport,org.pa
+ lladiosimulator.pcm;visibility:=reexport,org.palladiosimulator.pcm.edit
+ ;visibility:=reexport,de.uka.ipd.sdq.probfunction;visibility:=reexport,
+ de.uka.ipd.sdq.probfunction.edit;visibility:=reexport,de.uka.ipd.sdq.st
+ oex;visibility:=reexport,de.uka.ipd.sdq.stoex.edit;visibility:=reexport
+ ,de.uka.ipd.sdq.units;visibility:=reexport,de.uka.ipd.sdq.units.edit;vi
+ sibility:=reexport,org.eclipse.emf.ecore;visibility:=reexport,org.eclip
+ se.emf.ecore.edit;visibility:=reexport,org.palladiosimulator.pcm.confid
+ entiality.context.xacml.pdp;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-License: The Apache License, Version 2.0;link="http://www.apache.
+ org/licenses/LICENSE-2.0.txt"
+

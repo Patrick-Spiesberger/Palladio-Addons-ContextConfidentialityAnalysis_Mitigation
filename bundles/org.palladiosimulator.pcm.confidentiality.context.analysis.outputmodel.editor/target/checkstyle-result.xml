@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.29">
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel.editor/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/presentation/OutputmodelEditor.java">
+<error line="1" severity="warning" message="Datei ist 2,143 Zeilen lang (Obergrenze ist 2,000)." source="com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck"/>
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+<error line="572" severity="info" message="Zeile ist 156 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="574" severity="info" message="Zeile ist 192 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="617" severity="info" message="Zeile ist 144 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="631" severity="info" message="Zeile ist 141 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="718" severity="info" message="Zeile ist 140 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="865" severity="info" message="Zeile ist 131 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="894" severity="info" message="Zeile ist 151 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="897" severity="info" message="Zeile ist 135 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="899" severity="info" message="Zeile ist 148 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="902" severity="info" message="Zeile ist 164 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="955" severity="info" message="Zeile ist 138 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="1140" severity="info" message="Zeile ist 152 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="1259" severity="info" message="Zeile ist 146 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="1603" severity="info" message="Zeile ist 131 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="1615" severity="info" message="Zeile ist 161 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="1620" severity="info" message="Zeile ist 157 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="1774" severity="info" message="Zeile ist 161 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="1787" severity="info" message="Zeile ist 148 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="1829" severity="info" message="Zeile ist 131 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="1872" severity="info" message="Zeile ist 136 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="1922" severity="info" message="Zeile ist 131 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="2018" severity="info" message="Zeile ist 148 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="2024" severity="info" message="Zeile ist 152 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel.editor/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/presentation/OutputmodelEditorPlugin.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel.editor/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/presentation/OutputmodelModelWizard.java">
+<error line="181" severity="info" message="Zeile ist 170 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="255" severity="info" message="Zeile ist 142 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="272" severity="info" message="Zeile ist 138 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="312" severity="info" message="Zeile ist 177 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="316" severity="info" message="Zeile ist 181 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="362" severity="info" message="Zeile ist 137 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="363" severity="info" message="Zeile ist 150 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="605" severity="info" message="Zeile ist 196 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="627" severity="info" message="Zeile ist 137 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="628" severity="info" message="Zeile ist 167 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="658" severity="info" message="Zeile ist 161 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="663" severity="info" message="Zeile ist 131 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="670" severity="info" message="Zeile ist 131 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="671" severity="info" message="Zeile ist 142 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.outputmodel.editor/src-gen/org/palladiosimulator/pcm/confidentiality/context/analysis/outputmodel/presentation/OutputmodelActionBarContributor.java">
+<error line="195" severity="info" message="Zeile ist 216 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="209" severity="info" message="Zeile ist 134 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+</checkstyle>

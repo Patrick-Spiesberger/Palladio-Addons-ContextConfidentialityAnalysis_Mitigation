@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.29">
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/util/XACMLPolicyWriter.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+<error line="24" severity="warning" message="Die Klasse XACMLPolicyWriter sollte als final deklariert werden." source="com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/util/EnumHelpers.java">
+<error line="12" severity="warning" message="Die Klasse EnumHelpers sollte als final deklariert werden." source="com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/Activator.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/handlers/impl/TargetHandler.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/handlers/impl/PolicySetHandler.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/handlers/impl/OperationHandler.java">
+<error line="10" column="5" severity="warning" message="Methode ist 539 Zeilen lang (Obergrenze ist 150)." source="com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/handlers/impl/RuleHandler.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/handlers/impl/AttributeSwitch.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/handlers/impl/ExpressionSwitch.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/handlers/impl/MatchHandler.java">
+<error line="42" column="5" severity="warning" message="Methode ist 151 Zeilen lang (Obergrenze ist 150)." source="com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/handlers/impl/PolicyHandler.java">
+<error line="34" severity="info" message="Zeile ist 140 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/handlers/impl/VariableDefinitionHandler.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/handlers/impl/ConditionHandler.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/handlers/ContextTypeConverter.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/XACMLPDP.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.xacml.javapdp/src/org/palladiosimulator/pcm/confidentiality/context/xacml/javapdp/XACMLGenerator.java">
+</file>
+</checkstyle>

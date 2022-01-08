@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.29">
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/tests/org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.tests/src/org/palladiosimulator/pcm/confidentiality/attacker/analysis/common/tests/DataTest.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+<error line="227" severity="info" message="Zeile ist 138 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="290" severity="info" message="Zeile ist 138 Zeichen lang (Obergrenze ist 130)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+</checkstyle>

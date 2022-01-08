@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: External-dependencies
+Bundle-SymbolicName: external-dependencies
+Bundle-Version: 1.0.0.202201062232
+Bundle-Activator: external_dependencies.Activator
+Require-Bundle: com.google.gson,com.google.guava,org.apache.commons.code
+ c,org.apache.commons.lang3,org.slf4j.api,com.sun.xml.bind;bundle-versio
+ n="2.3.3",jakarta.xml.bind;bundle-version="2.3.3",jakarta.activation;bu
+ ndle-version="2.0.0",org.apache.logging.log4j;bundle-version="2.8.2",or
+ g.eclipse.core.runtime;bundle-version="3.20.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: external.dependencies
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: lib/xacml-3.1-SNAPSHOT.jar,lib/xacml-pdp-3.1-SNAPSHOT.
+ jar,.
+Export-Package: com.att.research.xacml.api,com.att.research.xacml.api.pa
+ p,com.att.research.xacml.api.pdp,com.att.research.xacml.api.pep,com.att
+ .research.xacml.api.pip,com.att.research.xacml.api.trace,com.att.resear
+ ch.xacml.std,com.att.research.xacml.std.annotations,com.att.research.xa
+ cml.std.datatypes,com.att.research.xacml.std.dom,com.att.research.xacml
+ .std.jaxp,com.att.research.xacml.std.json,com.att.research.xacml.std.pe
+ p,com.att.research.xacml.std.pip,com.att.research.xacml.std.pip.engines
+ ,com.att.research.xacml.std.pip.finders,com.att.research.xacml.std.trac
+ e,com.att.research.xacml.util,com.att.research.xacmlatt.pdp,com.att.res
+ earch.xacmlatt.pdp.eval,com.att.research.xacmlatt.pdp.policy,com.att.re
+ search.xacmlatt.pdp.policy.dom,com.att.research.xacmlatt.pdp.policy.exp
+ ressions,com.att.research.xacmlatt.pdp.std,com.att.research.xacmlatt.pd
+ p.std.combiners,com.att.research.xacmlatt.pdp.std.functions,com.att.res
+ earch.xacmlatt.pdp.util,external_dependencies,oasis.names.tc.xacml._3_0
+ .core.schema.wd_17
+Bundle-License: The Apache License, Version 2.0;link="http://www.apache.
+ org/licenses/LICENSE-2.0.txt"
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="KAMP4attackModificationmarks" nsURI="http://sdq.ipd.kit.edu/KAMP4attackModificationmarks/1.0"
+    nsPrefix="KAMP4attackModificationmarks">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractKAMP4attackModificationRepository"
+      abstract="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//KAMP4attackSeedModifications"/>
+    </eTypeParameters>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../edu.kit.ipd.sdq.kamp.model.modificationmarks/model/Modificationmarks.ecore#//AbstractModificationRepository">
+      <eTypeArguments eTypeParameter="#//AbstractKAMP4attackModificationRepository/T"/>
+      <eTypeArguments eClassifier="ecore:EClass ../../edu.kit.ipd.sdq.kamp.model.modificationmarks/model/Modificationmarks.ecore#//ChangePropagationStep"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="KAMP4attackModificationRepository">
+    <eGenericSuperTypes eClassifier="#//AbstractKAMP4attackModificationRepository">
+      <eTypeArguments eClassifier="#//KAMP4attackSeedModifications"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="KAMP4attackSeedModifications" eSuperTypes="../../edu.kit.ipd.sdq.kamp.model.modificationmarks/model/Modificationmarks.ecore#//AbstractSeedModifications">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attackcomponent" upperBound="-1"
+        eType="#//AttackerSelection" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModifyEntity" abstract="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity"/>
+    </eTypeParameters>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../edu.kit.ipd.sdq.kamp.model.modificationmarks/model/Modificationmarks.ecore#//AbstractModification">
+      <eTypeArguments eTypeParameter="#//ModifyEntity/T"/>
+      <eTypeArguments eClassifier="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttackerSelection">
+    <eGenericSuperTypes eClassifier="#//ModifyEntity">
+      <eTypeArguments eClassifier="ecore:EClass ../../org.palladiosimulator.pcm.confidentiality.attacker/model/attacker.ecore#//Attacker"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CredentialChange" eSuperTypes="../../edu.kit.ipd.sdq.kamp.model.modificationmarks/model/Modificationmarks.ecore#//ChangePropagationStep">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compromisedresource" upperBound="-1"
+        eType="#//CompromisedResource" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compromisedassembly" upperBound="-1"
+        eType="#//CompromisedAssembly" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextchange" upperBound="-1"
+        eType="#//ContextChange" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="changed" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compromisedlinkingresource"
+        upperBound="-1" eType="#//CompromisedLinkingResource" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compromisedservice" upperBound="-1"
+        eType="#//CompromisedService" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="servicerestrictioncontainer"
+        eType="#//ServiceRestrictionContainer" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compromiseddata" upperBound="-1"
+        eType="#//CompromisedData" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datamodelcontainer" eType="#//DatamodelContainer"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompromisedResource">
+    <eGenericSuperTypes eClassifier="#//ModifyEntity">
+      <eTypeArguments eClassifier="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//resourceenvironment/ResourceContainer"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompromisedAssembly">
+    <eGenericSuperTypes eClassifier="#//ModifyEntity">
+      <eTypeArguments eClassifier="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyContext"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextChange">
+    <eGenericSuperTypes eClassifier="#//ModifyEntity">
+      <eTypeArguments eClassifier="ecore:EClass ../../org.palladiosimulator.pcm.confidentiality.context/model/context.ecore#//system/UsageSpecification"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompromisedLinkingResource">
+    <eGenericSuperTypes eClassifier="#//ModifyEntity">
+      <eTypeArguments eClassifier="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//resourceenvironment/LinkingResource"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompromisedService">
+    <eGenericSuperTypes eClassifier="#//ModifyEntity">
+      <eTypeArguments eClassifier="ecore:EClass ../../org.palladiosimulator.pcm.confidentiality.context/model/context.ecore#//system/pcm/structure/ServiceRestriction"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceRestrictionContainer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="servicerestriction" upperBound="-1"
+        eType="ecore:EClass ../../org.palladiosimulator.pcm.confidentiality.context/model/context.ecore#//system/pcm/structure/ServiceRestriction"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompromisedData">
+    <eGenericSuperTypes eClassifier="#//ModifyEntity">
+      <eTypeArguments eClassifier="ecore:EClass ../../org.palladiosimulator.pcm.confidentiality.attacker/model/attacker.ecore#//DatamodelAttacker"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DatamodelContainer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datamodelattacker" upperBound="-1"
+        eType="ecore:EClass ../../org.palladiosimulator.pcm.confidentiality.attacker/model/attacker.ecore#//DatamodelAttacker"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

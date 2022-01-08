@@ -1,0 +1,6 @@
+-------------------------------------------------------------------------------
+Test set: org.palladiosimulator.pcm.confidentiality.context.analysis.tests.ScenarioTests
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.695 s - in org.palladiosimulator.pcm.confidentiality.context.analysis.tests.ScenarioTests
+allPositive  Time elapsed: 3.428 s
+noContext  Time elapsed: 0.16 s

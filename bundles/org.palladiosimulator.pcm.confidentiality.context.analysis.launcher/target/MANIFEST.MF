@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-Name: Launcher
+Bundle-SymbolicName: org.palladiosimulator.pcm.confidentiality.context.a
+ nalysis.launcher;singleton:=true
+Bundle-Version: 1.0.0.202201062232
+Automatic-Module-Name: pcm.dataprocessing.analysis.launcher
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: org.palladiosimulator.pcm.resources;bundle-version="4.0.
+ 0";visibility:=reexport,org.palladiosimulator.commons;bundle-version="1
+ .0.1";visibility:=reexport,de.uka.ipd.sdq.workflow.launchconfig,org.ecl
+ ipse.debug.ui,org.eclipse.swt;bundle-version="3.112.0",org.eclipse.ui.c
+ onsole;bundle-version="3.8.6",org.eclipse.jface;bundle-version="3.17.0"
+ ,org.palladiosimulator.pcm.confidentiality.context;bundle-version="0.1.
+ 0",org.palladiosimulator.mdsdprofiles;bundle-version="4.2.0",org.pallad
+ iosimulator.mdsdprofiles.api;bundle-version="4.2.0",org.palladiosimulat
+ or.pcm.confidentiality.context.analysis.execution;bundle-version="1.0.0
+ ",org.palladiosimulator.pcm.confidentiality.context.analysis.outputmode
+ l,org.palladiosimulator.pcm.confidentiality.context.analysis.execution.
+ partition,org.eclipse.ui.workbench
+Export-Package: org.palladiosimulator.pcm.confidentiality.context.analys
+ is.launcher.constants,org.palladiosimulator.pcm.confidentiality.context
+ .analysis.launcher.delegate,org.palladiosimulator.pcm.confidentiality.c
+ ontext.analysis.launcher.ui
+Bundle-Activator: org.palladiosimulator.pcm.confidentiality.context.anal
+ ysis.launcher.Activator
+Import-Package: org.eclipse.ui.plugin
+Bundle-License: The Apache License, Version 2.0;link="http://www.apache.
+ org/licenses/LICENSE-2.0.txt"
+

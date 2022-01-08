@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.29">
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.launcher/src/org/palladiosimulator/pcm/confidentiality/context/analysis/launcher/delegate/LaunchDelegate.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.launcher/src/org/palladiosimulator/pcm/confidentiality/context/analysis/launcher/delegate/AttackAnalysisConfigurationBuilder.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.launcher/src/org/palladiosimulator/pcm/confidentiality/context/analysis/launcher/delegate/GUIBasedScenarioAnalysisWorkflow.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.launcher/src/org/palladiosimulator/pcm/confidentiality/context/analysis/launcher/delegate/OutputScenarioJob.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.launcher/src/org/palladiosimulator/pcm/confidentiality/context/analysis/launcher/delegate/ScenarioAnalysisConfigurationBuilder.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.launcher/src/org/palladiosimulator/pcm/confidentiality/context/analysis/launcher/delegate/ContextAnalysisConfigurationBuilder.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.launcher/src/org/palladiosimulator/pcm/confidentiality/context/analysis/launcher/constants/Constants.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.launcher/src/org/palladiosimulator/pcm/confidentiality/context/analysis/launcher/Activator.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.launcher/src/org/palladiosimulator/pcm/confidentiality/context/analysis/launcher/ui/AttackerAnalysisConfigurationTab.java">
+<error line="1" severity="warning" message="Es fehlt eine package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.launcher/src/org/palladiosimulator/pcm/confidentiality/context/analysis/launcher/ui/InitTaskExecutor.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.launcher/src/org/palladiosimulator/pcm/confidentiality/context/analysis/launcher/ui/ModelInputTab.java">
+</file>
+<file name="/home/patrick/Downloads/Palladio-Addons-ContextConfidentialityAnalysis/bundles/org.palladiosimulator.pcm.confidentiality.context.analysis.launcher/src/org/palladiosimulator/pcm/confidentiality/context/analysis/launcher/ui/LaunchConfigurationTabGroup.java">
+</file>
+</checkstyle>

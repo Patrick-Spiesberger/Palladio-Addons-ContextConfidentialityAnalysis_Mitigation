@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.palladiosimulator.pcm.confidentiality.context.a
+ nalysis.outputmodel;singleton:=true
+Automatic-Module-Name: org.palladiosimulator.pcm.confidentiality.context
+ .analysis.outputmodel
+Bundle-Version: 0.1.0.202201062232
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: org.palladiosimulator.pcm.confidentiality.context.analys
+ is.outputmodel,org.palladiosimulator.pcm.confidentiality.context.analys
+ is.outputmodel.impl,org.palladiosimulator.pcm.confidentiality.context.a
+ nalysis.outputmodel.util
+Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,org.eclipse.e
+ mf.cdo;visibility:=reexport,de.uka.ipd.sdq.identifier;visibility:=reexp
+ ort,org.eclipse.core.runtime,org.palladiosimulator.pcm;bundle-version="
+ 4.3.0";visibility:=reexport,de.uka.ipd.sdq.probfunction;visibility:=ree
+ xport,de.uka.ipd.sdq.stoex;visibility:=reexport,de.uka.ipd.sdq.units;vi
+ sibility:=reexport,org.palladiosimulator.pcm.confidentiality.context;bu
+ ndle-version="0.1.0";visibility:=reexport,org.palladiosimulator.pcm.con
+ fidentiality.context.xacml.pdp;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-License: The Apache License, Version 2.0;link="http://www.apache.
+ org/licenses/LICENSE-2.0.txt"
+
