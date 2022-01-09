@@ -1,4 +1,4 @@
-package edu.kit.ipd.sdq.kamp4attack.core.listoperations;
+package edu.kit.ipd.sdq.kamp4attack.core.contextSelection;
 
 import java.util.ArrayList;
 import java.util.Collections;
