@@ -8,6 +8,8 @@ import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecificati
 
 import com.google.common.collect.Lists;
 
+import edu.kit.ipd.sdq.kamp4attack.core.propertyParser.PropertyParser;
+
 /**
  * This class is responsible for the list operations related to access control
  * 
@@ -20,13 +22,22 @@ public class ListOperations {
 	private int runningTimes; 
 	private boolean returnedAllElements = false;
 	private int timeLimits[] = {0, 0, 0, 12, 0, 0 }; // {years, months, days, hours, minutes, seconds}
-	private final int defaultTimeLimits[] = {0, 0, 0, 12, 0, 0 };
+	
 	
 	/**
 	 * Constructor of ListOperations
 	 */
 	public ListOperations() {
 		runningTimes = 0;
+	}
+	
+	/**
+	 * Constructor of ListOperations
+	 */
+	public ListOperations(String path) {
+		runningTimes = 0;
+		PropertyParser parser = new PropertyParser(path);
+		timeLimits = parser.getTimeLimit();
 	}
 
 	
@@ -102,19 +113,7 @@ public class ListOperations {
 	public UsageSpecification getElement(List<List<UsageSpecification>> elements, int partList, int elementAt) {
 		return elements.get(partList).get(elementAt);
 	}
-	
-	/**
-	 * Sets the maximum time limit, which is required for the selection of the algorithms
-	 * @param timelimit : array [years, months, days, hours, minutes, seconds]
-	 */
-	public void setTimeLimit(int[] timelimit) {
-		if (timelimit.length == 6) {
-			timeLimits = timelimit;
-		} else {
-			java.lang.System.out.println("invalid input of time limit in property file");
-			timeLimits = defaultTimeLimits;
-		}
-	}
+
 
 	/**
 	 * Decide which algorithm is used to select the partial lists (improvement of the runtime)
@@ -122,6 +121,10 @@ public class ListOperations {
 	 * @return : List of sublists
 	 */
 	public List<List<UsageSpecification>> calculateLists(List<UsageSpecification> elements) {
+//		List<List<UsageSpecification>> testList = new ArrayList<>();
+//		testList.add(elements);
+//		return testList;
+		
 		for (int i = 0; i < timeLimits.length; i++) {
 			if (calculateTime(elements.size(), 1)[i] > timeLimits[i]) {
 				if (runningTimes >= elements.size()) {

@@ -48,9 +48,6 @@ import org.palladiosimulator.pcm.confidentiality.context.ContextPackage;
 import org.palladiosimulator.pcm.confidentiality.context.system.SystemPackage;
 
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.StructurePackage;
-
-import org.palladiosimulator.pcm.core.composition.CompositionPackage;
-
 import org.palladiosimulator.pcm.core.entity.EntityPackage;
 
 import org.palladiosimulator.pcm.resourceenvironment.ResourceenvironmentPackage;
@@ -322,7 +319,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 */
 	public EReference getCredentialChange_Compromisedassembly()
 	{
-		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(1);
+		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -332,7 +329,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 */
 	public EReference getCredentialChange_Contextchange()
 	{
-		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(2);
+		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -342,7 +339,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 */
 	public EAttribute getCredentialChange_Changed()
 	{
-		return (EAttribute)credentialChangeEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)credentialChangeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -352,7 +349,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 */
 	public EReference getCredentialChange_Compromisedlinkingresource()
 	{
-		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(4);
+		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -362,7 +359,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 */
 	public EReference getCredentialChange_Compromisedservice()
 	{
-		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(5);
+		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -372,7 +369,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 */
 	public EReference getCredentialChange_Servicerestrictioncontainer()
 	{
-		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(6);
+		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -382,7 +379,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 */
 	public EReference getCredentialChange_Compromiseddata()
 	{
-		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(7);
+		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -392,7 +389,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 */
 	public EReference getCredentialChange_Datamodelcontainer()
 	{
-		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(8);
+		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -538,7 +535,6 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 
 		credentialChangeEClass = createEClass(CREDENTIAL_CHANGE);
 		createEReference(credentialChangeEClass, CREDENTIAL_CHANGE__COMPROMISEDRESOURCE);
-		createEReference(credentialChangeEClass, CREDENTIAL_CHANGE__COMPROMISEDASSEMBLY);
 		createEReference(credentialChangeEClass, CREDENTIAL_CHANGE__CONTEXTCHANGE);
 		createEAttribute(credentialChangeEClass, CREDENTIAL_CHANGE__CHANGED);
 		createEReference(credentialChangeEClass, CREDENTIAL_CHANGE__COMPROMISEDLINKINGRESOURCE);
@@ -546,6 +542,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 		createEReference(credentialChangeEClass, CREDENTIAL_CHANGE__SERVICERESTRICTIONCONTAINER);
 		createEReference(credentialChangeEClass, CREDENTIAL_CHANGE__COMPROMISEDDATA);
 		createEReference(credentialChangeEClass, CREDENTIAL_CHANGE__DATAMODELCONTAINER);
+		createEReference(credentialChangeEClass, CREDENTIAL_CHANGE__COMPROMISEDASSEMBLY);
 
 		compromisedResourceEClass = createEClass(COMPROMISED_RESOURCE);
 
@@ -596,7 +593,6 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 		AttackerPackage theAttackerPackage = (AttackerPackage)EPackage.Registry.INSTANCE.getEPackage(AttackerPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		ResourceenvironmentPackage theResourceenvironmentPackage = (ResourceenvironmentPackage)EPackage.Registry.INSTANCE.getEPackage(ResourceenvironmentPackage.eNS_URI);
-		CompositionPackage theCompositionPackage = (CompositionPackage)EPackage.Registry.INSTANCE.getEPackage(CompositionPackage.eNS_URI);
 		SystemPackage theSystemPackage = (SystemPackage)EPackage.Registry.INSTANCE.getEPackage(SystemPackage.eNS_URI);
 		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 
@@ -638,7 +634,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 		g1.getETypeArguments().add(g2);
 		compromisedResourceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getModifyEntity());
-		g2 = createEGenericType(theCompositionPackage.getAssemblyContext());
+		g2 = createEGenericType(theAttackerPackage.getAssemblyContextDetail());
 		g1.getETypeArguments().add(g2);
 		compromisedAssemblyEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getModifyEntity());
@@ -672,7 +668,6 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 
 		initEClass(credentialChangeEClass, CredentialChange.class, "CredentialChange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCredentialChange_Compromisedresource(), this.getCompromisedResource(), null, "compromisedresource", null, 0, -1, CredentialChange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCredentialChange_Compromisedassembly(), this.getCompromisedAssembly(), null, "compromisedassembly", null, 0, -1, CredentialChange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCredentialChange_Contextchange(), this.getContextChange(), null, "contextchange", null, 0, -1, CredentialChange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCredentialChange_Changed(), theEcorePackage.getEBoolean(), "changed", null, 0, 1, CredentialChange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCredentialChange_Compromisedlinkingresource(), this.getCompromisedLinkingResource(), null, "compromisedlinkingresource", null, 0, -1, CredentialChange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -680,6 +675,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 		initEReference(getCredentialChange_Servicerestrictioncontainer(), this.getServiceRestrictionContainer(), null, "servicerestrictioncontainer", null, 0, 1, CredentialChange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCredentialChange_Compromiseddata(), this.getCompromisedData(), null, "compromiseddata", null, 0, -1, CredentialChange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCredentialChange_Datamodelcontainer(), this.getDatamodelContainer(), null, "datamodelcontainer", null, 0, 1, CredentialChange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCredentialChange_Compromisedassembly(), this.getCompromisedAssembly(), null, "compromisedassembly", null, 0, -1, CredentialChange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compromisedResourceEClass, CompromisedResource.class, "CompromisedResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

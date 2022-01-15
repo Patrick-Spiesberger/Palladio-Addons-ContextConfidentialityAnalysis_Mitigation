@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AttackerSystemSpecificationContainer;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.PCMElement;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.VulnerabilitySystemIntegration;
@@ -28,7 +29,7 @@ public class CollectionHelper {
     private CollectionHelper() {
 
     }
-
+    
     public static List<AssemblyContext> getAssemblyContext(final List<ResourceContainer> reachableResources,
             final Allocation allocation) {
         return allocation.getAllocationContexts_Allocation().stream()
@@ -109,9 +110,9 @@ public class CollectionHelper {
             AttackerSystemSpecificationContainer container, final CredentialChange change) {
 
         for (final var component : compromisedAssemblies) {
-            final var serviceRestrictions = CollectionHelper.getProvidedRestrictions(component.getAffectedElement());
+            final var serviceRestrictions = CollectionHelper.getProvidedRestrictions(component.getAffectedAssembly());
 
-            final var causingElement = new ArrayList<AssemblyContext>();
+            final var causingElement = new ArrayList<AssemblyContextDetail>();
             causingElement.add(component.getAffectedElement());
 
             var serviceRestrictionsCompromised = serviceRestrictions.stream().map(service -> {

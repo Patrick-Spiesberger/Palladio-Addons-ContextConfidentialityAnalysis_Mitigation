@@ -205,7 +205,7 @@ public abstract class AttackHandler {
                 .getRoles(getModelStorage().getVulnerabilitySpecification());
 
         final var roles = roleSpecification.stream()
-                .filter(e -> CompromisedElementHelper.isHacked(e.getPcmelement(), change))
+                .filter(e -> CompromisedElementHelper.isHacked(e.getPcmelement(), change, attacks))
                 .map(RoleSystemIntegration::getRole).collect(Collectors.toList());
 
         final var vulnerability = VulnerabilityHelper.checkAttack(authenticated, vulnerabilityList, attacks,

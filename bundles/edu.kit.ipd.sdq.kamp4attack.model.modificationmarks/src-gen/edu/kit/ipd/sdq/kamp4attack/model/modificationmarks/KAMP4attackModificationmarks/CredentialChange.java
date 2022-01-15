@@ -16,7 +16,6 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange#getCompromisedresource <em>Compromisedresource</em>}</li>
- *   <li>{@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange#getCompromisedassembly <em>Compromisedassembly</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange#getContextchange <em>Contextchange</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange#isChanged <em>Changed</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange#getCompromisedlinkingresource <em>Compromisedlinkingresource</em>}</li>
@@ -24,6 +23,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange#getServicerestrictioncontainer <em>Servicerestrictioncontainer</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange#getCompromiseddata <em>Compromiseddata</em>}</li>
  *   <li>{@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange#getDatamodelcontainer <em>Datamodelcontainer</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange#getCompromisedassembly <em>Compromisedassembly</em>}</li>
  * </ul>
  *
  * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.KAMP4attackModificationmarksPackage#getCredentialChange()

@@ -14,4 +14,12 @@
    </extension>
 
 null
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated KAMP4attackModificationsmarks -->
+      <package
+            uri="http://sdq.ipd.kit.edu/KAMP4attackModificationmarks/1.0"
+            class="KAMP4attackModificationmarks.KAMP4attackModificationmarksPackage"
+            genModel="model/KAMP4attackModificationsmarks.genmodel"/>
+   </extension>
+
 </plugin>

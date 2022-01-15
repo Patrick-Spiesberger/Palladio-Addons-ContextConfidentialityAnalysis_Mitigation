@@ -41,7 +41,7 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 
     protected List<AssemblyContext> getCompromisedAssemblyContexts() {
         return this.changes.getCompromisedassembly().stream()
-                .map(CompromisedAssembly::getAffectedElement).collect(Collectors.toList());
+                .map(CompromisedAssembly::getAffectedAssembly).collect(Collectors.toList());
     }
 
     @Override

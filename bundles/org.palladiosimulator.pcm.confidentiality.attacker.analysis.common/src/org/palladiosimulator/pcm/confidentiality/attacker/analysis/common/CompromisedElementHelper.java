@@ -1,6 +1,9 @@
 package org.palladiosimulator.pcm.confidentiality.attacker.analysis.common;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.Attack;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.PCMElement;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
@@ -22,8 +25,8 @@ public class CompromisedElementHelper {
 		// intentional
 	}
 
-	public static boolean isHacked(final PCMElement element, final CredentialChange change) {
-		if (EncryptionHelper.isCrackable(element)) {
+	public static boolean isHacked(final PCMElement element, final CredentialChange change, final List<Attack> attacks) {
+		if (EncryptionHelper.isCrackable(element, attacks)) {
 			return isHacked(element.getAssemblycontext(), change) && isHacked(element.getLinkingresource(), change)
 					&& isHacked(element.getResourcecontainer(), change);
 		} else {

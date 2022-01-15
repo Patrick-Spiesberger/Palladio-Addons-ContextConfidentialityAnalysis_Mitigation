@@ -15,15 +15,11 @@ import java.util.Properties;
  */
 public class PropertyParser {
 
-	// encryption
-	private boolean encrypted = false;
-	private Effort crackableEffort = Effort.SECURE;
-
 	// context selection
-	private boolean missingAttributesEnabled = true;
+	private boolean missingAttributesEnabled = false;
 
 	// general
-	private int[] timeLimit = new int[6];
+	private int[] timeLimit = {0, 0, 0, 12, 0, 0}; //years, months, days, hours, minutes, seconds
 
 	private InputStream input;
 
@@ -39,39 +35,32 @@ public class PropertyParser {
 				loadValues();
 			} catch (IOException e) {
 				validInput = false;
-				e.printStackTrace();
+				java.lang.System.out.println("The requested file " + path + " cannot be read.");
 			}
 		} catch (FileNotFoundException e) {
 			validInput = false;
-			e.printStackTrace();
+			java.lang.System.out.println("The specified path  " + path + " does not exist.");
 		}
 	}
-	
 
 	private void loadValues() {
-		//TODO REGEX: check user input
-		this.encrypted = Boolean.valueOf(prop.getProperty("encrypted"));
-		this.crackableEffort = Effort.valueOf(prop.getProperty("crackableEffort"));
-		
-		this.missingAttributesEnabled = Boolean.valueOf(prop.getProperty("missingAttributesEnabled"));
-		
-		String[] separatedStrings = prop.getProperty("timeLimit").replaceAll("\\[", "").replaceAll("]", "").split(",");
-		for (int i = 0; i < separatedStrings.length; i++) {
-            
-            try {
-                this.timeLimit[i] = Integer.parseInt(separatedStrings[i]);
-            } catch (Exception e) {
-                java.lang.System.out.println("Unable to parse string to int: " + e.getMessage());
-            }
-        }
-	}
-	
-	public boolean isEncrypted() {
-		return encrypted;
-	}
+		if (validInput) {
+			try {
+				this.missingAttributesEnabled = Boolean.valueOf(prop.getProperty("missingAttributesEnabled"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
-	public Effort getCrackableEffort() {
-		return crackableEffort;
+			String[] separatedStrings = prop.getProperty("timeLimit").replaceAll("\\[", "").replaceAll("]", "")
+					.split(",");
+			for (int i = 0; i < separatedStrings.length; i++) {
+				try {
+					this.timeLimit[i] = Integer.parseInt(separatedStrings[i]);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	public boolean isMissingAttributesEnabled() {
@@ -81,8 +70,4 @@ public class PropertyParser {
 	public int[] getTimeLimit() {
 		return timeLimit;
 	}
-}
-
-enum Effort {
-	SECURE, LOW, MEDIUM, HIGH;
 }
