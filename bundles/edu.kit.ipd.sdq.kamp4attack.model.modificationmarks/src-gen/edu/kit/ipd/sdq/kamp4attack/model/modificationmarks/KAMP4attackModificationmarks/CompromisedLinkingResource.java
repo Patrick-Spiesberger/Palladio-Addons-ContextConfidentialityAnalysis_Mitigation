@@ -14,6 +14,5 @@ import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
  * @model
  * @generated
  */
-public interface CompromisedLinkingResource extends ModifyEntity<LinkingResource>
-{
+public interface CompromisedLinkingResource extends ModifyEntity<LinkingResource> {
 } // CompromisedLinkingResource

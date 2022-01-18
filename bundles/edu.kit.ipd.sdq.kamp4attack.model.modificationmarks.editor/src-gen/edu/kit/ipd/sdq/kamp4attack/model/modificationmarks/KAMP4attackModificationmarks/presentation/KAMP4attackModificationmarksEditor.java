@@ -236,8 +236,7 @@ import org.palladiosimulator.pcm.usagemodel.provider.UsagemodelItemProviderAdapt
  */
 public class KAMP4attackModificationmarksEditor
 	extends MultiPageEditorPart
-	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker
-{
+	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model.
 	 * <!-- begin-user-doc -->
@@ -611,8 +610,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void handleActivate()
-	{
+	protected void handleActivate() {
 		// Recompute the read only state.
 		//
 		if (editingDomain.getResourceToReadOnlyMap() != null) {
@@ -647,8 +645,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void handleChangedResources()
-	{
+	protected void handleChangedResources() {
 		if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
 			ResourceSet resourceSet = editingDomain.getResourceSet();
 			if (isDirty()) {
@@ -686,8 +683,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void updateProblemIndication()
-	{
+	protected void updateProblemIndication() {
 		if (updateProblemIndication) {
 			BasicDiagnostic diagnostic =
 				new BasicDiagnostic
@@ -741,8 +737,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected boolean handleDirtyConflict()
-	{
+	protected boolean handleDirtyConflict() {
 		return
 			MessageDialog.openQuestion
 				(getSite().getShell(),
@@ -756,8 +751,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KAMP4attackModificationmarksEditor()
-	{
+	public KAMP4attackModificationmarksEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -768,8 +762,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void initializeEditingDomain()
-	{
+	protected void initializeEditingDomain() {
 		// Create an adapter factory that yields item providers.
 		//
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
@@ -859,8 +852,7 @@ public class KAMP4attackModificationmarksEditor
 	 * @generated
 	 */
 			@Override
-	protected void firePropertyChange(int action)
-	{
+	protected void firePropertyChange(int action) {
 		super.firePropertyChange(action);
 	}
 
@@ -870,8 +862,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSelectionToViewer(Collection<?> collection)
-	{
+	public void setSelectionToViewer(Collection<?> collection) {
 		final Collection<?> theSelection = collection;
 		// Make sure it's okay.
 		//
@@ -898,8 +889,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EditingDomain getEditingDomain()
-	{
+	public EditingDomain getEditingDomain() {
 		return editingDomain;
 	}
 
@@ -908,15 +898,13 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class ReverseAdapterFactoryContentProvider extends AdapterFactoryContentProvider
-	{
+	public class ReverseAdapterFactoryContentProvider extends AdapterFactoryContentProvider {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public ReverseAdapterFactoryContentProvider(AdapterFactory adapterFactory)
-		{
+		public ReverseAdapterFactoryContentProvider(AdapterFactory adapterFactory) {
 			super(adapterFactory);
 		}
 
@@ -926,8 +914,7 @@ public class KAMP4attackModificationmarksEditor
 		 * @generated
 		 */
 		@Override
-		public Object [] getElements(Object object)
-		{
+		public Object [] getElements(Object object) {
 			Object parent = super.getParent(object);
 			return (parent == null ? Collections.EMPTY_SET : Collections.singleton(parent)).toArray();
 		}
@@ -938,8 +925,7 @@ public class KAMP4attackModificationmarksEditor
 		 * @generated
 		 */
 		@Override
-		public Object [] getChildren(Object object)
-		{
+		public Object [] getChildren(Object object) {
 			Object parent = super.getParent(object);
 			return (parent == null ? Collections.EMPTY_SET : Collections.singleton(parent)).toArray();
 		}
@@ -950,8 +936,7 @@ public class KAMP4attackModificationmarksEditor
 		 * @generated
 		 */
 		@Override
-		public boolean hasChildren(Object object)
-		{
+		public boolean hasChildren(Object object) {
 			Object parent = super.getParent(object);
 			return parent != null;
 		}
@@ -962,8 +947,7 @@ public class KAMP4attackModificationmarksEditor
 		 * @generated
 		 */
 		@Override
-		public Object getParent(Object object)
-		{
+		public Object getParent(Object object) {
 			return null;
 		}
 	}
@@ -973,8 +957,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCurrentViewerPane(ViewerPane viewerPane)
-	{
+	public void setCurrentViewerPane(ViewerPane viewerPane) {
 		if (currentViewerPane != viewerPane) {
 			if (currentViewerPane != null) {
 				currentViewerPane.showFocus(false);
@@ -991,8 +974,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCurrentViewer(Viewer viewer)
-	{
+	public void setCurrentViewer(Viewer viewer) {
 		// If it is changing...
 		//
 		if (currentViewer != viewer) {
@@ -1037,8 +1019,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Viewer getViewer()
-	{
+	public Viewer getViewer() {
 		return currentViewer;
 	}
 
@@ -1048,8 +1029,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createContextMenuFor(StructuredViewer viewer)
-	{
+	protected void createContextMenuFor(StructuredViewer viewer) {
 		MenuManager contextMenu = new MenuManager("#PopUp");
 		contextMenu.add(new Separator("additions"));
 		contextMenu.setRemoveAllWhenShown(true);
@@ -1070,8 +1050,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void createModel()
-	{
+	public void createModel() {
 		URI resourceURI = EditUIUtil.getURI(getEditorInput(), editingDomain.getResourceSet().getURIConverter());
 		Exception exception = null;
 		Resource resource = null;
@@ -1099,8 +1078,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Diagnostic analyzeResourceProblems(Resource resource, Exception exception)
-	{
+	public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
 		boolean hasErrors = !resource.getErrors().isEmpty();
 		if (hasErrors || !resource.getWarnings().isEmpty()) {
 			BasicDiagnostic basicDiagnostic =
@@ -1134,8 +1112,7 @@ public class KAMP4attackModificationmarksEditor
 	 * @generated
 	 */
 	@Override
-	public void createPages()
-	{
+	public void createPages() {
 		// Creates the model from the editor input
 		//
 		createModel();
@@ -1386,8 +1363,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void hideTabs()
-	{
+	protected void hideTabs() {
 		if (getPageCount() <= 1) {
 			setPageText(0, "");
 			if (getContainer() instanceof CTabFolder) {
@@ -1405,8 +1381,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void showTabs()
-	{
+	protected void showTabs() {
 		if (getPageCount() > 1) {
 			setPageText(0, getString("_UI_SelectionPage_label"));
 			if (getContainer() instanceof CTabFolder) {
@@ -1424,8 +1399,7 @@ public class KAMP4attackModificationmarksEditor
 	 * @generated
 	 */
 	@Override
-	protected void pageChange(int pageIndex)
-	{
+	protected void pageChange(int pageIndex) {
 		super.pageChange(pageIndex);
 
 		if (contentOutlinePage != null) {
@@ -1440,8 +1414,7 @@ public class KAMP4attackModificationmarksEditor
 	 * @generated
 	 */
 	@Override
-	public <T> T getAdapter(Class<T> key)
-	{
+	public <T> T getAdapter(Class<T> key) {
 		if (key.equals(IContentOutlinePage.class)) {
 			return showOutlineView() ? key.cast(getContentOutlinePage()) : null;
 		}
@@ -1462,8 +1435,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IContentOutlinePage getContentOutlinePage()
-	{
+	public IContentOutlinePage getContentOutlinePage() {
 		if (contentOutlinePage == null) {
 			// The content outline is just a tree.
 			//
@@ -1528,8 +1500,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IPropertySheetPage getPropertySheetPage()
-	{
+	public IPropertySheetPage getPropertySheetPage() {
 		PropertySheetPage propertySheetPage =
 			new ExtendedPropertySheetPage(editingDomain, ExtendedPropertySheetPage.Decoration.NONE, null, 0, false) {
 				@Override
@@ -1556,8 +1527,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void handleContentOutlineSelection(ISelection selection)
-	{
+	public void handleContentOutlineSelection(ISelection selection) {
 		if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
 			Iterator<?> selectedElements = ((IStructuredSelection)selection).iterator();
 			if (selectedElements.hasNext()) {
@@ -1597,8 +1567,7 @@ public class KAMP4attackModificationmarksEditor
 	 * @generated
 	 */
 	@Override
-	public boolean isDirty()
-	{
+	public boolean isDirty() {
 		return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
 	}
 
@@ -1609,8 +1578,7 @@ public class KAMP4attackModificationmarksEditor
 	 * @generated
 	 */
 	@Override
-	public void doSave(IProgressMonitor progressMonitor)
-	{
+	public void doSave(IProgressMonitor progressMonitor) {
 		// Save only resources that have actually changed.
 		//
 		final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
@@ -1675,8 +1643,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected boolean isPersisted(Resource resource)
-	{
+	protected boolean isPersisted(Resource resource) {
 		boolean result = false;
 		try {
 			InputStream stream = editingDomain.getResourceSet().getURIConverter().createInputStream(resource.getURI());
@@ -1698,8 +1665,7 @@ public class KAMP4attackModificationmarksEditor
 	 * @generated
 	 */
 	@Override
-	public boolean isSaveAsAllowed()
-	{
+	public boolean isSaveAsAllowed() {
 		return true;
 	}
 
@@ -1710,8 +1676,7 @@ public class KAMP4attackModificationmarksEditor
 	 * @generated
 	 */
 	@Override
-	public void doSaveAs()
-	{
+	public void doSaveAs() {
 		SaveAsDialog saveAsDialog = new SaveAsDialog(getSite().getShell());
 		saveAsDialog.open();
 		IPath path = saveAsDialog.getResult();
@@ -1728,8 +1693,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void doSaveAs(URI uri, IEditorInput editorInput)
-	{
+	protected void doSaveAs(URI uri, IEditorInput editorInput) {
 		(editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
@@ -1745,8 +1709,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void gotoMarker(IMarker marker)
-	{
+	public void gotoMarker(IMarker marker) {
 		List<?> targetObjects = markerHelper.getTargetObjects(editingDomain, marker);
 		if (!targetObjects.isEmpty()) {
 			setSelectionToViewer(targetObjects);
@@ -1760,8 +1723,7 @@ public class KAMP4attackModificationmarksEditor
 	 * @generated
 	 */
 	@Override
-	public void init(IEditorSite site, IEditorInput editorInput)
-	{
+	public void init(IEditorSite site, IEditorInput editorInput) {
 		setSite(site);
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
@@ -1776,8 +1738,7 @@ public class KAMP4attackModificationmarksEditor
 	 * @generated
 	 */
 	@Override
-	public void setFocus()
-	{
+	public void setFocus() {
 		if (currentViewerPane != null) {
 			currentViewerPane.setFocus();
 		}
@@ -1792,8 +1753,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void addSelectionChangedListener(ISelectionChangedListener listener)
-	{
+	public void addSelectionChangedListener(ISelectionChangedListener listener) {
 		selectionChangedListeners.add(listener);
 	}
 
@@ -1803,8 +1763,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void removeSelectionChangedListener(ISelectionChangedListener listener)
-	{
+	public void removeSelectionChangedListener(ISelectionChangedListener listener) {
 		selectionChangedListeners.remove(listener);
 	}
 
@@ -1814,8 +1773,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ISelection getSelection()
-	{
+	public ISelection getSelection() {
 		return editorSelection;
 	}
 
@@ -1826,8 +1784,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSelection(ISelection selection)
-	{
+	public void setSelection(ISelection selection) {
 		editorSelection = selection;
 
 		for (ISelectionChangedListener listener : selectionChangedListeners) {
@@ -1841,8 +1798,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStatusLineManager(ISelection selection)
-	{
+	public void setStatusLineManager(ISelection selection) {
 		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer ?
 			contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
 
@@ -1877,8 +1833,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static String getString(String key)
-	{
+	private static String getString(String key) {
 		return KAMP4attackModificationsmarksEditorPlugin.INSTANCE.getString(key);
 	}
 
@@ -1888,8 +1843,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static String getString(String key, Object s1)
-	{
+	private static String getString(String key, Object s1) {
 		return KAMP4attackModificationsmarksEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
@@ -1899,8 +1853,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void menuAboutToShow(IMenuManager menuManager)
-	{
+	public void menuAboutToShow(IMenuManager menuManager) {
 		((IMenuListener)getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
 	}
 
@@ -1909,8 +1862,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EditingDomainActionBarContributor getActionBarContributor()
-	{
+	public EditingDomainActionBarContributor getActionBarContributor() {
 		return (EditingDomainActionBarContributor)getEditorSite().getActionBarContributor();
 	}
 
@@ -1919,8 +1871,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IActionBars getActionBars()
-	{
+	public IActionBars getActionBars() {
 		return getActionBarContributor().getActionBars();
 	}
 
@@ -1929,8 +1880,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AdapterFactory getAdapterFactory()
-	{
+	public AdapterFactory getAdapterFactory() {
 		return adapterFactory;
 	}
 
@@ -1940,8 +1890,7 @@ public class KAMP4attackModificationmarksEditor
 	 * @generated
 	 */
 	@Override
-	public void dispose()
-	{
+	public void dispose() {
 		updateProblemIndication = false;
 
 		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
@@ -1971,8 +1920,7 @@ public class KAMP4attackModificationmarksEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected boolean showOutlineView()
-	{
+	protected boolean showOutlineView() {
 		return true;
 	}
 }

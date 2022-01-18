@@ -16,15 +16,13 @@ import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
  *
  * @generated
  */
-public class CompromisedLinkingResourceImpl extends ModifyEntityImpl<LinkingResource> implements CompromisedLinkingResource
-{
+public class CompromisedLinkingResourceImpl extends ModifyEntityImpl<LinkingResource> implements CompromisedLinkingResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompromisedLinkingResourceImpl()
-	{
+	protected CompromisedLinkingResourceImpl() {
 		super();
 	}
 
@@ -34,8 +32,7 @@ public class CompromisedLinkingResourceImpl extends ModifyEntityImpl<LinkingReso
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return KAMP4attackModificationmarksPackage.Literals.COMPROMISED_LINKING_RESOURCE;
 	}
 

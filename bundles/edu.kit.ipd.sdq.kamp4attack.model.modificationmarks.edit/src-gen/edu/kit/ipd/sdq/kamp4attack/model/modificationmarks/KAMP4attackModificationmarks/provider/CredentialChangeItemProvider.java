@@ -30,16 +30,14 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CredentialChangeItemProvider extends ChangePropagationStepItemProvider
-{
+public class CredentialChangeItemProvider extends ChangePropagationStepItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CredentialChangeItemProvider(AdapterFactory adapterFactory)
-	{
+	public CredentialChangeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,65 +48,13 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
-	{
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCompromisedresourcePropertyDescriptor(object);
-			addContextchangePropertyDescriptor(object);
 			addChangedPropertyDescriptor(object);
-			addCompromisedlinkingresourcePropertyDescriptor(object);
-			addCompromiseddataPropertyDescriptor(object);
-			addDatamodelcontainerPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Compromisedresource feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCompromisedresourcePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CredentialChange_compromisedresource_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CredentialChange_compromisedresource_feature", "_UI_CredentialChange_type"),
-				 KAMP4attackModificationmarksPackage.Literals.CREDENTIAL_CHANGE__COMPROMISEDRESOURCE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Contextchange feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContextchangePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CredentialChange_contextchange_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CredentialChange_contextchange_feature", "_UI_CredentialChange_type"),
-				 KAMP4attackModificationmarksPackage.Literals.CREDENTIAL_CHANGE__CONTEXTCHANGE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -117,8 +63,7 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addChangedPropertyDescriptor(Object object)
-	{
+	protected void addChangedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -135,75 +80,6 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	}
 
 	/**
-	 * This adds a property descriptor for the Compromisedlinkingresource feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCompromisedlinkingresourcePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CredentialChange_compromisedlinkingresource_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CredentialChange_compromisedlinkingresource_feature", "_UI_CredentialChange_type"),
-				 KAMP4attackModificationmarksPackage.Literals.CREDENTIAL_CHANGE__COMPROMISEDLINKINGRESOURCE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Compromiseddata feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCompromiseddataPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CredentialChange_compromiseddata_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CredentialChange_compromiseddata_feature", "_UI_CredentialChange_type"),
-				 KAMP4attackModificationmarksPackage.Literals.CREDENTIAL_CHANGE__COMPROMISEDDATA,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Datamodelcontainer feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDatamodelcontainerPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CredentialChange_datamodelcontainer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CredentialChange_datamodelcontainer_feature", "_UI_CredentialChange_type"),
-				 KAMP4attackModificationmarksPackage.Literals.CREDENTIAL_CHANGE__DATAMODELCONTAINER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -212,8 +88,7 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
-	{
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(KAMP4attackModificationmarksPackage.Literals.CREDENTIAL_CHANGE__COMPROMISEDRESOURCE);
@@ -234,8 +109,7 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -249,8 +123,7 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/CredentialChange"));
 	}
 
@@ -261,8 +134,7 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		CredentialChange credentialChange = (CredentialChange)object;
 		return getString("_UI_CredentialChange_type") + " " + credentialChange.isChanged();
 	}
@@ -276,8 +148,7 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CredentialChange.class)) {
@@ -306,8 +177,7 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -358,8 +228,7 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return KAMP4attackModificationsmarksEditPlugin.INSTANCE;
 	}
 

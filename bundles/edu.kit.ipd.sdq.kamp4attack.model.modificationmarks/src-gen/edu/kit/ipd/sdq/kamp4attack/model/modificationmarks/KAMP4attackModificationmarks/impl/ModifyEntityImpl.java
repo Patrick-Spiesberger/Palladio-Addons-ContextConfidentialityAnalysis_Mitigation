@@ -19,15 +19,13 @@ import org.palladiosimulator.pcm.core.entity.Entity;
  *
  * @generated
  */
-public abstract class ModifyEntityImpl<T extends Entity> extends AbstractModificationImpl<T, EObject> implements ModifyEntity<T>
-{
+public abstract class ModifyEntityImpl<T extends Entity> extends AbstractModificationImpl<T, EObject> implements ModifyEntity<T> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModifyEntityImpl()
-	{
+	protected ModifyEntityImpl() {
 		super();
 	}
 
@@ -37,8 +35,7 @@ public abstract class ModifyEntityImpl<T extends Entity> extends AbstractModific
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return KAMP4attackModificationmarksPackage.Literals.MODIFY_ENTITY;
 	}
 
@@ -49,8 +46,7 @@ public abstract class ModifyEntityImpl<T extends Entity> extends AbstractModific
 	 * @generated
 	 */
 	@Override
-	public void setAffectedElement(T newAffectedElement)
-	{
+	public void setAffectedElement(T newAffectedElement) {
 		super.setAffectedElement(newAffectedElement);
 	}
 

@@ -13,6 +13,5 @@ package edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificat
  * @model
  * @generated
  */
-public interface KAMP4attackModificationRepository extends AbstractKAMP4attackModificationRepository<KAMP4attackSeedModifications>
-{
+public interface KAMP4attackModificationRepository extends AbstractKAMP4attackModificationRepository<KAMP4attackSeedModifications> {
 } // KAMP4attackModificationRepository

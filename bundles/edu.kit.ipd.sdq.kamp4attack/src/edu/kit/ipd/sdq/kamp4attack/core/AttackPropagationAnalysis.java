@@ -42,7 +42,7 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 
 	@Override
 	public void runChangePropagationAnalysis(final BlackboardWrapper board) {
-
+		
 		// Setup
 		this.changePropagationDueToCredential = KAMP4attackModificationmarksFactory.eINSTANCE.createCredentialChange();
 		CachePDP.instance().clearCache();
@@ -162,6 +162,8 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 				@Override
 				protected Collection<CompromisedAssembly> attackComponent(AssemblyContextDetail component,
 						CredentialChange change, EObject source) {
+					System.out.println("AttackPropagationAnalysis: Componente " + component.getEntityName());
+					System.out.println("AttackPropagationAnalysis: Componente " + component.getCompromisedComponents().toString());
 					List<CompromisedAssembly> assemblies = new LinkedList<>();
 					for (AssemblyContext assembly : component.getCompromisedComponents()) {
 						CompromisedAssembly compromisedComponent = KAMP4attackModificationmarksFactory.eINSTANCE

@@ -33,8 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class KAMP4attackSeedModificationsImpl extends AbstractSeedModificationsImpl implements KAMP4attackSeedModifications
-{
+public class KAMP4attackSeedModificationsImpl extends AbstractSeedModificationsImpl implements KAMP4attackSeedModifications {
 	/**
 	 * The cached value of the '{@link #getAttackcomponent() <em>Attackcomponent</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -50,8 +49,7 @@ public class KAMP4attackSeedModificationsImpl extends AbstractSeedModificationsI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected KAMP4attackSeedModificationsImpl()
-	{
+	protected KAMP4attackSeedModificationsImpl() {
 		super();
 	}
 
@@ -61,8 +59,7 @@ public class KAMP4attackSeedModificationsImpl extends AbstractSeedModificationsI
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return KAMP4attackModificationmarksPackage.Literals.KAMP_4ATTACK_SEED_MODIFICATIONS;
 	}
 
@@ -71,8 +68,7 @@ public class KAMP4attackSeedModificationsImpl extends AbstractSeedModificationsI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AttackerSelection> getAttackcomponent()
-	{
+	public EList<AttackerSelection> getAttackcomponent() {
 		if (attackcomponent == null) {
 			attackcomponent = new EObjectContainmentEList<AttackerSelection>(AttackerSelection.class, this, KAMP4attackModificationmarksPackage.KAMP_4ATTACK_SEED_MODIFICATIONS__ATTACKCOMPONENT);
 		}
@@ -85,8 +81,7 @@ public class KAMP4attackSeedModificationsImpl extends AbstractSeedModificationsI
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case KAMP4attackModificationmarksPackage.KAMP_4ATTACK_SEED_MODIFICATIONS__ATTACKCOMPONENT:
 				return ((InternalEList<?>)getAttackcomponent()).basicRemove(otherEnd, msgs);
@@ -100,8 +95,7 @@ public class KAMP4attackSeedModificationsImpl extends AbstractSeedModificationsI
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case KAMP4attackModificationmarksPackage.KAMP_4ATTACK_SEED_MODIFICATIONS__ATTACKCOMPONENT:
 				return getAttackcomponent();
@@ -116,8 +110,7 @@ public class KAMP4attackSeedModificationsImpl extends AbstractSeedModificationsI
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case KAMP4attackModificationmarksPackage.KAMP_4ATTACK_SEED_MODIFICATIONS__ATTACKCOMPONENT:
 				getAttackcomponent().clear();
@@ -133,8 +126,7 @@ public class KAMP4attackSeedModificationsImpl extends AbstractSeedModificationsI
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
+	public void eUnset(int featureID) {
 		switch (featureID) {
 			case KAMP4attackModificationmarksPackage.KAMP_4ATTACK_SEED_MODIFICATIONS__ATTACKCOMPONENT:
 				getAttackcomponent().clear();
@@ -149,8 +141,7 @@ public class KAMP4attackSeedModificationsImpl extends AbstractSeedModificationsI
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case KAMP4attackModificationmarksPackage.KAMP_4ATTACK_SEED_MODIFICATIONS__ATTACKCOMPONENT:
 				return attackcomponent != null && !attackcomponent.isEmpty();

@@ -47,8 +47,7 @@ import org.eclipse.ui.PartInitException;
  */
 public class KAMP4attackModificationmarksActionBarContributor
 	extends EditingDomainActionBarContributor
-	implements ISelectionChangedListener
-{
+	implements ISelectionChangedListener {
 	/**
 	 * This keeps track of the active editor.
 	 * <!-- begin-user-doc -->
@@ -149,8 +148,7 @@ public class KAMP4attackModificationmarksActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KAMP4attackModificationmarksActionBarContributor()
-	{
+	public KAMP4attackModificationmarksActionBarContributor() {
 		super(ADDITIONS_LAST_STYLE);
 		loadResourceAction = new LoadResourceAction();
 		validateAction = new ValidateAction();
@@ -164,8 +162,7 @@ public class KAMP4attackModificationmarksActionBarContributor
 	 * @generated
 	 */
 	@Override
-	public void contributeToToolBar(IToolBarManager toolBarManager)
-	{
+	public void contributeToToolBar(IToolBarManager toolBarManager) {
 		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("kamp4attackmodificationmarks-settings"));
 		toolBarManager.add(new Separator("kamp4attackmodificationmarks-additions"));
@@ -179,8 +176,7 @@ public class KAMP4attackModificationmarksActionBarContributor
 	 * @generated
 	 */
 	@Override
-	public void contributeToMenu(IMenuManager menuManager)
-	{
+	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
 		IMenuManager submenuManager = new MenuManager(KAMP4attackModificationsmarksEditorPlugin.INSTANCE.getString("_UI_KAMP4attackModificationmarksEditor_menu"), "edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarksMenuID");
@@ -219,8 +215,7 @@ public class KAMP4attackModificationmarksActionBarContributor
 	 * @generated
 	 */
 	@Override
-	public void setActiveEditor(IEditorPart part)
-	{
+	public void setActiveEditor(IEditorPart part) {
 		super.setActiveEditor(part);
 		activeEditorPart = part;
 
@@ -252,8 +247,7 @@ public class KAMP4attackModificationmarksActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void selectionChanged(SelectionChangedEvent event)
-	{
+	public void selectionChanged(SelectionChangedEvent event) {
 		// Remove any menu items for old selection.
 		//
 		if (createChildMenuManager != null) {
@@ -300,8 +294,7 @@ public class KAMP4attackModificationmarksActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection)
-	{
+	protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
 		Collection<IAction> actions = new ArrayList<IAction>();
 		if (descriptors != null) {
 			for (Object descriptor : descriptors) {
@@ -318,8 +311,7 @@ public class KAMP4attackModificationmarksActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection)
-	{
+	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
 		Collection<IAction> actions = new ArrayList<IAction>();
 		if (descriptors != null) {
 			for (Object descriptor : descriptors) {
@@ -338,8 +330,7 @@ public class KAMP4attackModificationmarksActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID)
-	{
+	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID) {
 		if (actions != null) {
 			for (IAction action : actions) {
 				if (contributionID != null) {
@@ -359,8 +350,7 @@ public class KAMP4attackModificationmarksActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions)
-	{
+	protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
 		if (actions != null) {
 			IContributionItem[] items = manager.getItems();
 			for (int i = 0; i < items.length; i++) {
@@ -390,8 +380,7 @@ public class KAMP4attackModificationmarksActionBarContributor
 	 * @generated
 	 */
 	@Override
-	public void menuAboutToShow(IMenuManager menuManager)
-	{
+	public void menuAboutToShow(IMenuManager menuManager) {
 		super.menuAboutToShow(menuManager);
 		MenuManager submenuManager = null;
 
@@ -411,8 +400,7 @@ public class KAMP4attackModificationmarksActionBarContributor
 	 * @generated
 	 */
 	@Override
-	protected void addGlobalActions(IMenuManager menuManager)
-	{
+	protected void addGlobalActions(IMenuManager menuManager) {
 		menuManager.insertAfter("additions-end", new Separator("ui-actions"));
 		menuManager.insertAfter("ui-actions", showPropertiesViewAction);
 
@@ -429,8 +417,7 @@ public class KAMP4attackModificationmarksActionBarContributor
 	 * @generated
 	 */
 	@Override
-	protected boolean removeAllReferencesOnDelete()
-	{
+	protected boolean removeAllReferencesOnDelete() {
 		return true;
 	}
 

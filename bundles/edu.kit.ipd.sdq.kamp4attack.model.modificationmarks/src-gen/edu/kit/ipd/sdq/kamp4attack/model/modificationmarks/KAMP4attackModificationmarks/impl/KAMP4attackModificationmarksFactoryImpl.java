@@ -18,16 +18,14 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implements KAMP4attackModificationmarksFactory
-{
+public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implements KAMP4attackModificationmarksFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static KAMP4attackModificationmarksFactory init()
-	{
+	public static KAMP4attackModificationmarksFactory init() {
 		try {
 			KAMP4attackModificationmarksFactory theKAMP4attackModificationmarksFactory = (KAMP4attackModificationmarksFactory)EPackage.Registry.INSTANCE.getEFactory(KAMP4attackModificationmarksPackage.eNS_URI);
 			if (theKAMP4attackModificationmarksFactory != null) {
@@ -46,8 +44,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KAMP4attackModificationmarksFactoryImpl()
-	{
+	public KAMP4attackModificationmarksFactoryImpl() {
 		super();
 	}
 
@@ -57,8 +54,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass)
-	{
+	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case KAMP4attackModificationmarksPackage.KAMP_4ATTACK_MODIFICATION_REPOSITORY: return createKAMP4attackModificationRepository();
 			case KAMP4attackModificationmarksPackage.KAMP_4ATTACK_SEED_MODIFICATIONS: return createKAMP4attackSeedModifications();
@@ -82,8 +78,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KAMP4attackModificationRepository createKAMP4attackModificationRepository()
-	{
+	public KAMP4attackModificationRepository createKAMP4attackModificationRepository() {
 		KAMP4attackModificationRepositoryImpl kamp4attackModificationRepository = new KAMP4attackModificationRepositoryImpl();
 		return kamp4attackModificationRepository;
 	}
@@ -93,8 +88,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KAMP4attackSeedModifications createKAMP4attackSeedModifications()
-	{
+	public KAMP4attackSeedModifications createKAMP4attackSeedModifications() {
 		KAMP4attackSeedModificationsImpl kamp4attackSeedModifications = new KAMP4attackSeedModificationsImpl();
 		return kamp4attackSeedModifications;
 	}
@@ -104,8 +98,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttackerSelection createAttackerSelection()
-	{
+	public AttackerSelection createAttackerSelection() {
 		AttackerSelectionImpl attackerSelection = new AttackerSelectionImpl();
 		return attackerSelection;
 	}
@@ -115,8 +108,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CredentialChange createCredentialChange()
-	{
+	public CredentialChange createCredentialChange() {
 		CredentialChangeImpl credentialChange = new CredentialChangeImpl();
 		return credentialChange;
 	}
@@ -126,8 +118,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompromisedResource createCompromisedResource()
-	{
+	public CompromisedResource createCompromisedResource() {
 		CompromisedResourceImpl compromisedResource = new CompromisedResourceImpl();
 		return compromisedResource;
 	}
@@ -137,8 +128,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompromisedAssembly createCompromisedAssembly()
-	{
+	public CompromisedAssembly createCompromisedAssembly() {
 		CompromisedAssemblyImpl compromisedAssembly = new CompromisedAssemblyImpl();
 		return compromisedAssembly;
 	}
@@ -148,8 +138,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContextChange createContextChange()
-	{
+	public ContextChange createContextChange() {
 		ContextChangeImpl contextChange = new ContextChangeImpl();
 		return contextChange;
 	}
@@ -159,8 +148,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompromisedLinkingResource createCompromisedLinkingResource()
-	{
+	public CompromisedLinkingResource createCompromisedLinkingResource() {
 		CompromisedLinkingResourceImpl compromisedLinkingResource = new CompromisedLinkingResourceImpl();
 		return compromisedLinkingResource;
 	}
@@ -170,8 +158,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompromisedService createCompromisedService()
-	{
+	public CompromisedService createCompromisedService() {
 		CompromisedServiceImpl compromisedService = new CompromisedServiceImpl();
 		return compromisedService;
 	}
@@ -181,8 +168,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ServiceRestrictionContainer createServiceRestrictionContainer()
-	{
+	public ServiceRestrictionContainer createServiceRestrictionContainer() {
 		ServiceRestrictionContainerImpl serviceRestrictionContainer = new ServiceRestrictionContainerImpl();
 		return serviceRestrictionContainer;
 	}
@@ -192,8 +178,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompromisedData createCompromisedData()
-	{
+	public CompromisedData createCompromisedData() {
 		CompromisedDataImpl compromisedData = new CompromisedDataImpl();
 		return compromisedData;
 	}
@@ -203,8 +188,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DatamodelContainer createDatamodelContainer()
-	{
+	public DatamodelContainer createDatamodelContainer() {
 		DatamodelContainerImpl datamodelContainer = new DatamodelContainerImpl();
 		return datamodelContainer;
 	}
@@ -214,8 +198,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KAMP4attackModificationmarksPackage getKAMP4attackModificationmarksPackage()
-	{
+	public KAMP4attackModificationmarksPackage getKAMP4attackModificationmarksPackage() {
 		return (KAMP4attackModificationmarksPackage)getEPackage();
 	}
 
@@ -226,8 +209,7 @@ public class KAMP4attackModificationmarksFactoryImpl extends EFactoryImpl implem
 	 * @generated
 	 */
 	@Deprecated
-	public static KAMP4attackModificationmarksPackage getPackage()
-	{
+	public static KAMP4attackModificationmarksPackage getPackage() {
 		return KAMP4attackModificationmarksPackage.eINSTANCE;
 	}
 

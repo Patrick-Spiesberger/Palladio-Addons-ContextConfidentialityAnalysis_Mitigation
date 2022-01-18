@@ -30,8 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface CredentialChange extends ChangePropagationStep
-{
+public interface CredentialChange extends ChangePropagationStep {
 	/**
 	 * Returns the value of the '<em><b>Compromisedresource</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedResource}.
@@ -43,18 +42,6 @@ public interface CredentialChange extends ChangePropagationStep
 	 * @generated
 	 */
 	EList<CompromisedResource> getCompromisedresource();
-
-	/**
-	 * Returns the value of the '<em><b>Compromisedassembly</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Compromisedassembly</em>' containment reference list.
-	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.KAMP4attackModificationmarksPackage#getCredentialChange_Compromisedassembly()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<CompromisedAssembly> getCompromisedassembly();
 
 	/**
 	 * Returns the value of the '<em><b>Contextchange</b></em>' containment reference list.
@@ -169,5 +156,17 @@ public interface CredentialChange extends ChangePropagationStep
 	 * @generated
 	 */
 	void setDatamodelcontainer(DatamodelContainer value);
+
+	/**
+	 * Returns the value of the '<em><b>Compromisedassembly</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Compromisedassembly</em>' containment reference list.
+	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.KAMP4attackModificationmarksPackage#getCredentialChange_Compromisedassembly()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<CompromisedAssembly> getCompromisedassembly();
 
 } // CredentialChange

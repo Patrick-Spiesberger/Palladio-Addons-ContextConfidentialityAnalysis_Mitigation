@@ -16,15 +16,13 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
  *
  * @generated
  */
-public class AttackerSelectionImpl extends ModifyEntityImpl<Attacker> implements AttackerSelection
-{
+public class AttackerSelectionImpl extends ModifyEntityImpl<Attacker> implements AttackerSelection {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttackerSelectionImpl()
-	{
+	protected AttackerSelectionImpl() {
 		super();
 	}
 
@@ -34,8 +32,7 @@ public class AttackerSelectionImpl extends ModifyEntityImpl<Attacker> implements
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return KAMP4attackModificationmarksPackage.Literals.ATTACKER_SELECTION;
 	}
 

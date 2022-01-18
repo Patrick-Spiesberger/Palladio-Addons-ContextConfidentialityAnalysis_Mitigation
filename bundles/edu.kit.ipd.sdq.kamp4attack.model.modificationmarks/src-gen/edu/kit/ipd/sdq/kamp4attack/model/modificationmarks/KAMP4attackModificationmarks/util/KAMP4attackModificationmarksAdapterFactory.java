@@ -27,8 +27,7 @@ import org.palladiosimulator.pcm.core.entity.Entity;
  * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.KAMP4attackModificationmarksPackage
  * @generated
  */
-public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryImpl
-{
+public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -43,8 +42,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KAMP4attackModificationmarksAdapterFactory()
-	{
+	public KAMP4attackModificationmarksAdapterFactory() {
 		if (modelPackage == null) {
 			modelPackage = KAMP4attackModificationmarksPackage.eINSTANCE;
 		}
@@ -59,8 +57,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object)
-	{
+	public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
 		}
@@ -169,8 +166,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target)
-	{
+	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
@@ -185,8 +181,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.AbstractKAMP4attackModificationRepository
 	 * @generated
 	 */
-	public Adapter createAbstractKAMP4attackModificationRepositoryAdapter()
-	{
+	public Adapter createAbstractKAMP4attackModificationRepositoryAdapter() {
 		return null;
 	}
 
@@ -200,8 +195,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.KAMP4attackModificationRepository
 	 * @generated
 	 */
-	public Adapter createKAMP4attackModificationRepositoryAdapter()
-	{
+	public Adapter createKAMP4attackModificationRepositoryAdapter() {
 		return null;
 	}
 
@@ -215,8 +209,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.KAMP4attackSeedModifications
 	 * @generated
 	 */
-	public Adapter createKAMP4attackSeedModificationsAdapter()
-	{
+	public Adapter createKAMP4attackSeedModificationsAdapter() {
 		return null;
 	}
 
@@ -230,8 +223,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.ModifyEntity
 	 * @generated
 	 */
-	public Adapter createModifyEntityAdapter()
-	{
+	public Adapter createModifyEntityAdapter() {
 		return null;
 	}
 
@@ -245,8 +237,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.AttackerSelection
 	 * @generated
 	 */
-	public Adapter createAttackerSelectionAdapter()
-	{
+	public Adapter createAttackerSelectionAdapter() {
 		return null;
 	}
 
@@ -260,8 +251,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange
 	 * @generated
 	 */
-	public Adapter createCredentialChangeAdapter()
-	{
+	public Adapter createCredentialChangeAdapter() {
 		return null;
 	}
 
@@ -275,8 +265,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedResource
 	 * @generated
 	 */
-	public Adapter createCompromisedResourceAdapter()
-	{
+	public Adapter createCompromisedResourceAdapter() {
 		return null;
 	}
 
@@ -290,8 +279,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly
 	 * @generated
 	 */
-	public Adapter createCompromisedAssemblyAdapter()
-	{
+	public Adapter createCompromisedAssemblyAdapter() {
 		return null;
 	}
 
@@ -305,8 +293,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.ContextChange
 	 * @generated
 	 */
-	public Adapter createContextChangeAdapter()
-	{
+	public Adapter createContextChangeAdapter() {
 		return null;
 	}
 
@@ -320,8 +307,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedLinkingResource
 	 * @generated
 	 */
-	public Adapter createCompromisedLinkingResourceAdapter()
-	{
+	public Adapter createCompromisedLinkingResourceAdapter() {
 		return null;
 	}
 
@@ -335,8 +321,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedService
 	 * @generated
 	 */
-	public Adapter createCompromisedServiceAdapter()
-	{
+	public Adapter createCompromisedServiceAdapter() {
 		return null;
 	}
 
@@ -350,8 +335,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.ServiceRestrictionContainer
 	 * @generated
 	 */
-	public Adapter createServiceRestrictionContainerAdapter()
-	{
+	public Adapter createServiceRestrictionContainerAdapter() {
 		return null;
 	}
 
@@ -365,8 +349,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedData
 	 * @generated
 	 */
-	public Adapter createCompromisedDataAdapter()
-	{
+	public Adapter createCompromisedDataAdapter() {
 		return null;
 	}
 
@@ -380,8 +363,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.DatamodelContainer
 	 * @generated
 	 */
-	public Adapter createDatamodelContainerAdapter()
-	{
+	public Adapter createDatamodelContainerAdapter() {
 		return null;
 	}
 
@@ -395,8 +377,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp.model.modificationmarks.AbstractModificationRepository
 	 * @generated
 	 */
-	public Adapter createAbstractModificationRepositoryAdapter()
-	{
+	public Adapter createAbstractModificationRepositoryAdapter() {
 		return null;
 	}
 
@@ -410,8 +391,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp.model.modificationmarks.AbstractSeedModifications
 	 * @generated
 	 */
-	public Adapter createAbstractSeedModificationsAdapter()
-	{
+	public Adapter createAbstractSeedModificationsAdapter() {
 		return null;
 	}
 
@@ -425,8 +405,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp.model.modificationmarks.AbstractModification
 	 * @generated
 	 */
-	public Adapter createAbstractModificationAdapter()
-	{
+	public Adapter createAbstractModificationAdapter() {
 		return null;
 	}
 
@@ -440,8 +419,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp.model.modificationmarks.AbstractChangePropagationStep
 	 * @generated
 	 */
-	public Adapter createAbstractChangePropagationStepAdapter()
-	{
+	public Adapter createAbstractChangePropagationStepAdapter() {
 		return null;
 	}
 
@@ -455,8 +433,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @see edu.kit.ipd.sdq.kamp.model.modificationmarks.ChangePropagationStep
 	 * @generated
 	 */
-	public Adapter createChangePropagationStepAdapter()
-	{
+	public Adapter createChangePropagationStepAdapter() {
 		return null;
 	}
 
@@ -468,8 +445,7 @@ public class KAMP4attackModificationmarksAdapterFactory extends AdapterFactoryIm
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter()
-	{
+	public Adapter createEObjectAdapter() {
 		return null;
 	}
 

@@ -15,6 +15,5 @@ import edu.kit.ipd.sdq.kamp.model.modificationmarks.ChangePropagationStep;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractKAMP4attackModificationRepository<T extends KAMP4attackSeedModifications> extends AbstractModificationRepository<T, ChangePropagationStep>
-{
+public interface AbstractKAMP4attackModificationRepository<T extends KAMP4attackSeedModifications> extends AbstractModificationRepository<T, ChangePropagationStep> {
 } // AbstractKAMP4attackModificationRepository

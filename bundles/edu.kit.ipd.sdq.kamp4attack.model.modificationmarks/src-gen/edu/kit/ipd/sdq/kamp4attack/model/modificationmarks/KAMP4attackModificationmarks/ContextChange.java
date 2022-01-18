@@ -14,6 +14,5 @@ import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecificati
  * @model
  * @generated
  */
-public interface ContextChange extends ModifyEntity<UsageSpecification>
-{
+public interface ContextChange extends ModifyEntity<UsageSpecification> {
 } // ContextChange

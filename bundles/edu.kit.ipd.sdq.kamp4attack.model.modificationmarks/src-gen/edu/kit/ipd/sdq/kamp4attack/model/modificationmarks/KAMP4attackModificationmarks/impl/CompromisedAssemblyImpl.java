@@ -2,7 +2,8 @@
  */
 package edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.impl;
 
-
+import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
+import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.KAMP4attackModificationmarksPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -15,9 +16,6 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyC
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 
-import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
-import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.KAMP4attackModificationmarksPackage;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Compromised Assembly</b></em>'.
@@ -26,7 +24,7 @@ import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificati
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link KAMP4attackModificationmarks.impl.CompromisedAssemblyImpl#getAffectedAssembly <em>Affected Assembly</em>}</li>
+ *   <li>{@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.impl.CompromisedAssemblyImpl#getAffectedAssembly <em>Affected Assembly</em>}</li>
  * </ul>
  *
  * @generated

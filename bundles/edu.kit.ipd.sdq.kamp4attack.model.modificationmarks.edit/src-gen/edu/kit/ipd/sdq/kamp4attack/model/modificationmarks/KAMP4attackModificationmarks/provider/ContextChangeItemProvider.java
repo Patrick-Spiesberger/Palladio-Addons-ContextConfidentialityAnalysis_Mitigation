@@ -19,16 +19,14 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContextChangeItemProvider extends ModifyEntityItemProvider
-{
+public class ContextChangeItemProvider extends ModifyEntityItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContextChangeItemProvider(AdapterFactory adapterFactory)
-	{
+	public ContextChangeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -39,8 +37,7 @@ public class ContextChangeItemProvider extends ModifyEntityItemProvider
 	 * @generated
 	 */
 	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
-	{
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
@@ -55,8 +52,7 @@ public class ContextChangeItemProvider extends ModifyEntityItemProvider
 	 * @generated
 	 */
 	@Override
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContextChange"));
 	}
 
@@ -67,8 +63,7 @@ public class ContextChangeItemProvider extends ModifyEntityItemProvider
 	 * @generated
 	 */
 	@Override
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((ContextChange)object).getId();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ContextChange_type") :
@@ -84,8 +79,7 @@ public class ContextChangeItemProvider extends ModifyEntityItemProvider
 	 * @generated
 	 */
 	@Override
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -98,8 +92,7 @@ public class ContextChangeItemProvider extends ModifyEntityItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

@@ -24,8 +24,7 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Datamodel
  * @model
  * @generated
  */
-public interface DatamodelContainer extends EObject
-{
+public interface DatamodelContainer extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Datamodelattacker</b></em>' containment reference list.
 	 * The list contents are of type {@link org.palladiosimulator.pcm.confidentiality.attackerSpecification.DatamodelAttacker}.

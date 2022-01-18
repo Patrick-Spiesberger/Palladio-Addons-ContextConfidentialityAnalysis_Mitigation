@@ -30,8 +30,7 @@ import org.palladiosimulator.pcm.core.entity.Entity;
  * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.KAMP4attackModificationmarksPackage
  * @generated
  */
-public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
-{
+public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -46,8 +45,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KAMP4attackModificationmarksSwitch()
-	{
+	public KAMP4attackModificationmarksSwitch() {
 		if (modelPackage == null) {
 			modelPackage = KAMP4attackModificationmarksPackage.eINSTANCE;
 		}
@@ -62,8 +60,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	protected boolean isSwitchFor(EPackage ePackage)
-	{
+	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
 
@@ -75,8 +72,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	protected T1 doSwitch(int classifierID, EObject theEObject)
-	{
+	protected T1 doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case KAMP4attackModificationmarksPackage.ABSTRACT_KAMP_4ATTACK_MODIFICATION_REPOSITORY: {
 				AbstractKAMP4attackModificationRepository<?> abstractKAMP4attackModificationRepository = (AbstractKAMP4attackModificationRepository<?>)theEObject;
@@ -198,8 +194,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends KAMP4attackSeedModifications> T1 caseAbstractKAMP4attackModificationRepository(AbstractKAMP4attackModificationRepository<T> object)
-	{
+	public <T extends KAMP4attackSeedModifications> T1 caseAbstractKAMP4attackModificationRepository(AbstractKAMP4attackModificationRepository<T> object) {
 		return null;
 	}
 
@@ -214,8 +209,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseKAMP4attackModificationRepository(KAMP4attackModificationRepository object)
-	{
+	public T1 caseKAMP4attackModificationRepository(KAMP4attackModificationRepository object) {
 		return null;
 	}
 
@@ -230,8 +224,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseKAMP4attackSeedModifications(KAMP4attackSeedModifications object)
-	{
+	public T1 caseKAMP4attackSeedModifications(KAMP4attackSeedModifications object) {
 		return null;
 	}
 
@@ -246,8 +239,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends Entity> T1 caseModifyEntity(ModifyEntity<T> object)
-	{
+	public <T extends Entity> T1 caseModifyEntity(ModifyEntity<T> object) {
 		return null;
 	}
 
@@ -262,8 +254,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAttackerSelection(AttackerSelection object)
-	{
+	public T1 caseAttackerSelection(AttackerSelection object) {
 		return null;
 	}
 
@@ -278,8 +269,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCredentialChange(CredentialChange object)
-	{
+	public T1 caseCredentialChange(CredentialChange object) {
 		return null;
 	}
 
@@ -294,8 +284,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCompromisedResource(CompromisedResource object)
-	{
+	public T1 caseCompromisedResource(CompromisedResource object) {
 		return null;
 	}
 
@@ -310,8 +299,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCompromisedAssembly(CompromisedAssembly object)
-	{
+	public T1 caseCompromisedAssembly(CompromisedAssembly object) {
 		return null;
 	}
 
@@ -326,8 +314,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseContextChange(ContextChange object)
-	{
+	public T1 caseContextChange(ContextChange object) {
 		return null;
 	}
 
@@ -342,8 +329,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCompromisedLinkingResource(CompromisedLinkingResource object)
-	{
+	public T1 caseCompromisedLinkingResource(CompromisedLinkingResource object) {
 		return null;
 	}
 
@@ -358,8 +344,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCompromisedService(CompromisedService object)
-	{
+	public T1 caseCompromisedService(CompromisedService object) {
 		return null;
 	}
 
@@ -374,8 +359,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseServiceRestrictionContainer(ServiceRestrictionContainer object)
-	{
+	public T1 caseServiceRestrictionContainer(ServiceRestrictionContainer object) {
 		return null;
 	}
 
@@ -390,8 +374,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCompromisedData(CompromisedData object)
-	{
+	public T1 caseCompromisedData(CompromisedData object) {
 		return null;
 	}
 
@@ -406,8 +389,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseDatamodelContainer(DatamodelContainer object)
-	{
+	public T1 caseDatamodelContainer(DatamodelContainer object) {
 		return null;
 	}
 
@@ -422,8 +404,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends AbstractSeedModifications, T extends AbstractChangePropagationStep> T1 caseAbstractModificationRepository(AbstractModificationRepository<S, T> object)
-	{
+	public <S extends AbstractSeedModifications, T extends AbstractChangePropagationStep> T1 caseAbstractModificationRepository(AbstractModificationRepository<S, T> object) {
 		return null;
 	}
 
@@ -438,8 +419,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAbstractSeedModifications(AbstractSeedModifications object)
-	{
+	public T1 caseAbstractSeedModifications(AbstractSeedModifications object) {
 		return null;
 	}
 
@@ -454,8 +434,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S, T> T1 caseAbstractModification(AbstractModification<S, T> object)
-	{
+	public <S, T> T1 caseAbstractModification(AbstractModification<S, T> object) {
 		return null;
 	}
 
@@ -470,8 +449,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseAbstractChangePropagationStep(AbstractChangePropagationStep object)
-	{
+	public T1 caseAbstractChangePropagationStep(AbstractChangePropagationStep object) {
 		return null;
 	}
 
@@ -486,8 +464,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseChangePropagationStep(ChangePropagationStep object)
-	{
+	public T1 caseChangePropagationStep(ChangePropagationStep object) {
 		return null;
 	}
 
@@ -503,8 +480,7 @@ public class KAMP4attackModificationmarksSwitch<T1> extends Switch<T1>
 	 * @generated
 	 */
 	@Override
-	public T1 defaultCase(EObject object)
-	{
+	public T1 defaultCase(EObject object) {
 		return null;
 	}
 

@@ -48,6 +48,9 @@ import org.palladiosimulator.pcm.confidentiality.context.ContextPackage;
 import org.palladiosimulator.pcm.confidentiality.context.system.SystemPackage;
 
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.StructurePackage;
+
+import org.palladiosimulator.pcm.core.composition.CompositionPackage;
+
 import org.palladiosimulator.pcm.core.entity.EntityPackage;
 
 import org.palladiosimulator.pcm.resourceenvironment.ResourceenvironmentPackage;
@@ -58,8 +61,7 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceenvironmentPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implements KAMP4attackModificationmarksPackage
-{
+public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implements KAMP4attackModificationmarksPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -173,8 +175,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * @see #init()
 	 * @generated
 	 */
-	private KAMP4attackModificationmarksPackageImpl()
-	{
+	private KAMP4attackModificationmarksPackageImpl() {
 		super(eNS_URI, KAMP4attackModificationmarksFactory.eINSTANCE);
 	}
 
@@ -197,8 +198,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static KAMP4attackModificationmarksPackage init()
-	{
+	public static KAMP4attackModificationmarksPackage init() {
 		if (isInited) return (KAMP4attackModificationmarksPackage)EPackage.Registry.INSTANCE.getEPackage(KAMP4attackModificationmarksPackage.eNS_URI);
 
 		// Obtain or create and register package
@@ -237,8 +237,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAbstractKAMP4attackModificationRepository()
-	{
+	public EClass getAbstractKAMP4attackModificationRepository() {
 		return abstractKAMP4attackModificationRepositoryEClass;
 	}
 
@@ -247,8 +246,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getKAMP4attackModificationRepository()
-	{
+	public EClass getKAMP4attackModificationRepository() {
 		return kamp4attackModificationRepositoryEClass;
 	}
 
@@ -257,8 +255,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getKAMP4attackSeedModifications()
-	{
+	public EClass getKAMP4attackSeedModifications() {
 		return kamp4attackSeedModificationsEClass;
 	}
 
@@ -267,8 +264,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getKAMP4attackSeedModifications_Attackcomponent()
-	{
+	public EReference getKAMP4attackSeedModifications_Attackcomponent() {
 		return (EReference)kamp4attackSeedModificationsEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -277,8 +273,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModifyEntity()
-	{
+	public EClass getModifyEntity() {
 		return modifyEntityEClass;
 	}
 
@@ -287,8 +282,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAttackerSelection()
-	{
+	public EClass getAttackerSelection() {
 		return attackerSelectionEClass;
 	}
 
@@ -297,8 +291,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCredentialChange()
-	{
+	public EClass getCredentialChange() {
 		return credentialChangeEClass;
 	}
 
@@ -307,8 +300,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCredentialChange_Compromisedresource()
-	{
+	public EReference getCredentialChange_Compromisedresource() {
 		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -317,18 +309,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCredentialChange_Compromisedassembly()
-	{
-		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCredentialChange_Contextchange()
-	{
+	public EReference getCredentialChange_Contextchange() {
 		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -337,8 +318,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCredentialChange_Changed()
-	{
+	public EAttribute getCredentialChange_Changed() {
 		return (EAttribute)credentialChangeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -347,8 +327,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCredentialChange_Compromisedlinkingresource()
-	{
+	public EReference getCredentialChange_Compromisedlinkingresource() {
 		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -357,8 +336,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCredentialChange_Compromisedservice()
-	{
+	public EReference getCredentialChange_Compromisedservice() {
 		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -367,8 +345,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCredentialChange_Servicerestrictioncontainer()
-	{
+	public EReference getCredentialChange_Servicerestrictioncontainer() {
 		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -377,8 +354,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCredentialChange_Compromiseddata()
-	{
+	public EReference getCredentialChange_Compromiseddata() {
 		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -387,8 +363,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCredentialChange_Datamodelcontainer()
-	{
+	public EReference getCredentialChange_Datamodelcontainer() {
 		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -397,8 +372,16 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompromisedResource()
-	{
+	public EReference getCredentialChange_Compromisedassembly() {
+		return (EReference)credentialChangeEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompromisedResource() {
 		return compromisedResourceEClass;
 	}
 
@@ -407,8 +390,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompromisedAssembly()
-	{
+	public EClass getCompromisedAssembly() {
 		return compromisedAssemblyEClass;
 	}
 
@@ -417,8 +399,16 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getContextChange()
-	{
+	public EReference getCompromisedAssembly_AffectedAssembly() {
+		return (EReference)compromisedAssemblyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getContextChange() {
 		return contextChangeEClass;
 	}
 
@@ -427,8 +417,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompromisedLinkingResource()
-	{
+	public EClass getCompromisedLinkingResource() {
 		return compromisedLinkingResourceEClass;
 	}
 
@@ -437,8 +426,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompromisedService()
-	{
+	public EClass getCompromisedService() {
 		return compromisedServiceEClass;
 	}
 
@@ -447,8 +435,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getServiceRestrictionContainer()
-	{
+	public EClass getServiceRestrictionContainer() {
 		return serviceRestrictionContainerEClass;
 	}
 
@@ -457,8 +444,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getServiceRestrictionContainer_Servicerestriction()
-	{
+	public EReference getServiceRestrictionContainer_Servicerestriction() {
 		return (EReference)serviceRestrictionContainerEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -467,8 +453,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompromisedData()
-	{
+	public EClass getCompromisedData() {
 		return compromisedDataEClass;
 	}
 
@@ -477,8 +462,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDatamodelContainer()
-	{
+	public EClass getDatamodelContainer() {
 		return datamodelContainerEClass;
 	}
 
@@ -487,8 +471,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDatamodelContainer_Datamodelattacker()
-	{
+	public EReference getDatamodelContainer_Datamodelattacker() {
 		return (EReference)datamodelContainerEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -497,8 +480,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KAMP4attackModificationmarksFactory getKAMP4attackModificationmarksFactory()
-	{
+	public KAMP4attackModificationmarksFactory getKAMP4attackModificationmarksFactory() {
 		return (KAMP4attackModificationmarksFactory)getEFactoryInstance();
 	}
 
@@ -516,8 +498,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void createPackageContents()
-	{
+	public void createPackageContents() {
 		if (isCreated) return;
 		isCreated = true;
 
@@ -547,6 +528,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 		compromisedResourceEClass = createEClass(COMPROMISED_RESOURCE);
 
 		compromisedAssemblyEClass = createEClass(COMPROMISED_ASSEMBLY);
+		createEReference(compromisedAssemblyEClass, COMPROMISED_ASSEMBLY__AFFECTED_ASSEMBLY);
 
 		contextChangeEClass = createEClass(CONTEXT_CHANGE);
 
@@ -577,8 +559,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void initializePackageContents()
-	{
+	public void initializePackageContents() {
 		if (isInitialized) return;
 		isInitialized = true;
 
@@ -593,6 +574,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 		AttackerPackage theAttackerPackage = (AttackerPackage)EPackage.Registry.INSTANCE.getEPackage(AttackerPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		ResourceenvironmentPackage theResourceenvironmentPackage = (ResourceenvironmentPackage)EPackage.Registry.INSTANCE.getEPackage(ResourceenvironmentPackage.eNS_URI);
+		CompositionPackage theCompositionPackage = (CompositionPackage)EPackage.Registry.INSTANCE.getEPackage(CompositionPackage.eNS_URI);
 		SystemPackage theSystemPackage = (SystemPackage)EPackage.Registry.INSTANCE.getEPackage(SystemPackage.eNS_URI);
 		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 
@@ -680,6 +662,7 @@ public class KAMP4attackModificationmarksPackageImpl extends EPackageImpl implem
 		initEClass(compromisedResourceEClass, CompromisedResource.class, "CompromisedResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(compromisedAssemblyEClass, CompromisedAssembly.class, "CompromisedAssembly", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompromisedAssembly_AffectedAssembly(), theCompositionPackage.getAssemblyContext(), null, "affectedAssembly", null, 1, 1, CompromisedAssembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(contextChangeEClass, ContextChange.class, "ContextChange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

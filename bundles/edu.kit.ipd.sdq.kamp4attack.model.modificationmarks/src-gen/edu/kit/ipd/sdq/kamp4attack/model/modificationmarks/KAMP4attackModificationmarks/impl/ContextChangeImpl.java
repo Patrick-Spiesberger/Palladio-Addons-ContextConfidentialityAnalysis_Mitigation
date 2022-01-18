@@ -16,15 +16,13 @@ import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecificati
  *
  * @generated
  */
-public class ContextChangeImpl extends ModifyEntityImpl<UsageSpecification> implements ContextChange
-{
+public class ContextChangeImpl extends ModifyEntityImpl<UsageSpecification> implements ContextChange {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContextChangeImpl()
-	{
+	protected ContextChangeImpl() {
 		super();
 	}
 
@@ -34,8 +32,7 @@ public class ContextChangeImpl extends ModifyEntityImpl<UsageSpecification> impl
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return KAMP4attackModificationmarksPackage.Literals.CONTEXT_CHANGE;
 	}
 

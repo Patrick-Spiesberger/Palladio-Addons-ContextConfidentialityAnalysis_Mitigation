@@ -14,6 +14,5 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
  * @model
  * @generated
  */
-public interface CompromisedResource extends ModifyEntity<ResourceContainer>
-{
+public interface CompromisedResource extends ModifyEntity<ResourceContainer> {
 } // CompromisedResource
