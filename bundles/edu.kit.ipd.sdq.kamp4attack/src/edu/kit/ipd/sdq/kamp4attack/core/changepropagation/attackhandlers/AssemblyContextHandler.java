@@ -32,28 +32,15 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 	 */
 	public void attackAssemblyContextDetail(final Collection<AssemblyContextDetail> components,
 			final CredentialChange change, final EObject source) {
-		List<CompromisedAssembly> compromisedSingleComponent = new LinkedList<>();
+		List<CompromisedAssembly> compromisedComponents = new LinkedList<>();
 
 		for (AssemblyContextDetail detail : components) {
-			if (detail.getCompromisedComponents().size() == 1) {
-				Optional<CompromisedAssembly> element = attackComponent(detail.getCompromisedComponents().get(0),
-						change, source);
-				if (element.isPresent()) {
-					compromisedSingleComponent.add(element.get());
-				}
-			} else {
-				final var newCompromisedComponent = filterExsitingComponent(attackComponent(detail, change, source),
-						change);
-				if (!newCompromisedComponent.isEmpty()) {
-					handleDataExtraction(newCompromisedComponent);
-					change.setChanged(true);
-					change.getCompromisedassembly().addAll(newCompromisedComponent);
-					CollectionHelper.addService(newCompromisedComponent,
-							getModelStorage().getVulnerabilitySpecification(), change);
-				}
+			Optional<CompromisedAssembly> componentDetail = attackComponent(detail, change, source);
+			if (componentDetail.isPresent()) {
+				compromisedComponents.add(componentDetail.get());
 			}
 		}
-		final var newCompromisedComponent = filterExsitingComponent(compromisedSingleComponent, change);
+		final var newCompromisedComponent = filterExsitingComponent(compromisedComponents, change);
 		if (!newCompromisedComponent.isEmpty()) {
 			handleDataExtraction(newCompromisedComponent);
 			change.setChanged(true);
@@ -81,18 +68,20 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 
 	private void handleDataExtraction(final Collection<CompromisedAssembly> components) {
 
-		Collection<AssemblyContext> filteredComponents = components.stream()
-				.map(CompromisedAssembly::getAffectedAssembly).collect(Collectors.toList());
+		Collection<AssemblyContextDetail> filteredComponents = components.stream()
+				.map(CompromisedAssembly::getAffectedElement).collect(Collectors.toList());
 
 		filteredComponents = CollectionHelper.removeDuplicates(filteredComponents);
-
-		final var dataList = filteredComponents.stream().distinct()
-				.flatMap(component -> DataHandler.getData(component).stream()).collect(Collectors.toList());
-
-		getDataHandler().addData(dataList);
+		
+		for (AssemblyContextDetail assembly : filteredComponents) {
+			final var dataList = assembly.getCompromisedComponents().stream().distinct()
+					.flatMap(component -> DataHandler.getData(component).stream()).collect(Collectors.toList());
+			getDataHandler().addData(dataList);
+			
+		}
 	}
 
-	protected abstract Collection<CompromisedAssembly> attackComponent(AssemblyContextDetail component,
+	protected abstract Optional<CompromisedAssembly> attackComponent(AssemblyContextDetail component,
 			CredentialChange change, EObject source);
 
 	protected abstract Optional<CompromisedAssembly> attackComponent(AssemblyContext component, CredentialChange change,

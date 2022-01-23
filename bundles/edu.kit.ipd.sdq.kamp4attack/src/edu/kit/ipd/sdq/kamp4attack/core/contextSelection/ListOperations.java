@@ -2,13 +2,12 @@ package edu.kit.ipd.sdq.kamp4attack.core.contextSelection;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
-
+import java.util.Optional;
 import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecification;
 
 import com.google.common.collect.Lists;
-
-import edu.kit.ipd.sdq.kamp4attack.core.propertyParser.PropertyParser;
 
 /**
  * This class is responsible for the list operations related to access control
@@ -19,52 +18,44 @@ import edu.kit.ipd.sdq.kamp4attack.core.propertyParser.PropertyParser;
  */
 public class ListOperations {
 
-	private int runningTimes; 
+	private int runningTimes;
 	private boolean returnedAllElements = false;
-	private int timeLimits[] = {0, 0, 0, 12, 0, 0 }; // {years, months, days, hours, minutes, seconds}
-	
-	
+	private int timeLimits[] = { 0, 0, 0, 12, 0, 0 }; // {years, months, days, hours, minutes, seconds}
+	private double timePerCheck = 1.0;
+
+	public static Optional<List<UsageSpecification>> preset = Optional.empty();
 	/**
 	 * Constructor of ListOperations
 	 */
 	public ListOperations() {
 		runningTimes = 0;
 	}
-	
-	/**
-	 * Constructor of ListOperations
-	 */
-	public ListOperations(String path) {
-		runningTimes = 0;
-		PropertyParser parser = new PropertyParser(path);
-		timeLimits = parser.getTimeLimit();
-	}
 
-	
 	/**
 	 * Generates a list of all combinations of certain length
 	 */
 	private void helper(List<int[]> combinations, int data[], int start, int end, int index) {
 		if (index == data.length) {
-	        int[] combination = data.clone();
-	        combinations.add(combination);
-	    } else {
-	        int max = Math.min(end, end + 1 - data.length + index);
-	        for (int i = start; i <= max; i++) {
-	            data[index] = i;
-	            helper(combinations, data, i + 1, end, index + 1);
-	        }
-	    }
+			int[] combination = data.clone();
+			combinations.add(combination);
+		} else {
+			int max = Math.min(end, end + 1 - data.length + index);
+			for (int i = start; i <= max; i++) {
+				data[index] = i;
+				helper(combinations, data, i + 1, end, index + 1);
+			}
+		}
 	}
-	
+
 	private List<int[]> generate(int n, int r) {
-	    List<int[]> combinations = new ArrayList<>();
-	    helper(combinations, new int[r], 0, n-1, 0);
-	    return combinations;
+		List<int[]> combinations = new ArrayList<>();
+		helper(combinations, new int[r], 0, n - 1, 0);
+		return combinations;
 	}
 
 	/**
 	 * Generates a list of all sublists
+	 * 
 	 * @param data : list to be subdivided
 	 * @return : list of partial length
 	 */
@@ -84,15 +75,16 @@ public class ListOperations {
 
 	/**
 	 * Calculates the number of combinations. This number is multiplied by an
-	 * estimated duration (see property files) of an individual analysis, 
-	 * which results in the approximate total runtime
-	 * @param elementSize : number of elements in a list
+	 * estimated duration (see property files) of an individual analysis, which
+	 * results in the approximate total runtime
+	 * 
+	 * @param elementSize    : number of elements in a list
 	 * @param timePerElement : runtime of an analysis in seconds
 	 * @return : estimated runtime [years, months, days, hours, minutes, seconds]
 	 */
-	public int[] calculateTime(int elementSize, int timePerElement) {
+	public int[] calculateTime(int elementSize, double timePerElement) {
 		int options = (int) Math.pow(2, elementSize);
-		int timePerOption = options * timePerElement;
+		int timePerOption = (int) (options * timePerElement);
 		int time[] = new int[6];
 		time[0] = timePerOption / 31536000; // years
 		time[1] = (timePerOption % 31536000) / 2628000; // months
@@ -105,8 +97,9 @@ public class ListOperations {
 
 	/**
 	 * Returns a specific item from a selected list
-	 * @param elements : list of elements
-	 * @param partList : number of sublist 
+	 * 
+	 * @param elements  : list of elements
+	 * @param partList  : number of sublist
 	 * @param elementAt : position of element in sublist
 	 * @return : specific element
 	 */
@@ -114,50 +107,67 @@ public class ListOperations {
 		return elements.get(partList).get(elementAt);
 	}
 
-
 	/**
-	 * Decide which algorithm is used to select the partial lists (improvement of the runtime)
+	 * Decide which algorithm is used to select the partial lists (improvement of
+	 * the runtime)
+	 * 
 	 * @param elements : list of elements
 	 * @return : List of sublists
 	 */
 	public List<List<UsageSpecification>> calculateLists(List<UsageSpecification> elements) {
-//		List<List<UsageSpecification>> testList = new ArrayList<>();
-//		testList.add(elements);
-//		return testList;
+
+//		List<List<UsageSpecification>> test = new LinkedList<>();
+//		test.add(elements);
+//		return test;
 		
+		// An optional list has been provided so that only these items are checked.
+		if (preset.isPresent()) {
+			List<List<UsageSpecification>> returnList = new LinkedList<>();
+			List<UsageSpecification> value = preset.get();
+			returnList.add(value);
+			returnedAllElements = true;
+			return returnList;
+		}
+
+		boolean overTime = false;
+
+		// checks the estimated running time
 		for (int i = 0; i < timeLimits.length; i++) {
-			if (calculateTime(elements.size(), 1)[i] > timeLimits[i]) {
-				if (runningTimes >= elements.size()) {
-					returnedAllElements = true;
-					return Collections.emptyList();
-				}
-				else {
-					runningTimes++;
-					returnedAllElements = false;
-					List<int[]> combinations = generate(elements.size(), runningTimes);
-					List<List<UsageSpecification>> returnList = new ArrayList<>();
-					for (int[] combination : combinations) {
-					    List<UsageSpecification> elementPartList = new ArrayList<>();
-					    for (int index : combination) {
-					    	elementPartList.add(elements.get(index));
-					    }
-					    returnList.add(elementPartList);
-					}
-					return Lists.reverse(returnList);
-				}
-			} else if (timeLimits[i] != 0) {
+			if (calculateTime(elements.size(), timePerCheck)[i] > timeLimits[i]) {
+				overTime = true;
+			}
+			if (timeLimits[i] != 0) {
 				break;
 			}
+		}
+
+		if (runningTimes >= elements.size()) {
+			returnedAllElements = true;
+			return Collections.emptyList();
+		} else if (overTime) {
+			// Returns elements according to their length
+			runningTimes++;
+			returnedAllElements = false;
+			List<int[]> combinations = generate(elements.size(), runningTimes);
+			List<List<UsageSpecification>> returnList = new ArrayList<>();
+			for (int[] combination : combinations) {
+				List<UsageSpecification> elementPartList = new ArrayList<>();
+				for (int index : combination) {
+					elementPartList.add(elements.get(index));
+				}
+				returnList.add(elementPartList);
+			}
+			return Lists.reverse(returnList);
 		}
 		returnedAllElements = true;
 		return getCombinationsAll(elements);
 	}
-	
+
 	/**
-	 * Returns whether all sublists are returned.
-	 * True = all parts lists were returned
-	 * False = a selection of partial lists was returned
-	 * A re-execution will return new sublists
+	 * Returns whether all sublists are returned. True = all parts lists were
+	 * returned False = a selection of partial lists was returned A re-execution
+	 * will return new sublists
+	 * 
 	 * @return : status of return values
 	 */
 	public Boolean getStatus() {

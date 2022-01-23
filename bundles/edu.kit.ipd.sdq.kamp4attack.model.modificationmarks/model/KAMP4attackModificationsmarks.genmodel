@@ -33,11 +33,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KAMP4attackModificationsmarks.ecore#//CredentialChange/compromiseddata"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KAMP4attackModificationsmarks.ecore#//CredentialChange/datamodelcontainer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KAMP4attackModificationsmarks.ecore#//CredentialChange/compromisedassembly"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference KAMP4attackModificationsmarks.ecore#//CredentialChange/assemblycontextdetailcontainer"/>
     </genClasses>
     <genClasses ecoreClass="KAMP4attackModificationsmarks.ecore#//CompromisedResource"/>
-    <genClasses ecoreClass="KAMP4attackModificationsmarks.ecore#//CompromisedAssembly">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference KAMP4attackModificationsmarks.ecore#//CompromisedAssembly/affectedAssembly"/>
-    </genClasses>
+    <genClasses ecoreClass="KAMP4attackModificationsmarks.ecore#//CompromisedAssembly"/>
     <genClasses ecoreClass="KAMP4attackModificationsmarks.ecore#//ContextChange"/>
     <genClasses ecoreClass="KAMP4attackModificationsmarks.ecore#//CompromisedLinkingResource"/>
     <genClasses ecoreClass="KAMP4attackModificationsmarks.ecore#//CompromisedService"/>
@@ -47,6 +46,9 @@
     <genClasses ecoreClass="KAMP4attackModificationsmarks.ecore#//CompromisedData"/>
     <genClasses ecoreClass="KAMP4attackModificationsmarks.ecore#//DatamodelContainer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference KAMP4attackModificationsmarks.ecore#//DatamodelContainer/datamodelattacker"/>
+    </genClasses>
+    <genClasses ecoreClass="KAMP4attackModificationsmarks.ecore#//AssemblyContextDetailContainer">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference KAMP4attackModificationsmarks.ecore#//AssemblyContextDetailContainer/compromisedassembly"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -1,7 +1,5 @@
 package edu.kit.ipd.sdq.kamp4attack.core.changepropagation.attackhandlers.context;
 
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,16 +40,15 @@ public class AssemblyContextContext extends AssemblyContextHandler {
 	}
 
 	@Override
-	protected Collection<CompromisedAssembly> attackComponent(AssemblyContextDetail component, CredentialChange change,
+	protected Optional<CompromisedAssembly> attackComponent(AssemblyContextDetail component, CredentialChange change,
 			EObject source) {
-		List<CompromisedAssembly> assemblies = new LinkedList<>();
 		for (AssemblyContext assembly : component.getCompromisedComponents()) {
-			Optional<CompromisedAssembly> element = this.attackComponent(assembly, change, source);
-			if (element.isPresent()) {
-				assemblies.add(element.get());
+			Optional<CompromisedAssembly> compromisedAssembly = this.attackComponent(assembly, change, source);
+			if (compromisedAssembly.isPresent()) {
+				return compromisedAssembly;
 			}
 		}
-		return assemblies;
+		return Optional.empty();
 	}
 
 }

@@ -53,6 +53,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="compromisedassembly" upperBound="-1"
         eType="#//CompromisedAssembly" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assemblycontextdetailcontainer"
+        eType="#//AssemblyContextDetailContainer" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompromisedResource">
     <eGenericSuperTypes eClassifier="#//ModifyEntity">
@@ -60,8 +62,6 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompromisedAssembly">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="affectedAssembly" lowerBound="1"
-        eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyContext"/>
     <eGenericSuperTypes eClassifier="#//ModifyEntity">
       <eTypeArguments eClassifier="ecore:EClass ../../org.palladiosimulator.pcm.confidentiality.attacker/model/attacker.ecore#//AssemblyContextDetail"/>
     </eGenericSuperTypes>
@@ -94,6 +94,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="DatamodelContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="datamodelattacker" upperBound="-1"
         eType="ecore:EClass ../../org.palladiosimulator.pcm.confidentiality.attacker/model/attacker.ecore#//DatamodelAttacker"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssemblyContextDetailContainer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compromisedassembly" upperBound="-1"
+        eType="ecore:EClass ../../org.palladiosimulator.pcm.confidentiality.attacker/model/attacker.ecore#//AssemblyContextDetail"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.impl.AssemblyContextDetailImpl;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.ServiceRestriction;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
@@ -35,12 +36,10 @@ public class HelperCreationCompromisedElements {
 		return compromisedResource;
 	}
 
-	public static CompromisedAssembly createCompromisedAssembly(final AssemblyContext container,
-			final AssemblyContextDetail assemblyDetail, final Collection<? extends EObject> list) {
+	public static CompromisedAssembly createCompromisedAssembly(final AssemblyContextDetail assemblyDetail, final Collection<? extends EObject> list) {
 		final var compromisedResource = KAMP4attackModificationmarksFactory.eINSTANCE.createCompromisedAssembly();
 		compromisedResource.setToolderived(true);
 		compromisedResource.setAffectedElement(assemblyDetail);
-		compromisedResource.setAffectedAssembly(container);
 		compromisedResource.getCausingElements().addAll(list);
 		return compromisedResource;
 	}
@@ -49,7 +48,11 @@ public class HelperCreationCompromisedElements {
 			final Collection<? extends EObject> list) {
 		final var compromisedResource = KAMP4attackModificationmarksFactory.eINSTANCE.createCompromisedAssembly();
 		compromisedResource.setToolderived(true);
-		compromisedResource.setAffectedAssembly(container);
+		AssemblyContextDetail stub = new AssemblyContextDetailImpl();
+		stub.getCompromisedComponents().add(container);
+		stub.setEntityName(container.getEntityName());
+		stub.setId(container.getId());
+		compromisedResource.setAffectedElement(stub);
 		compromisedResource.getCausingElements().addAll(list);
 		return compromisedResource;
 	}

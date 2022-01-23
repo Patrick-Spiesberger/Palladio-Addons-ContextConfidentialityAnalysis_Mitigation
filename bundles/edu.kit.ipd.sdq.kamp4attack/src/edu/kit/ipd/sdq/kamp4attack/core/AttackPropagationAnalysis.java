@@ -1,9 +1,6 @@
 package edu.kit.ipd.sdq.kamp4attack.core;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -11,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.osgi.service.component.annotations.Component;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.impl.AssemblyContextDetailImpl;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 
 import edu.kit.ipd.sdq.kamp.propagation.AbstractChangePropagationAnalysis;
@@ -42,7 +40,7 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 
 	@Override
 	public void runChangePropagationAnalysis(final BlackboardWrapper board) {
-		
+
 		// Setup
 		this.changePropagationDueToCredential = KAMP4attackModificationmarksFactory.eINSTANCE.createCredentialChange();
 		CachePDP.instance().clearCache();
@@ -149,7 +147,11 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 						CredentialChange change, EObject source) {
 					final var compromisedComponent = KAMP4attackModificationmarksFactory.eINSTANCE
 							.createCompromisedAssembly();
-					compromisedComponent.setAffectedAssembly(component);
+					AssemblyContextDetail stub = new AssemblyContextDetailImpl();
+					stub.getCompromisedComponents().add(component);
+
+					compromisedComponent.setAffectedElement(stub);
+					compromisedComponent.setId(component.getId());
 					return Optional.of(compromisedComponent);
 				}
 
@@ -160,22 +162,21 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 				 * and returns the list of compromiseable components in the inital step
 				 */
 				@Override
-				protected Collection<CompromisedAssembly> attackComponent(AssemblyContextDetail component,
+				protected Optional<CompromisedAssembly> attackComponent(AssemblyContextDetail component,
 						CredentialChange change, EObject source) {
-					System.out.println("AttackPropagationAnalysis: Componente " + component.getEntityName());
-					System.out.println("AttackPropagationAnalysis: Componente " + component.getCompromisedComponents().toString());
-					List<CompromisedAssembly> assemblies = new LinkedList<>();
-					for (AssemblyContext assembly : component.getCompromisedComponents()) {
-						CompromisedAssembly compromisedComponent = KAMP4attackModificationmarksFactory.eINSTANCE
-								.createCompromisedAssembly();
-						compromisedComponent.setAffectedElement(component);
-						compromisedComponent.setAffectedAssembly(assembly);
-	
-					}
-					return assemblies;
+					CompromisedAssembly compromisedComponent = KAMP4attackModificationmarksFactory.eINSTANCE
+							.createCompromisedAssembly();
+					compromisedComponent.setAffectedElement(component);
+					return Optional.of(compromisedComponent);
 				}
 			};
 
+			for (AssemblyContextDetail detail : localAttacker.getCompromisedComponentsDetails()) {
+				for (AssemblyContext test : detail.getCompromisedComponents()) {
+					System.out.print(test.getEntityName() + ", ");
+				}
+				System.out.println("");
+			}
 			assemblyHandler.attackAssemblyContextDetail(localAttacker.getCompromisedComponentsDetails(),
 					this.changePropagationDueToCredential, null);
 
