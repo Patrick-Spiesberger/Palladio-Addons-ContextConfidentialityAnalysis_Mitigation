@@ -36,7 +36,8 @@ public class HelperCreationCompromisedElements {
 		return compromisedResource;
 	}
 
-	public static CompromisedAssembly createCompromisedAssembly(final AssemblyContextDetail assemblyDetail, final Collection<? extends EObject> list) {
+	public static CompromisedAssembly createCompromisedAssembly(final AssemblyContextDetail assemblyDetail,
+			final Collection<? extends EObject> list) {
 		final var compromisedResource = KAMP4attackModificationmarksFactory.eINSTANCE.createCompromisedAssembly();
 		compromisedResource.setToolderived(true);
 		compromisedResource.setAffectedElement(assemblyDetail);
@@ -45,14 +46,10 @@ public class HelperCreationCompromisedElements {
 	}
 
 	public static CompromisedAssembly createCompromisedAssembly(final AssemblyContext container,
-			final Collection<? extends EObject> list) {
+			final AssemblyContextDetail detail, final Collection<? extends EObject> list) {
 		final var compromisedResource = KAMP4attackModificationmarksFactory.eINSTANCE.createCompromisedAssembly();
 		compromisedResource.setToolderived(true);
-		AssemblyContextDetail stub = new AssemblyContextDetailImpl();
-		stub.getCompromisedComponents().add(container);
-		stub.setEntityName(container.getEntityName());
-		stub.setId(container.getId());
-		compromisedResource.setAffectedElement(stub);
+		compromisedResource.setAffectedElement(detail);
 		compromisedResource.getCausingElements().addAll(list);
 		return compromisedResource;
 	}

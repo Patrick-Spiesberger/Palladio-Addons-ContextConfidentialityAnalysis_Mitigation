@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.osgi.service.component.annotations.Component;
+import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.AssemblyHelper;
+import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.AssemblyToAssemblyDetailMap;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.impl.AssemblyContextDetailImpl;
@@ -149,6 +151,7 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 							.createCompromisedAssembly();
 					AssemblyContextDetail stub = new AssemblyContextDetailImpl();
 					stub.getCompromisedComponents().add(component);
+					AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(component, stub));
 
 					compromisedComponent.setAffectedElement(stub);
 					compromisedComponent.setId(component.getId());
@@ -170,13 +173,13 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 					return Optional.of(compromisedComponent);
 				}
 			};
-
+			
 			for (AssemblyContextDetail detail : localAttacker.getCompromisedComponentsDetails()) {
-				for (AssemblyContext test : detail.getCompromisedComponents()) {
-					System.out.print(test.getEntityName() + ", ");
+				for (AssemblyContext component : detail.getCompromisedComponents()) {
+					AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(component, detail));
 				}
-				System.out.println("");
 			}
+
 			assemblyHandler.attackAssemblyContextDetail(localAttacker.getCompromisedComponentsDetails(),
 					this.changePropagationDueToCredential, null);
 

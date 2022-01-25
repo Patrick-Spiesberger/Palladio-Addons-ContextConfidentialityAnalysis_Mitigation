@@ -48,7 +48,6 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 			CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
 					change);
 		}
-
 	}
 
 	public void attackAssemblyContext(final Collection<AssemblyContext> components, final CredentialChange change,

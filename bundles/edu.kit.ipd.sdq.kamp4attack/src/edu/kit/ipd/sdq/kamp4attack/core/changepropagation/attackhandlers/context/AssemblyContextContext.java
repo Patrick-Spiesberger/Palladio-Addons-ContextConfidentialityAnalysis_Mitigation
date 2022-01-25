@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
+import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.AssemblyHelper;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.HelperCreationCompromisedElements;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
@@ -33,7 +34,8 @@ public class AssemblyContextContext extends AssemblyContextHandler {
 
 		if (result.isPresent() && Objects.equal(result.get().getDecision(), DecisionType.PERMIT)) {
 			final var sourceList = this.createSource(source, credentials);
-			final var compromised = HelperCreationCompromisedElements.createCompromisedAssembly(component, sourceList);
+			final var compromised = HelperCreationCompromisedElements.createCompromisedAssembly(component,
+					AssemblyHelper.getAssemblyContextDetail(component), sourceList);
 			return Optional.of(compromised);
 		}
 		return Optional.empty();

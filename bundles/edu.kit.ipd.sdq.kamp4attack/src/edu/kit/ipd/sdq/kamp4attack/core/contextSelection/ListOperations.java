@@ -24,6 +24,7 @@ public class ListOperations {
 	private double timePerCheck = 1.0;
 
 	public static Optional<List<UsageSpecification>> preset = Optional.empty();
+
 	/**
 	 * Constructor of ListOperations
 	 */
@@ -63,6 +64,20 @@ public class ListOperations {
 		List<List<UsageSpecification>> combinations = new ArrayList<List<UsageSpecification>>();
 		for (int i = 0; i < Math.pow(2, data.size()); i++) {
 			List<UsageSpecification> element = new ArrayList<UsageSpecification>();
+			for (int elem = 0; elem < data.size(); elem++) {
+				if ((i & (int) Math.pow(2, elem)) > 0) {
+					element.add(data.get(elem));
+				}
+			}
+			combinations.add(element);
+		}
+		return Lists.reverse(combinations);
+	}
+
+	public List<List<Integer>> getCombinationsAllTest(List<Integer> data) {
+		List<List<Integer>> combinations = new ArrayList<List<Integer>>();
+		for (int i = 0; i < Math.pow(2, data.size()); i++) {
+			List<Integer> element = new ArrayList<Integer>();
 			for (int elem = 0; elem < data.size(); elem++) {
 				if ((i & (int) Math.pow(2, elem)) > 0) {
 					element.add(data.get(elem));
@@ -116,51 +131,68 @@ public class ListOperations {
 	 */
 	public List<List<UsageSpecification>> calculateLists(List<UsageSpecification> elements) {
 
-//		List<List<UsageSpecification>> test = new LinkedList<>();
-//		test.add(elements);
-//		return test;
-		
-		// An optional list has been provided so that only these items are checked.
-		if (preset.isPresent()) {
-			List<List<UsageSpecification>> returnList = new LinkedList<>();
-			List<UsageSpecification> value = preset.get();
-			returnList.add(value);
-			returnedAllElements = true;
-			return returnList;
-		}
-
-		boolean overTime = false;
-
-		// checks the estimated running time
-		for (int i = 0; i < timeLimits.length; i++) {
-			if (calculateTime(elements.size(), timePerCheck)[i] > timeLimits[i]) {
-				overTime = true;
-			}
-			if (timeLimits[i] != 0) {
-				break;
-			}
-		}
-
-		if (runningTimes >= elements.size()) {
-			returnedAllElements = true;
-			return Collections.emptyList();
-		} else if (overTime) {
-			// Returns elements according to their length
-			runningTimes++;
-			returnedAllElements = false;
-			List<int[]> combinations = generate(elements.size(), runningTimes);
-			List<List<UsageSpecification>> returnList = new ArrayList<>();
-			for (int[] combination : combinations) {
-				List<UsageSpecification> elementPartList = new ArrayList<>();
-				for (int index : combination) {
-					elementPartList.add(elements.get(index));
-				}
-				returnList.add(elementPartList);
-			}
-			return Lists.reverse(returnList);
-		}
+		List<List<UsageSpecification>> test = new LinkedList<>();
+		test.add(elements);
 		returnedAllElements = true;
-		return getCombinationsAll(elements);
+		return test;
+
+//		// An optional list has been provided so that only these items are checked.
+//		if (preset.isPresent()) {
+//			List<List<UsageSpecification>> returnList = new LinkedList<>();
+//			List<UsageSpecification> value = preset.get();
+//			returnList.add(value);
+//			returnedAllElements = true;
+//			return returnList;
+//		}
+//
+//		boolean overTime = false;
+//
+//		// checks the estimated running time
+//		for (int i = 0; i < timeLimits.length; i++) {
+//			if (calculateTime(elements.size(), timePerCheck)[i] > timeLimits[i]) {
+//				overTime = true;
+//			}
+//			if (timeLimits[i] != 0) {
+//				break;
+//			}
+//		}
+//
+//		if (runningTimes >= elements.size()) {
+//			returnedAllElements = true;
+//			return Collections.emptyList();
+//		} else if (overTime) {
+//			// Returns elements according to their length
+//			List<int[]> combinations = generate(elements.size(), listLengthCalc(elements.size()));
+//			List<List<UsageSpecification>> returnList = new ArrayList<>();
+//			for (int[] combination : combinations) {
+//				List<UsageSpecification> elementPartList = new ArrayList<>();
+//				for (int index : combination) {
+//					elementPartList.add(elements.get(index));
+//				}
+//				returnList.add(elementPartList);
+//			}
+//			runningTimes++;
+//			returnedAllElements = false;
+//			return Lists.reverse(returnList);
+//		}
+//		returnedAllElements = true;
+//		return getCombinationsAll(elements);
+	}
+
+	/**
+	 * According to optimization, some lists are more efficient to generate and
+	 * evaluate than others. This method calculates the length of the most
+	 * efficiently evaluated lists for runtime optimization
+	 * 
+	 * @param lengthList : length of data-list
+	 * @return : alternating sequence of numbers
+	 */
+	private int listLengthCalc(int lengthList) {
+		if (runningTimes % 2 == 0) {
+			return runningTimes;
+		} else {
+			return (lengthList - runningTimes);
+		}
 	}
 
 	/**
@@ -170,7 +202,7 @@ public class ListOperations {
 	 * 
 	 * @return : status of return values
 	 */
-	public Boolean getStatus() {
+	public Boolean returnedAllElements() {
 		return returnedAllElements;
 	}
 }
