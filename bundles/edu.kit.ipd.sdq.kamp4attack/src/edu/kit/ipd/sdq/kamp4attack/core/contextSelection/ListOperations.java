@@ -22,6 +22,7 @@ public class ListOperations {
 	private boolean returnedAllElements = false;
 	private int timeLimits[] = { 0, 0, 0, 12, 0, 0 }; // {years, months, days, hours, minutes, seconds}
 	private double timePerCheck = 1.0;
+	private boolean alternating = false;
 
 	public static Optional<List<UsageSpecification>> preset = Optional.empty();
 
@@ -157,7 +158,7 @@ public class ListOperations {
 //			}
 //		}
 //
-//		if (runningTimes >= elements.size()) {
+//		if (runningTimes + 1 > elements.size()) {
 //			returnedAllElements = true;
 //			return Collections.emptyList();
 //		} else if (overTime) {
@@ -171,7 +172,6 @@ public class ListOperations {
 //				}
 //				returnList.add(elementPartList);
 //			}
-//			runningTimes++;
 //			returnedAllElements = false;
 //			return Lists.reverse(returnList);
 //		}
@@ -188,10 +188,14 @@ public class ListOperations {
 	 * @return : alternating sequence of numbers
 	 */
 	private int listLengthCalc(int lengthList) {
-		if (runningTimes % 2 == 0) {
+		if (!alternating) {
+			alternating = !alternating;
 			return runningTimes;
 		} else {
-			return (lengthList - runningTimes);
+			alternating = !alternating;
+			int value = lengthList - runningTimes;
+			runningTimes++;
+			return value;
 		}
 	}
 

@@ -24,6 +24,15 @@ public class AssemblyHelper {
 		return allComponents.get(index);
 	}
 	
+	public static Boolean isInList(AssemblyContext component) {
+		for (AssemblyToAssemblyDetailMap element : allComponents) {
+			if (EcoreUtil.equals(element.getAssemblyContext(), component)) {
+				return true;
+			}
+		}
+		return true;
+	}
+	
 	public static AssemblyContextDetail getAssemblyContextDetail(AssemblyContext component) {
 		for (AssemblyToAssemblyDetailMap element : allComponents) {
 			if (EcoreUtil.equals(element.getAssemblyContext(), component)) {
@@ -36,6 +45,7 @@ public class AssemblyHelper {
 		stub.setEntityName(component.getEntityName());
 		stub.setId(component.getId());
 		System.out.println("Debug: the AssemblyContext is not existing in the AssemblyHelper-List");
+		allComponents.add(new AssemblyToAssemblyDetailMap(component, stub));
 		return stub;
 	}
 }

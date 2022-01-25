@@ -59,7 +59,6 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 			calculateAndMarkLinkingPropagation(board);
 			calculateAndMarkResourcePropagation(board);
 			calculateAndMarkAssemblyPropagation(board);
-
 		} while (this.changePropagationDueToCredential.isChanged());
 
 		// Clear caches
