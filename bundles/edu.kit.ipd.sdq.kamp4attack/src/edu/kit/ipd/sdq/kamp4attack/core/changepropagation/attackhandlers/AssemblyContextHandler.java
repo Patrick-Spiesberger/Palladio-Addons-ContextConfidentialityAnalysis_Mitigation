@@ -14,6 +14,7 @@ import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.Collec
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandler;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.impl.AssemblyContextDetailImpl;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 
@@ -34,12 +35,12 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 	 * into their AssemblyContexts
 	 */
 	public void attackAssemblyContextDetail(final Collection<AssemblyContextDetail> components,
-			final CredentialChange change, final EObject source) {
+			final CredentialChange change, final EObject source, Attacker attacker) {
 
 		List<CompromisedAssembly> compromisedComponents = new LinkedList<>();
 
 		for (AssemblyContextDetail detail : components) {
-			Optional<CompromisedAssembly> componentDetail = attackComponent(detail, change, source);
+			Optional<CompromisedAssembly> componentDetail = attackComponent(detail, change, source, attacker);
 			if (componentDetail.isPresent()) {
 				compromisedComponents.add(componentDetail.get());
 			}
@@ -66,8 +67,8 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 	}
 
 	public void attackAssemblyContext(final Collection<AssemblyContext> components, final CredentialChange change,
-			final EObject source) {
-		final var compromisedComponent = components.stream().map(e -> attackComponent(e, change, source))
+			final EObject source, Attacker attacker) {
+		final var compromisedComponent = components.stream().map(e -> attackComponent(e, change, source, attacker))
 				.flatMap(Optional::stream).collect(Collectors.toList());
 		final var newCompromisedComponent = filterExsitingComponent(compromisedComponent, change);
 		if (!newCompromisedComponent.isEmpty()) {
@@ -106,10 +107,10 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 	}
 
 	protected abstract Optional<CompromisedAssembly> attackComponent(AssemblyContextDetail component,
-			CredentialChange change, EObject source);
+			CredentialChange change, EObject source, Attacker attacker);
 
 	protected abstract Optional<CompromisedAssembly> attackComponent(AssemblyContext component, CredentialChange change,
-			EObject source);
+			EObject source, Attacker attacker);
 
 	private Collection<CompromisedAssembly> filterExsitingComponent(final Collection<CompromisedAssembly> components,
 			final CredentialChange change) {

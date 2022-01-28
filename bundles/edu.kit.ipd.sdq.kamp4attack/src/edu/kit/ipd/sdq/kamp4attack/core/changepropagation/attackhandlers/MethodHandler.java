@@ -11,6 +11,7 @@ import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.Collec
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandler;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.Attack;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.AttackVector;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.Vulnerability;
@@ -28,8 +29,8 @@ public abstract class MethodHandler extends AttackHandler {
     }
 
     public void attackService(final Collection<ServiceRestriction> services, final CredentialChange change,
-            final EObject source) {
-        final var compromisedComponent = services.stream().map(e -> attackComponent(e, change, source))
+            final EObject source, Attacker attacker) {
+        final var compromisedComponent = services.stream().map(e -> attackComponent(e, change, source, attacker))
                 .flatMap(Optional::stream).collect(Collectors.toList());
         final var newCompromisedComponent = filterExsiting(compromisedComponent, change);
         if (!newCompromisedComponent.isEmpty()) {
@@ -57,7 +58,7 @@ public abstract class MethodHandler extends AttackHandler {
     }
 
     protected abstract Optional<CompromisedAssembly> attackComponent(ServiceRestriction component,
-            CredentialChange change, EObject source);
+            CredentialChange change, EObject source, Attacker attacker);
 
     private Collection<CompromisedAssembly> filterExsiting(final Collection<CompromisedAssembly> components,
             final CredentialChange change) {

@@ -62,7 +62,7 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 			final var handler = getAssemblyHandler();
 			assemblycontext = CollectionHelper.removeDuplicates(assemblycontext).stream()
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
-			handler.attackAssemblyContext(assemblycontext, this.changes, resource);
+			handler.attackAssemblyContext(assemblycontext, this.changes, resource, getAttacker());
 			handleSeff(this.changes, assemblycontext, resource);
 		}
 
@@ -109,7 +109,7 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 
 			final var handler = getResourceHandler();
-			handler.attackResourceContainer(resources, this.changes, resource);
+			handler.attackResourceContainer(resources, this.changes, resource, getAttacker());
 		}
 
 	}
@@ -124,7 +124,7 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 			final var linkinResources = getLinkingResource(resource).stream()
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 			final var handler = getLinkingHandler();
-			handler.attackLinkingResource(linkinResources, this.changes, resource);
+			handler.attackLinkingResource(linkinResources, this.changes, resource, getAttacker());
 		}
 
 	}

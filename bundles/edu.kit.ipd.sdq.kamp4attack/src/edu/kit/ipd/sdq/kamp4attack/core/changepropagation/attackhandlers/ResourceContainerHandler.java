@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CollectionHelper;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandler;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
@@ -22,8 +23,8 @@ public abstract class ResourceContainerHandler extends AttackHandler {
     }
 
     public void attackResourceContainer(final Collection<ResourceContainer> containers, final CredentialChange change,
-            final EObject source) {
-        final var compromisedResources = containers.stream().map(e -> this.attackResourceContainer(e, change, source))
+            final EObject source, Attacker attacker) {
+        final var compromisedResources = containers.stream().map(e -> this.attackResourceContainer(e, change, source, attacker))
                 .flatMap(Optional::stream).distinct().collect(Collectors.toList());
         final var newCompromisedResources = filterExsiting(compromisedResources, change);
         if (!newCompromisedResources.isEmpty()) {
@@ -47,7 +48,7 @@ public abstract class ResourceContainerHandler extends AttackHandler {
     }
 
     protected abstract Optional<CompromisedResource> attackResourceContainer(ResourceContainer container,
-            CredentialChange change, EObject source);
+            CredentialChange change, EObject source, Attacker attacker);
 
     private Collection<CompromisedResource> filterExsiting(final Collection<CompromisedResource> containers,
             final CredentialChange change) {

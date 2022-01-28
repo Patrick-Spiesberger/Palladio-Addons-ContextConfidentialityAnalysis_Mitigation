@@ -49,7 +49,7 @@ public abstract class LinkingChange extends Change<LinkingResource> implements L
         for (final var linking : compromisedLinkingResources) {
             final var reachableResources = linking.getConnectedResourceContainers_LinkingResource();
             final var handler = getResourceContainerHandler();
-            handler.attackResourceContainer(reachableResources, this.changes, linking);
+            handler.attackResourceContainer(reachableResources, this.changes, linking, getAttacker());
         }
 
     }
@@ -68,7 +68,7 @@ public abstract class LinkingChange extends Change<LinkingResource> implements L
                     this.modelStorage.getAllocation());
             final var handler = getAssemblyContextHandler();
             reachableAssemblies = CollectionHelper.removeDuplicates(reachableAssemblies);
-            handler.attackAssemblyContext(reachableAssemblies, this.changes, linking);
+            handler.attackAssemblyContext(reachableAssemblies, this.changes, linking, getAttacker());
             handleSeff(this.changes, reachableAssemblies, linking);
 
         }

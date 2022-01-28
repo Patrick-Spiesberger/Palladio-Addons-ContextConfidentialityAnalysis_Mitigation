@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.HelperCreationCompromisedElements;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecification;
 import org.palladiosimulator.pcm.confidentiality.context.xacml.pdp.result.DecisionType;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
@@ -25,7 +26,7 @@ public class ResourceContainerContext extends ResourceContainerHandler {
 
     @Override
     protected Optional<CompromisedResource> attackResourceContainer(final ResourceContainer container,
-            final CredentialChange change, final EObject source) {
+            final CredentialChange change, final EObject source, Attacker attacker) {
         final List<? extends UsageSpecification> credentials = this.getCredentials(change);
 
         final var result = this.queryAccessForEntity(container, credentials);

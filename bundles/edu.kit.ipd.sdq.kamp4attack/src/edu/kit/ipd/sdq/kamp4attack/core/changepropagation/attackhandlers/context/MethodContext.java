@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CollectionHelper;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.HelperCreationCompromisedElements;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecification;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.ServiceRestriction;
 import org.palladiosimulator.pcm.confidentiality.context.xacml.pdp.result.DecisionType;
@@ -26,7 +27,7 @@ public class MethodContext extends MethodHandler {
 
     @Override
     protected Optional<CompromisedAssembly> attackComponent(ServiceRestriction service, CredentialChange change,
-            EObject source) {
+            EObject source, Attacker attacker) {
         final List<? extends UsageSpecification> credentials = getCredentials(change);
 
         var serviceModel = CollectionHelper.findOrCreateServiceRestriction(service,

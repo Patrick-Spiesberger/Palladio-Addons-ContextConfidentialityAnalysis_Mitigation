@@ -2,8 +2,11 @@ package edu.kit.ipd.sdq.kamp4attack.core.contextSelection;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.ListOperationEffort;
 import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecification;
 
 import com.google.common.collect.Lists;
@@ -108,6 +111,17 @@ public class ListOperations {
 		return time;
 	}
 
+	private int[] calcTimeArray(int seconds) {
+		int time[] = new int[6];
+		time[0] = seconds / 31536000; // years
+		time[1] = (seconds % 31536000) / 2628000; // months
+		time[2] = (seconds % 2628000) / 86400; // days
+		time[3] = (seconds % 86400) / 3600; // hours
+		time[4] = (seconds % 3600) / 60; // minutes
+		time[5] = (seconds % 60); // seconds
+		return time;
+	}
+
 	/**
 	 * Returns a specific item from a selected list
 	 * 
@@ -120,36 +134,8 @@ public class ListOperations {
 		return elements.get(partList).get(elementAt);
 	}
 
-	/**
-	 * Decide which algorithm is used to select the partial lists (improvement of
-	 * the runtime)
-	 * 
-	 * @param elements : list of elements
-	 * @return : List of sublists
-	 */
-	public List<List<UsageSpecification>> calculateLists(List<UsageSpecification> elements) {
-
-//		List<List<UsageSpecification>> test = new LinkedList<>();
-//		test.add(elements);
-//		returnedAllElements = true;
-//		return test;
-
-		boolean overTime = false;
-
-		// checks the estimated running time
-		for (int i = 0; i < timeLimits.length; i++) {
-			if (calculateTime(elements.size(), timePerCheck)[i] > timeLimits[i]) {
-				overTime = true;
-			}
-			if (timeLimits[i] != 0) {
-				break;
-			}
-		}
-
-		if (runningTimes + 1 > elements.size()) {
-			returnedAllElements = true;
-			return Collections.emptyList();
-		} else if (overTime) {
+	public List<List<UsageSpecification>> calculateAdvancedList(List<UsageSpecification> elements) {
+		if (!(runningTimes + 1 > elements.size())) {
 			// Returns elements according to their length
 			List<int[]> combinations = generate(elements.size(), listLengthCalc(elements.size()));
 			List<List<UsageSpecification>> returnList = new ArrayList<>();
@@ -162,9 +148,67 @@ public class ListOperations {
 			}
 			returnedAllElements = false;
 			return Lists.reverse(returnList);
+		} else {
+			returnedAllElements = true;
+			return Collections.emptyList();
 		}
+	}
+
+	public List<List<UsageSpecification>> calculateSimpleList(List<UsageSpecification> elements) {
 		returnedAllElements = true;
 		return getCombinationsAll(elements);
+	}
+
+	/**
+	 * Decide which algorithm is used to select the partial lists (improvement of
+	 * the runtime)
+	 * 
+	 * @param elements : list of elements
+	 * @return : List of sublists
+	 */
+	public List<List<UsageSpecification>> calculateLists(List<UsageSpecification> elements, Attacker attacker) {
+
+		if (attacker.getAttackerListEffort() == ListOperationEffort.NONE) {
+			List<List<UsageSpecification>> basicList = new LinkedList<>();
+			basicList.add(elements);
+			returnedAllElements = true;
+			return basicList;
+		}
+
+		timeLimits = calcTimeArray(attacker.getCalculateMaxTime());
+		// checks the estimated running time
+		boolean overTime = false;
+		for (int i = 0; i < timeLimits.length; i++) {
+			if (calculateTime(elements.size(), timePerCheck)[i] > timeLimits[i]) {
+				overTime = true;
+			}
+			if (timeLimits[i] != 0) {
+				break;
+			}
+		}
+
+		switch (attacker.getAttackerListEffort()) {
+		case NONE:
+			List<List<UsageSpecification>> basicList = new LinkedList<>();
+			basicList.add(elements);
+			returnedAllElements = true;
+			return basicList;
+		case STANDARD:
+			if (overTime) {
+				return calculateAdvancedList(elements);
+			} else {
+				return calculateSimpleList(elements);
+			}
+		case ALL:
+			return calculateSimpleList(elements);
+		case PART:
+			return calculateAdvancedList(elements);
+		default:
+			System.out.println("Please check the UsageSpecification. The attacker can not perform some ListOperations");
+			returnedAllElements = true;
+			return Collections.emptyList();
+		}
+
 	}
 
 	/**

@@ -10,6 +10,7 @@ import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.Assemb
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.AssemblyToAssemblyDetailMap;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.impl.AssemblyContextDetailImpl;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 
@@ -145,7 +146,7 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 					new DataHandlerAttacker(this.changePropagationDueToCredential)) {
 				@Override
 				protected Optional<CompromisedAssembly> attackComponent(AssemblyContext component,
-						CredentialChange change, EObject source) {
+						CredentialChange change, EObject source, Attacker attacker) {
 					final var compromisedComponent = KAMP4attackModificationmarksFactory.eINSTANCE
 							.createCompromisedAssembly();
 					AssemblyContextDetail stub = new AssemblyContextDetailImpl();
@@ -167,7 +168,7 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 				 */
 				@Override
 				protected Optional<CompromisedAssembly> attackComponent(AssemblyContextDetail component,
-						CredentialChange change, EObject source) {
+						CredentialChange change, EObject source, Attacker attacker) {
 					CompromisedAssembly compromisedComponent = KAMP4attackModificationmarksFactory.eINSTANCE
 							.createCompromisedAssembly();
 					compromisedComponent.setAffectedElement(component);
@@ -182,7 +183,7 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 			}
 			
 			assemblyHandler.attackAssemblyContextDetail(localAttacker.getCompromisedComponentsDetails(),
-					this.changePropagationDueToCredential, null);
+					this.changePropagationDueToCredential, null, localAttacker);
 
 			// convert affectedLinkingResources to changes
 			final var affectedLinkingList = localAttacker.getCompromisedLinkingResources().stream()

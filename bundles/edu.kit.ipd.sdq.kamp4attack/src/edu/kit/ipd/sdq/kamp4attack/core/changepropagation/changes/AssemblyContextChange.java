@@ -75,7 +75,7 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 			final var containers = connected.stream().map(this::getResourceContainer).distinct()
 					.collect(Collectors.toList());
 			final var handler = getRemoteResourceHandler();
-			handler.attackResourceContainer(containers, this.changes, component);
+			handler.attackResourceContainer(containers, this.changes, component, getAttacker());
 		}
 
 	}
@@ -129,7 +129,7 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 		for (final var component : listCompromisedContexts) {
 			final var resource = getResourceContainer(component);
 			final var handler = getLocalResourceHandler();
-			handler.attackResourceContainer(List.of(resource), this.changes, component);
+			handler.attackResourceContainer(List.of(resource), this.changes, component, getAttacker());
 		}
 
 	}
@@ -159,7 +159,7 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 			final var handler = getAssemblyHandler();
 			targetComponents = CollectionHelper.removeDuplicates(targetComponents).stream()
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
-			handler.attackAssemblyContext(targetComponents, this.changes, component);
+			handler.attackAssemblyContext(targetComponents, this.changes, component, getAttacker());
 			this.handleSeff(component);
 		}
 
@@ -180,7 +180,7 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 			final var handler = getAssemblyHandler();
 			reachableAssemblies = CollectionHelper.removeDuplicates(reachableAssemblies).stream()
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
-			handler.attackAssemblyContext(reachableAssemblies, this.changes, component);
+			handler.attackAssemblyContext(reachableAssemblies, this.changes, component, getAttacker());
 
 			var listServices = CollectionHelper.getProvidedRestrictions(reachableAssemblies).stream()
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
@@ -228,7 +228,7 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 			final var reachableLinkingResources = getLinkingResource(resource).stream()
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 			final var handler = getLinkingHandler();
-			handler.attackLinkingResource(reachableLinkingResources, this.changes, component);
+			handler.attackLinkingResource(reachableLinkingResources, this.changes, component, getAttacker());
 		}
 	}
 

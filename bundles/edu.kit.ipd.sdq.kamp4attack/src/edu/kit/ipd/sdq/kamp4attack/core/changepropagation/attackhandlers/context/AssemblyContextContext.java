@@ -8,6 +8,7 @@ import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.Assemb
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.HelperCreationCompromisedElements;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecification;
 import org.palladiosimulator.pcm.confidentiality.context.xacml.pdp.result.DecisionType;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
@@ -27,7 +28,7 @@ public class AssemblyContextContext extends AssemblyContextHandler {
 
 	@Override
 	protected Optional<CompromisedAssembly> attackComponent(final AssemblyContext component,
-			final CredentialChange change, final EObject source) {
+			final CredentialChange change, final EObject source, Attacker attacker) {
 		final List<? extends UsageSpecification> credentials = this.getCredentials(change);
 
 		final var result = this.queryAccessForEntity(component, credentials);
@@ -43,9 +44,9 @@ public class AssemblyContextContext extends AssemblyContextHandler {
 
 	@Override
 	protected Optional<CompromisedAssembly> attackComponent(AssemblyContextDetail component, CredentialChange change,
-			EObject source) {
+			EObject source, Attacker attacker) {
 		for (AssemblyContext assembly : component.getCompromisedComponents()) {
-			Optional<CompromisedAssembly> compromisedAssembly = this.attackComponent(assembly, change, source);
+			Optional<CompromisedAssembly> compromisedAssembly = this.attackComponent(assembly, change, source, attacker);
 			if (compromisedAssembly.isPresent()) {
 				return compromisedAssembly;
 			}
