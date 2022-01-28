@@ -2,9 +2,8 @@ package edu.kit.ipd.sdq.kamp4attack.core.contextSelection;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
+
 import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecification;
 
 import com.google.common.collect.Lists;
@@ -23,8 +22,6 @@ public class ListOperations {
 	private int timeLimits[] = { 0, 0, 0, 12, 0, 0 }; // {years, months, days, hours, minutes, seconds}
 	private double timePerCheck = 1.0;
 	private boolean alternating = false;
-
-	public static Optional<List<UsageSpecification>> preset = Optional.empty();
 
 	/**
 	 * Constructor of ListOperations
@@ -132,51 +129,42 @@ public class ListOperations {
 	 */
 	public List<List<UsageSpecification>> calculateLists(List<UsageSpecification> elements) {
 
-		List<List<UsageSpecification>> test = new LinkedList<>();
-		test.add(elements);
-		returnedAllElements = true;
-		return test;
-
-//		// An optional list has been provided so that only these items are checked.
-//		if (preset.isPresent()) {
-//			List<List<UsageSpecification>> returnList = new LinkedList<>();
-//			List<UsageSpecification> value = preset.get();
-//			returnList.add(value);
-//			returnedAllElements = true;
-//			return returnList;
-//		}
-//
-//		boolean overTime = false;
-//
-//		// checks the estimated running time
-//		for (int i = 0; i < timeLimits.length; i++) {
-//			if (calculateTime(elements.size(), timePerCheck)[i] > timeLimits[i]) {
-//				overTime = true;
-//			}
-//			if (timeLimits[i] != 0) {
-//				break;
-//			}
-//		}
-//
-//		if (runningTimes + 1 > elements.size()) {
-//			returnedAllElements = true;
-//			return Collections.emptyList();
-//		} else if (overTime) {
-//			// Returns elements according to their length
-//			List<int[]> combinations = generate(elements.size(), listLengthCalc(elements.size()));
-//			List<List<UsageSpecification>> returnList = new ArrayList<>();
-//			for (int[] combination : combinations) {
-//				List<UsageSpecification> elementPartList = new ArrayList<>();
-//				for (int index : combination) {
-//					elementPartList.add(elements.get(index));
-//				}
-//				returnList.add(elementPartList);
-//			}
-//			returnedAllElements = false;
-//			return Lists.reverse(returnList);
-//		}
+//		List<List<UsageSpecification>> test = new LinkedList<>();
+//		test.add(elements);
 //		returnedAllElements = true;
-//		return getCombinationsAll(elements);
+//		return test;
+
+		boolean overTime = false;
+
+		// checks the estimated running time
+		for (int i = 0; i < timeLimits.length; i++) {
+			if (calculateTime(elements.size(), timePerCheck)[i] > timeLimits[i]) {
+				overTime = true;
+			}
+			if (timeLimits[i] != 0) {
+				break;
+			}
+		}
+
+		if (runningTimes + 1 > elements.size()) {
+			returnedAllElements = true;
+			return Collections.emptyList();
+		} else if (overTime) {
+			// Returns elements according to their length
+			List<int[]> combinations = generate(elements.size(), listLengthCalc(elements.size()));
+			List<List<UsageSpecification>> returnList = new ArrayList<>();
+			for (int[] combination : combinations) {
+				List<UsageSpecification> elementPartList = new ArrayList<>();
+				for (int index : combination) {
+					elementPartList.add(elements.get(index));
+				}
+				returnList.add(elementPartList);
+			}
+			returnedAllElements = false;
+			return Lists.reverse(returnList);
+		}
+		returnedAllElements = true;
+		return getCombinationsAll(elements);
 	}
 
 	/**

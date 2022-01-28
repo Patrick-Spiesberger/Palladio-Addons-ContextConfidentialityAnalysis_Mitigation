@@ -150,6 +150,8 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 							.createCompromisedAssembly();
 					AssemblyContextDetail stub = new AssemblyContextDetailImpl();
 					stub.getCompromisedComponents().add(component);
+					stub.setEntityName(component.getEntityName());
+					stub.setId(component.getId());
 					AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(component, stub));
 
 					compromisedComponent.setAffectedElement(stub);
@@ -178,7 +180,7 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 					AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(component, detail));
 				}
 			}
-
+			
 			assemblyHandler.attackAssemblyContextDetail(localAttacker.getCompromisedComponentsDetails(),
 					this.changePropagationDueToCredential, null);
 

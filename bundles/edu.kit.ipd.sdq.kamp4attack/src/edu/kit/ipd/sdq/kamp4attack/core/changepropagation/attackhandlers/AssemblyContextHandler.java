@@ -9,10 +9,12 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.AssemblyHelper;
+import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.AssemblyToAssemblyDetailMap;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CollectionHelper;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandler;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.impl.AssemblyContextDetailImpl;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
@@ -33,6 +35,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 	 */
 	public void attackAssemblyContextDetail(final Collection<AssemblyContextDetail> components,
 			final CredentialChange change, final EObject source) {
+
 		List<CompromisedAssembly> compromisedComponents = new LinkedList<>();
 
 		for (AssemblyContextDetail detail : components) {
@@ -40,14 +43,25 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 			if (componentDetail.isPresent()) {
 				compromisedComponents.add(componentDetail.get());
 			}
-		}
-		final var newCompromisedComponent = filterExsitingComponent(compromisedComponents, change);
-		if (!newCompromisedComponent.isEmpty()) {
-			handleDataExtraction(newCompromisedComponent);
-			change.setChanged(true);
-			change.getCompromisedassembly().addAll(newCompromisedComponent);
-			CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
-					change);
+			final var newCompromisedComponent = filterExsitingComponent(compromisedComponents, change);
+			if (!newCompromisedComponent.isEmpty()) {
+				for (CompromisedAssembly compromisedAssembly : newCompromisedComponent) {
+					for (AssemblyContext assembly : compromisedAssembly.getAffectedElement()
+							.getCompromisedComponents()) {
+						if (!AssemblyHelper.isInList(assembly)) {
+							AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(assembly, detail));
+						}
+					}
+				}
+				handleDataExtraction(newCompromisedComponent);
+				change.setChanged(true);
+				for (CompromisedAssembly component : newCompromisedComponent) {
+					change.getCompromisedassembly().add(component);
+				}
+				change.getCompromisedassembly().stream().filter(this::nonNull).collect(Collectors.toList());
+				CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
+						change);
+			}
 		}
 	}
 
@@ -57,9 +71,19 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 				.flatMap(Optional::stream).collect(Collectors.toList());
 		final var newCompromisedComponent = filterExsitingComponent(compromisedComponent, change);
 		if (!newCompromisedComponent.isEmpty()) {
+			for (AssemblyContext assembly : components) {
+				if (!AssemblyHelper.isInList(assembly)) {
+					AssemblyContextDetail stub = new AssemblyContextDetailImpl();
+					stub.getCompromisedComponents().add(assembly);
+					stub.setEntityName(assembly.getEntityName());
+					stub.setId(assembly.getId());
+					AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(assembly, stub));
+				}
+			}
 			handleDataExtraction(newCompromisedComponent);
 			change.setChanged(true);
 			change.getCompromisedassembly().addAll(newCompromisedComponent);
+			change.getCompromisedassembly().stream().filter(this::nonNull).collect(Collectors.toList());
 			CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
 					change);
 		}
@@ -72,12 +96,12 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 				.map(CompromisedAssembly::getAffectedElement).collect(Collectors.toList());
 
 		filteredComponents = CollectionHelper.removeDuplicates(filteredComponents);
-		
+
 		for (AssemblyContextDetail assembly : filteredComponents) {
 			final var dataList = assembly.getCompromisedComponents().stream().distinct()
 					.flatMap(component -> DataHandler.getData(component).stream()).collect(Collectors.toList());
 			getDataHandler().addData(dataList);
-			
+
 		}
 	}
 
@@ -97,6 +121,10 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 	private boolean containsComponent(final CompromisedAssembly component, final CredentialChange change) {
 		return change.getCompromisedassembly().stream().anyMatch(referenceComponent -> EcoreUtil
 				.equals(referenceComponent.getAffectedElement(), component.getAffectedElement()));
+	}
+
+	private boolean nonNull(CompromisedAssembly element) {
+		return element.getAffectedElement() != null;
 	}
 
 }
