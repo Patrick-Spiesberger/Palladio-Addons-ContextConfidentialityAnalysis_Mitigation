@@ -92,7 +92,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 	}
 
 	private void handleDataExtraction(final Collection<CompromisedAssembly> components) {
-
+		// puts all data from a set of components into a list of the DataHandler
 		Collection<AssemblyContextDetail> filteredComponents = components.stream()
 				.map(CompromisedAssembly::getAffectedElement).collect(Collectors.toList());
 
@@ -106,6 +106,12 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 		}
 	}
 
+	/**
+	 * Checks an AssemblyContextDetail for all of its vulnerabilities. It returns if
+	 * one of the subcomponents or the main component itself is vulnerable
+	 * 
+	 * @return : vulnerable component if present
+	 */
 	protected abstract Optional<CompromisedAssembly> attackComponent(AssemblyContextDetail component,
 			CredentialChange change, EObject source, Attacker attacker);
 
@@ -124,6 +130,10 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 				.equals(referenceComponent.getAffectedElement(), component.getAffectedElement()));
 	}
 
+	/*
+	 * Helps to filter null components, which result from an empty list of
+	 * vulnerable components
+	 */
 	private boolean nonNull(CompromisedAssembly element) {
 		return element.getAffectedElement() != null;
 	}

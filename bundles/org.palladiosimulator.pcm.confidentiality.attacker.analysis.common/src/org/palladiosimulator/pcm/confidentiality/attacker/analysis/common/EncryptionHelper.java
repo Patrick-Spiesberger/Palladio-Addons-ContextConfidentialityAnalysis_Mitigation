@@ -6,16 +6,23 @@ import java.util.List;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.Attack;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.PCMElement;
 
+/**
+ * This class is responsible for handling the crackability of an entire element.
+ * 
+ * @author patrick
+ *
+ */
 public class EncryptionHelper {
-	
+
 	/**
-	 * Checks whether a component is encrypted and crackable. 
-	 * In the event that the encryption level is low, the attacker's ability to crack the 
-	 * encryption is checked. Secure encryption (level is high) is considered unbreakable
+	 * Checks whether a component is encrypted and crackable. In the event that the
+	 * encryption level is low, the attacker's ability to crack the encryption is
+	 * checked. Secure encryption (level is high) is considered unbreakable
+	 * 
 	 * @param component : Component which should be checked for crackability
-	 * @param attacks : List of attacks that an attacker can carry out
+	 * @param attacks   : List of attacks that an attacker can carry out
 	 */
-	public static Boolean isCrackable(PCMElement component, final List<Attack> attacks) {		
+	public static Boolean isCrackable(PCMElement component, final List<Attack> attacks) {
 		switch (component.getEncryptionLevel()) {
 		case NONE:
 			return true;
@@ -28,7 +35,7 @@ public class EncryptionHelper {
 		case HIGH:
 			return false;
 		default:
-			return false; //Exception bauen
+			return true;
 		}
 	}
 

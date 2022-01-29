@@ -41,6 +41,11 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 		return ArchitectureModelLookup.lookUpMarkedObjectsOfAType(this.modelStorage, AssemblyContext.class);
 	}
 
+	/**
+	 * Returns a list of all vulnerable components resulting from the current change
+	 * 
+	 * @return : list of vulnerable components
+	 */
 	protected List<AssemblyContext> getCompromisedAssemblyContexts() {
 
 		List<AssemblyContextDetail> details = new LinkedList<>();

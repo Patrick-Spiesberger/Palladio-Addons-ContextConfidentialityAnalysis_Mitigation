@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
-import org.palladiosimulator.pcm.confidentiality.attackerSpecification.impl.AssemblyContextDetailImpl;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.ServiceRestriction;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;

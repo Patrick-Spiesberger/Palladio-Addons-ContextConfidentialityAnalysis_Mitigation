@@ -91,8 +91,8 @@ public class ListOperations {
 
 	/**
 	 * Calculates the number of combinations. This number is multiplied by an
-	 * estimated duration (see property files) of an individual analysis, which
-	 * results in the approximate total runtime
+	 * estimated duration of an individual analysis, which results in the
+	 * approximate total runtime
 	 * 
 	 * @param elementSize    : number of elements in a list
 	 * @param timePerElement : runtime of an analysis in seconds
@@ -111,6 +111,12 @@ public class ListOperations {
 		return time;
 	}
 
+	/**
+	 * Converts a number of seconds into an array of common units of time
+	 * 
+	 * @param seconds
+	 * @return : max runtime [years, months, days, hours, minutes, seconds]
+	 */
 	private int[] calcTimeArray(int seconds) {
 		int time[] = new int[6];
 		time[0] = seconds / 31536000; // years
@@ -134,7 +140,15 @@ public class ListOperations {
 		return elements.get(partList).get(elementAt);
 	}
 
-	public List<List<UsageSpecification>> calculateAdvancedList(List<UsageSpecification> elements) {
+	/**
+	 * Called up if desired by the user or if the maximum runtime has been exceeded.
+	 * This method returns a partial list of combinations, assuming all elements in
+	 * the list are of fixed length. This length is calculated alternately
+	 * 
+	 * @param elements : list of UsageSpecifications
+	 * @return : partial list of certain length
+	 */
+	private List<List<UsageSpecification>> calculateAdvancedList(List<UsageSpecification> elements) {
 		if (!(runningTimes + 1 > elements.size())) {
 			// Returns elements according to their length
 			List<int[]> combinations = generate(elements.size(), listLengthCalc(elements.size()));
@@ -154,6 +168,11 @@ public class ListOperations {
 		}
 	}
 
+	/**
+	 * Calculates all combinations of a list
+	 * @param elements : list of UsageSpecification
+	 * @return : list of all combinations
+	 */
 	public List<List<UsageSpecification>> calculateSimpleList(List<UsageSpecification> elements) {
 		returnedAllElements = true;
 		return getCombinationsAll(elements);

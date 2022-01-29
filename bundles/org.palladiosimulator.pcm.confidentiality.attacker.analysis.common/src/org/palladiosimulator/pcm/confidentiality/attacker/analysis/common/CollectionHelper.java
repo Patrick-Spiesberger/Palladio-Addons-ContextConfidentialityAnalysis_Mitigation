@@ -59,6 +59,14 @@ public class CollectionHelper {
 		return serviceRestrictions;
 	}
 
+	/**
+	 * Casts an AssemblyContext to an AssemblyContextDetail. To do this, the name
+	 * and ID are adopted and the component is added as the main component (first
+	 * position) of the vulnerable components
+	 * 
+	 * @param component : component to convert
+	 * @return : converted component (AssemblyContextDetail)
+	 */
 	public static AssemblyContextDetail castAssemblyToDetail(AssemblyContext component) {
 		AssemblyContextDetail stub = new AssemblyContextDetailImpl();
 		stub.getCompromisedComponents().add(component);
