@@ -1,49 +1,39 @@
-# Palladio-Addons-Confidentiality-Context-Analysis
+# Verfeinerung des Angreifermodells undFähigkeiten in einer Angriffspfadgenerierung
 
-![GitHub license](https://img.shields.io/github/license/FluidTrust/Palladio-Addons-ContextConfidentiality-Analysis)
-![GitHub top language](https://img.shields.io/github/languages/top/FluidTrust/Palladio-Addons-ContextConfidentiality-Analysis)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/FluidTrust/Palladio-Addons-ContextConfidentiality-Analysis)
-![GitHub Main Branch](https://img.shields.io/github/checks-status/FluidTrust/Palladio-Addons-ContextConfidentiality-Analysis/main)
-## Tabele of Contents
-* [Background](#Background)
-* [Installation](#Installation)
-* [License](#License)
+## Siehe auch
+* forked from https://github.com/FluidTrust/Palladio-Addons-ContextConfidentiality-Analysis
+* Meta-Modell: https://github.com/Patrick-Spiesberger/Palladio-Addons-ContextConfidentialityMetamodell_Mitigation
+* Testmodelle: https://github.com/Patrick-Spiesberger/Testmodels
 
-## Background
-This repository contains multiple Eclipse plugins to analyse confidentiality properties of a given software architecture. It uses the Palladio Component Model (PCM). Currently 2 types of analyses are supported:
-1. Scenario analysis
-    * different usage scenarios from PCM are analysed regarding the confidentiality
-    * confidentiality is based on access control and whether certain services can be called with the given set of credentials
-    * misusage scenarios are supported (similar to misusage diagrams)
-2. Attacker propagation
-    * propagation based on CVE and CWE vulnerabilites
-    * supports different authorization levels and gaining of new credentials
+Dieses Projekt enthält eine Verfeinerung der oben genannten Analyse um den Aspekt der zusammengesetzten Komponenten, der Kontextauswahl und der Verschlüsselung. Konkret soll im Rahmen der Zugriffskontrolle ein Randfall betrachtet werden, welcher bisher eine potentielle Ausnutzung einer Schwachstelle gegebenenfalls nicht richtig identifizieren kann. Des Weiteren soll die Verschlüsselung von Daten in dem bestehenden Metamodell berücksichtigt und durch eine Erweiterung der Analyse ausgewertet werden. Eine Verschlüsselung von Daten bewirkt unter anderem, dass die Ausbreitung eines Angriffs gegebenenfalls frühzeitig unterbunden werden kann. Die Analyse soll außerdem um das in Palladio vorhandene Konstrukt der zusammengesetzten Komponenten erweitert werden. Diese Art von Komponenten ermöglicht die automatisierte Instanziierung mehrerer Teilkomponenten durch die Instanziierung der Hauptkomponenten. Alle drei Problematiken werden als Erweiterung des Palladio-Komponenten-Modells umgesetzt.
+
+## Einführung
+
+### Technologien
+* Modellierung: 
+	* Eclipse Modeling Framework ([EMF](https://www.eclipse.org/modeling/emf/ "EMF"))
+* Code
+	* Java 11
+	* KAMP Framework 
+
 ## Installation
-### Dependencies
-* Java 11
-* Eclipse Modelling Edition (min. 2020-12) with
-    * PCM 5.0+ (see [PCM-Wiki](https://sdqweb.ipd.kit.edu/wiki/PCM_Installation))
-    * Context and Attackermetamodel ([Updatesite](https://updatesite.palladio-simulator.com/fluidtrust/palladio-addons-contextconfidentiality-metamodel/nightly/), [Repo](https://github.com/FluidTrust/Palladio-Addons-ContextConfidentiality-Metamodel))
-    * com.google.gson
-    * com.google.guava
-    * org.apache.commons.codec
-    * org.apache.commons.lang3
-    * org.slf4j.api
-    * com.sun.xml.bind version="2.3.3"
-    * jakarta.xml.bind version="2.3.3"
-    * jakarta.activation version="1.2.2" 
-    * org.apache.logging.log4j version="2.8.2"
-    * (the ones without a link are available from [Eclipse Orbit](https://download.eclipse.org/tools/orbit/downloads/drops/R20210602031627/))
 
-### Install with Updatesite (for users)
-* Add the [Updatesite](https://updatesite.palladio-simulator.com/fluidtrust/palladio-addons-contextconfidentiality-analysis/nightly/) to eclipse
-* install all offered features
-    * source features are optional
-### Install with local build (for developers)
-* clone the repository (`git clone https://github.com/FluidTrust/Palladio-Addons-ContextConfidentiality-Metamodel.git`)
-* run `mvn clean verify` within the cloned repository
-* import all projects in the bundles folder into eclipse
+### Vorraussetzungen
 
-## License
-* The XACML pdp (`bundles/external-dependencies/lib`) is licensed under the Copyright (c) 2014 AT&T Intellectual Property see [Homepage](https://github.com/att/xacml-3.0).
-* The rest is licensed under the [EPL-2.0](https://github.com/FluidTrust/Palladio-Addons-ContextConfidentiality-Analysis/blob/main/LICENSE)
+* Java (getestet mit JDK 11.0.13)
+* git (getestet mit Version 2.17.1)
+
+### Schritt 1: Eclipse Modeling Tools
+* Eclipse Modeling Tools Version [2021-09] installieren (https://www.eclipse.org/downloads/packages/release/2021-09/r/eclipse-modeling-tools "2021-09")
+* Installieren Sie folgende Software über "Hilfe" -> "Neue Software installieren"
+   * Palladio [Updatesite](https://updatesite.palladio-simulator.com/palladio-build-updatesite/releases/5.0.0/ "Updatesite")
+   * KAMP [Updatesite](https://kamp-research.github.io/KAMP/)
+
+### Schritt 2: Projekt importieren
+* Klonen Sie dieses Repository
+* In Eclipse:
+	* Import -> General -> Existing Projects -> entpackten Ordner auswählen
+	* Select All -> Import
+	* Project -> Clean
+	* Eclipse neustarten
+	* Project -> Clean
