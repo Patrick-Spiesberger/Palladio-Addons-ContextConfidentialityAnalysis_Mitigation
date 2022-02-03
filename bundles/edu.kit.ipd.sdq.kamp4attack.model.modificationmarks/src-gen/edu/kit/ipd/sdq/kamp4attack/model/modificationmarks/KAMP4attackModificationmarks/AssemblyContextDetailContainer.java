@@ -24,7 +24,8 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyC
  * @model
  * @generated
  */
-public interface AssemblyContextDetailContainer extends EObject {
+public interface AssemblyContextDetailContainer extends EObject
+{
 	/**
 	 * Returns the value of the '<em><b>Compromisedassembly</b></em>' containment reference list.
 	 * The list contents are of type {@link org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail}.

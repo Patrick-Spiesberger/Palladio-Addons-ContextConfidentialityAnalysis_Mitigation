@@ -12,7 +12,8 @@ import org.eclipse.emf.ecore.EFactory;
  * @see edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.KAMP4attackModificationmarksPackage
  * @generated
  */
-public interface KAMP4attackModificationmarksFactory extends EFactory {
+public interface KAMP4attackModificationmarksFactory extends EFactory
+{
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->

@@ -4,7 +4,9 @@ package edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificat
 
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.KAMP4attackModificationmarksPackage;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
 
 /**
@@ -14,13 +16,15 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyC
  *
  * @generated
  */
-public class CompromisedAssemblyImpl extends ModifyEntityImpl<AssemblyContextDetail> implements CompromisedAssembly {
+public class CompromisedAssemblyImpl extends ModifyEntityImpl<AssemblyContextDetail> implements CompromisedAssembly
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompromisedAssemblyImpl() {
+	protected CompromisedAssemblyImpl()
+	{
 		super();
 	}
 
@@ -30,7 +34,8 @@ public class CompromisedAssemblyImpl extends ModifyEntityImpl<AssemblyContextDet
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return KAMP4attackModificationmarksPackage.Literals.COMPROMISED_ASSEMBLY;
 	}
 

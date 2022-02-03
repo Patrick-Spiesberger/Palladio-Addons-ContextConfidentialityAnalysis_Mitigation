@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface KAMP4attackModificationmarksPackage extends EPackage {
+public interface KAMP4attackModificationmarksPackage extends EPackage
+{
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -963,7 +964,6 @@ public interface KAMP4attackModificationmarksPackage extends EPackage {
 	 */
 	int DATAMODEL_CONTAINER_OPERATION_COUNT = 0;
 
-
 	/**
 	 * The meta object id for the '{@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.impl.AssemblyContextDetailContainerImpl <em>Assembly Context Detail Container</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -1328,7 +1328,8 @@ public interface KAMP4attackModificationmarksPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	interface Literals {
+	interface Literals
+	{
 		/**
 		 * The meta object literal for the '{@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.impl.AbstractKAMP4attackModificationRepositoryImpl <em>Abstract KAMP 4attack Modification Repository</em>}' class.
 		 * <!-- begin-user-doc -->

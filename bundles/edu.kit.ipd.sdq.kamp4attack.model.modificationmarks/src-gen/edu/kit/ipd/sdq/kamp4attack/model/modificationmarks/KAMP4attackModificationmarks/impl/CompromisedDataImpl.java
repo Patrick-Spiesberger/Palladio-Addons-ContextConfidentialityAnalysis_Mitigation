@@ -16,13 +16,15 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Datamodel
  *
  * @generated
  */
-public class CompromisedDataImpl extends ModifyEntityImpl<DatamodelAttacker> implements CompromisedData {
+public class CompromisedDataImpl extends ModifyEntityImpl<DatamodelAttacker> implements CompromisedData
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompromisedDataImpl() {
+	protected CompromisedDataImpl()
+	{
 		super();
 	}
 
@@ -32,7 +34,8 @@ public class CompromisedDataImpl extends ModifyEntityImpl<DatamodelAttacker> imp
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return KAMP4attackModificationmarksPackage.Literals.COMPROMISED_DATA;
 	}
 

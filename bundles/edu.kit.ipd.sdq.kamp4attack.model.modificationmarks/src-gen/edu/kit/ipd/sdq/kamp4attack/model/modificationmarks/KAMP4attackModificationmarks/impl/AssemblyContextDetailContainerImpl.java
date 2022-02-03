@@ -34,7 +34,8 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyC
  *
  * @generated
  */
-public class AssemblyContextDetailContainerImpl extends MinimalEObjectImpl.Container implements AssemblyContextDetailContainer {
+public class AssemblyContextDetailContainerImpl extends MinimalEObjectImpl.Container implements AssemblyContextDetailContainer
+{
 	/**
 	 * The cached value of the '{@link #getCompromisedassembly() <em>Compromisedassembly</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -50,7 +51,8 @@ public class AssemblyContextDetailContainerImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AssemblyContextDetailContainerImpl() {
+	protected AssemblyContextDetailContainerImpl()
+	{
 		super();
 	}
 
@@ -60,7 +62,8 @@ public class AssemblyContextDetailContainerImpl extends MinimalEObjectImpl.Conta
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return KAMP4attackModificationmarksPackage.Literals.ASSEMBLY_CONTEXT_DETAIL_CONTAINER;
 	}
 
@@ -69,8 +72,10 @@ public class AssemblyContextDetailContainerImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AssemblyContextDetail> getCompromisedassembly() {
-		if (compromisedassembly == null) {
+	public EList<AssemblyContextDetail> getCompromisedassembly()
+	{
+		if (compromisedassembly == null)
+		{
 			compromisedassembly = new EObjectContainmentEList<AssemblyContextDetail>(AssemblyContextDetail.class, this, KAMP4attackModificationmarksPackage.ASSEMBLY_CONTEXT_DETAIL_CONTAINER__COMPROMISEDASSEMBLY);
 		}
 		return compromisedassembly;
@@ -82,8 +87,10 @@ public class AssemblyContextDetailContainerImpl extends MinimalEObjectImpl.Conta
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.ASSEMBLY_CONTEXT_DETAIL_CONTAINER__COMPROMISEDASSEMBLY:
 				return ((InternalEList<?>)getCompromisedassembly()).basicRemove(otherEnd, msgs);
 		}
@@ -96,8 +103,10 @@ public class AssemblyContextDetailContainerImpl extends MinimalEObjectImpl.Conta
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.ASSEMBLY_CONTEXT_DETAIL_CONTAINER__COMPROMISEDASSEMBLY:
 				return getCompromisedassembly();
 		}
@@ -111,8 +120,10 @@ public class AssemblyContextDetailContainerImpl extends MinimalEObjectImpl.Conta
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.ASSEMBLY_CONTEXT_DETAIL_CONTAINER__COMPROMISEDASSEMBLY:
 				getCompromisedassembly().clear();
 				getCompromisedassembly().addAll((Collection<? extends AssemblyContextDetail>)newValue);
@@ -127,8 +138,10 @@ public class AssemblyContextDetailContainerImpl extends MinimalEObjectImpl.Conta
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.ASSEMBLY_CONTEXT_DETAIL_CONTAINER__COMPROMISEDASSEMBLY:
 				getCompromisedassembly().clear();
 				return;
@@ -142,8 +155,10 @@ public class AssemblyContextDetailContainerImpl extends MinimalEObjectImpl.Conta
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.ASSEMBLY_CONTEXT_DETAIL_CONTAINER__COMPROMISEDASSEMBLY:
 				return compromisedassembly != null && !compromisedassembly.isEmpty();
 		}

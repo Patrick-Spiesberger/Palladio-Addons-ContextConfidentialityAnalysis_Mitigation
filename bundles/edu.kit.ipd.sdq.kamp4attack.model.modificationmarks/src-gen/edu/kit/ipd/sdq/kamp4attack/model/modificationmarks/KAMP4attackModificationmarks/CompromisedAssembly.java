@@ -14,6 +14,6 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyC
  * @model
  * @generated
  */
-public interface CompromisedAssembly extends ModifyEntity<AssemblyContextDetail> {
-
+public interface CompromisedAssembly extends ModifyEntity<AssemblyContextDetail>
+{
 } // CompromisedAssembly

@@ -30,14 +30,16 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CredentialChangeItemProvider extends ChangePropagationStepItemProvider {
+public class CredentialChangeItemProvider extends ChangePropagationStepItemProvider
+{
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CredentialChangeItemProvider(AdapterFactory adapterFactory) {
+	public CredentialChangeItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -48,8 +50,10 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addChangedPropertyDescriptor(object);
@@ -64,7 +68,8 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addChangedPropertyDescriptor(Object object) {
+	protected void addChangedPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -86,7 +91,8 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAssemblycontextdetailcontainerPropertyDescriptor(Object object) {
+	protected void addAssemblycontextdetailcontainerPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -111,8 +117,10 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(KAMP4attackModificationmarksPackage.Literals.CREDENTIAL_CHANGE__COMPROMISEDRESOURCE);
 			childrenFeatures.add(KAMP4attackModificationmarksPackage.Literals.CREDENTIAL_CHANGE__CONTEXTCHANGE);
@@ -133,7 +141,8 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -147,7 +156,8 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/CredentialChange"));
 	}
 
@@ -158,7 +168,8 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		CredentialChange credentialChange = (CredentialChange)object;
 		return getString("_UI_CredentialChange_type") + " " + credentialChange.isChanged();
 	}
@@ -172,10 +183,12 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CredentialChange.class)) {
+		switch (notification.getFeatureID(CredentialChange.class))
+		{
 			case KAMP4attackModificationmarksPackage.CREDENTIAL_CHANGE__CHANGED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -202,7 +215,8 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -258,7 +272,8 @@ public class CredentialChangeItemProvider extends ChangePropagationStepItemProvi
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return KAMP4attackModificationsmarksEditPlugin.INSTANCE;
 	}
 

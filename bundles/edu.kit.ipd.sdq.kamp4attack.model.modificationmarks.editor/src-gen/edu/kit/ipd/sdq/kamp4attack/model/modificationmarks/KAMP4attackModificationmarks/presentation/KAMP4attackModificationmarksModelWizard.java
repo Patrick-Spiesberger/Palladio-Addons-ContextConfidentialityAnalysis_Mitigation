@@ -91,7 +91,8 @@ import org.eclipse.ui.PartInitException;
  * <!-- end-user-doc -->
  * @generated
  */
-public class KAMP4attackModificationmarksModelWizard extends Wizard implements INewWizard {
+public class KAMP4attackModificationmarksModelWizard extends Wizard implements INewWizard
+{
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -172,7 +173,8 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
+	public void init(IWorkbench workbench, IStructuredSelection selection)
+	{
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(KAMP4attackModificationsmarksEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
@@ -185,13 +187,18 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<String> getInitialObjectNames() {
-		if (initialObjectNames == null) {
+	protected Collection<String> getInitialObjectNames()
+	{
+		if (initialObjectNames == null)
+		{
 			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : kamp4attackModificationmarksPackage.getEClassifiers()) {
-				if (eClassifier instanceof EClass) {
+			for (EClassifier eClassifier : kamp4attackModificationmarksPackage.getEClassifiers())
+			{
+				if (eClassifier instanceof EClass)
+				{
 					EClass eClass = (EClass)eClassifier;
-					if (!eClass.isAbstract()) {
+					if (!eClass.isAbstract())
+					{
 						initialObjectNames.add(eClass.getName());
 					}
 				}
@@ -207,7 +214,8 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EObject createInitialModel() {
+	protected EObject createInitialModel()
+	{
 		EClass eClass = (EClass)kamp4attackModificationmarksPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
 		EObject rootObject = kamp4attackModificationmarksFactory.create(eClass);
 		return rootObject;
@@ -220,8 +228,10 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 	 * @generated
 	 */
 	@Override
-	public boolean performFinish() {
-		try {
+	public boolean performFinish()
+	{
+		try
+		{
 			// Remember the file.
 			//
 			final IFile modelFile = getModelFile();
@@ -229,10 +239,13 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 			// Do the work within an operation.
 			//
 			WorkspaceModifyOperation operation =
-				new WorkspaceModifyOperation() {
+				new WorkspaceModifyOperation()
+				{
 					@Override
-					protected void execute(IProgressMonitor progressMonitor) {
-						try {
+					protected void execute(IProgressMonitor progressMonitor)
+					{
+						try
+						{
 							// Create a resource set
 							//
 							ResourceSet resourceSet = new ResourceSetImpl();
@@ -248,7 +261,8 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 							// Add the initial model object to the contents.
 							//
 							EObject rootObject = createInitialModel();
-							if (rootObject != null) {
+							if (rootObject != null)
+							{
 								resource.getContents().add(rootObject);
 							}
 
@@ -258,10 +272,12 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 							options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
 							resource.save(options);
 						}
-						catch (Exception exception) {
+						catch (Exception exception)
+						{
 							KAMP4attackModificationsmarksEditorPlugin.INSTANCE.log(exception);
 						}
-						finally {
+						finally
+						{
 							progressMonitor.done();
 						}
 					}
@@ -274,11 +290,14 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 			IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
 			IWorkbenchPage page = workbenchWindow.getActivePage();
 			final IWorkbenchPart activePart = page.getActivePart();
-			if (activePart instanceof ISetSelectionTarget) {
+			if (activePart instanceof ISetSelectionTarget)
+			{
 				final ISelection targetSelection = new StructuredSelection(modelFile);
 				getShell().getDisplay().asyncExec
-					(new Runnable() {
-						 public void run() {
+					(new Runnable()
+					 {
+						 public void run()
+						 {
 							 ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
 						 }
 					 });
@@ -286,19 +305,22 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 
 			// Open an editor on the new file.
 			//
-			try {
+			try
+			{
 				page.openEditor
 					(new FileEditorInput(modelFile),
 					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
-			catch (PartInitException exception) {
+			catch (PartInitException exception)
+			{
 				MessageDialog.openError(workbenchWindow.getShell(), KAMP4attackModificationsmarksEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
 			return true;
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			KAMP4attackModificationsmarksEditorPlugin.INSTANCE.log(exception);
 			return false;
 		}
@@ -310,14 +332,16 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class KAMP4attackModificationmarksModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class KAMP4attackModificationmarksModelWizardNewFileCreationPage extends WizardNewFileCreationPage
+	{
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public KAMP4attackModificationmarksModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public KAMP4attackModificationmarksModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection)
+		{
 			super(pageId, selection);
 		}
 
@@ -328,10 +352,13 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 		 * @generated
 		 */
 		@Override
-		protected boolean validatePage() {
-			if (super.validatePage()) {
+		protected boolean validatePage()
+		{
+			if (super.validatePage())
+			{
 				String extension = new Path(getFileName()).getFileExtension();
-				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
+				if (extension == null || !FILE_EXTENSIONS.contains(extension))
+				{
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
 					setErrorMessage(KAMP4attackModificationsmarksEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
@@ -346,7 +373,8 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public IFile getModelFile() {
+		public IFile getModelFile()
+		{
 			return ResourcesPlugin.getWorkspace().getRoot().getFile(getContainerFullPath().append(getFileName()));
 		}
 	}
@@ -357,7 +385,8 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class KAMP4attackModificationmarksModelWizardInitialObjectCreationPage extends WizardPage {
+	public class KAMP4attackModificationmarksModelWizardInitialObjectCreationPage extends WizardPage
+	{
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -385,7 +414,8 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public KAMP4attackModificationmarksModelWizardInitialObjectCreationPage(String pageId) {
+		public KAMP4attackModificationmarksModelWizardInitialObjectCreationPage(String pageId)
+		{
 			super(pageId);
 		}
 
@@ -394,8 +424,10 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE); {
+		public void createControl(Composite parent)
+		{
+			Composite composite = new Composite(parent, SWT.NONE);
+			{
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;
@@ -425,11 +457,13 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 				initialObjectField.setLayoutData(data);
 			}
 
-			for (String objectName : getInitialObjectNames()) {
+			for (String objectName : getInitialObjectNames())
+			{
 				initialObjectField.add(getLabel(objectName));
 			}
 
-			if (initialObjectField.getItemCount() == 1) {
+			if (initialObjectField.getItemCount() == 1)
+			{
 				initialObjectField.select(0);
 			}
 			initialObjectField.addModifyListener(validator);
@@ -450,7 +484,8 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 				encodingField.setLayoutData(data);
 			}
 
-			for (String encoding : getEncodings()) {
+			for (String encoding : getEncodings())
+			{
 				encodingField.add(encoding);
 			}
 
@@ -467,8 +502,10 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 		 * @generated
 		 */
 		protected ModifyListener validator =
-			new ModifyListener() {
-				public void modifyText(ModifyEvent e) {
+			new ModifyListener()
+			{
+				public void modifyText(ModifyEvent e)
+				{
 					setPageComplete(validatePage());
 				}
 			};
@@ -478,7 +515,8 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected boolean validatePage() {
+		protected boolean validatePage()
+		{
 			return getInitialObjectName() != null && getEncodings().contains(encodingField.getText());
 		}
 
@@ -488,14 +526,18 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 		 * @generated
 		 */
 		@Override
-		public void setVisible(boolean visible) {
+		public void setVisible(boolean visible)
+		{
 			super.setVisible(visible);
-			if (visible) {
-				if (initialObjectField.getItemCount() == 1) {
+			if (visible)
+			{
+				if (initialObjectField.getItemCount() == 1)
+				{
 					initialObjectField.clearSelection();
 					encodingField.setFocus();
 				}
-				else {
+				else
+				{
 					encodingField.clearSelection();
 					initialObjectField.setFocus();
 				}
@@ -507,11 +549,14 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public String getInitialObjectName() {
+		public String getInitialObjectName()
+		{
 			String label = initialObjectField.getText();
 
-			for (String name : getInitialObjectNames()) {
-				if (getLabel(name).equals(label)) {
+			for (String name : getInitialObjectNames())
+			{
+				if (getLabel(name).equals(label))
+				{
 					return name;
 				}
 			}
@@ -523,7 +568,8 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public String getEncoding() {
+		public String getEncoding()
+		{
 			return encodingField.getText();
 		}
 
@@ -533,11 +579,14 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected String getLabel(String typeName) {
-			try {
+		protected String getLabel(String typeName)
+		{
+			try
+			{
 				return KAMP4attackModificationsmarksEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
 			}
-			catch(MissingResourceException mre) {
+			catch(MissingResourceException mre)
+			{
 				KAMP4attackModificationsmarksEditorPlugin.INSTANCE.log(mre);
 			}
 			return typeName;
@@ -548,10 +597,13 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected Collection<String> getEncodings() {
-			if (encodings == null) {
+		protected Collection<String> getEncodings()
+		{
+			if (encodings == null)
+			{
 				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(KAMP4attackModificationsmarksEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
+				for (StringTokenizer stringTokenizer = new StringTokenizer(KAMP4attackModificationsmarksEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); )
+				{
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
@@ -566,7 +618,8 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 	 * @generated
 	 */
 		@Override
-	public void addPages() {
+	public void addPages()
+	{
 		// Create a page, set the title, and the initial model file name.
 		//
 		newFileCreationPage = new KAMP4attackModificationmarksModelWizardNewFileCreationPage("Whatever", selection);
@@ -577,21 +630,25 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
 		//
-		if (selection != null && !selection.isEmpty()) {
+		if (selection != null && !selection.isEmpty())
+		{
 			// Get the resource...
 			//
 			Object selectedElement = selection.iterator().next();
-			if (selectedElement instanceof IResource) {
+			if (selectedElement instanceof IResource)
+			{
 				// Get the resource parent, if its a file.
 				//
 				IResource selectedResource = (IResource)selectedElement;
-				if (selectedResource.getType() == IResource.FILE) {
+				if (selectedResource.getType() == IResource.FILE)
+				{
 					selectedResource = selectedResource.getParent();
 				}
 
 				// This gives us a directory...
 				//
-				if (selectedResource instanceof IFolder || selectedResource instanceof IProject) {
+				if (selectedResource instanceof IFolder || selectedResource instanceof IProject)
+				{
 					// Set this for the container.
 					//
 					newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
@@ -601,7 +658,8 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 					String defaultModelBaseFilename = KAMP4attackModificationsmarksEditorPlugin.INSTANCE.getString("_UI_KAMP4attackModificationmarksEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
-					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
+					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i)
+					{
 						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
 					}
 					newFileCreationPage.setFileName(modelFilename);
@@ -620,7 +678,8 @@ public class KAMP4attackModificationmarksModelWizard extends Wizard implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IFile getModelFile() {
+	public IFile getModelFile()
+	{
 		return newFileCreationPage.getModelFile();
 	}
 

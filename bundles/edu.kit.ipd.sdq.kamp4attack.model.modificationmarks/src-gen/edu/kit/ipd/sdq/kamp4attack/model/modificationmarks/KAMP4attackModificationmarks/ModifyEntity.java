@@ -18,5 +18,6 @@ import org.palladiosimulator.pcm.core.entity.Entity;
  * @model abstract="true"
  * @generated
  */
-public interface ModifyEntity<T extends Entity> extends AbstractModification<T, EObject> {
+public interface ModifyEntity<T extends Entity> extends AbstractModification<T, EObject>
+{
 } // ModifyEntity

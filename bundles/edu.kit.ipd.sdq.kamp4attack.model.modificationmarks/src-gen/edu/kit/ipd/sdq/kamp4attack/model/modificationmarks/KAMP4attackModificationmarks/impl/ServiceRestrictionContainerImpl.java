@@ -34,7 +34,8 @@ import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.Se
  *
  * @generated
  */
-public class ServiceRestrictionContainerImpl extends MinimalEObjectImpl.Container implements ServiceRestrictionContainer {
+public class ServiceRestrictionContainerImpl extends MinimalEObjectImpl.Container implements ServiceRestrictionContainer
+{
 	/**
 	 * The cached value of the '{@link #getServicerestriction() <em>Servicerestriction</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -50,7 +51,8 @@ public class ServiceRestrictionContainerImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ServiceRestrictionContainerImpl() {
+	protected ServiceRestrictionContainerImpl()
+	{
 		super();
 	}
 
@@ -60,7 +62,8 @@ public class ServiceRestrictionContainerImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return KAMP4attackModificationmarksPackage.Literals.SERVICE_RESTRICTION_CONTAINER;
 	}
 
@@ -69,8 +72,10 @@ public class ServiceRestrictionContainerImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ServiceRestriction> getServicerestriction() {
-		if (servicerestriction == null) {
+	public EList<ServiceRestriction> getServicerestriction()
+	{
+		if (servicerestriction == null)
+		{
 			servicerestriction = new EObjectContainmentEList<ServiceRestriction>(ServiceRestriction.class, this, KAMP4attackModificationmarksPackage.SERVICE_RESTRICTION_CONTAINER__SERVICERESTRICTION);
 		}
 		return servicerestriction;
@@ -82,8 +87,10 @@ public class ServiceRestrictionContainerImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.SERVICE_RESTRICTION_CONTAINER__SERVICERESTRICTION:
 				return ((InternalEList<?>)getServicerestriction()).basicRemove(otherEnd, msgs);
 		}
@@ -96,8 +103,10 @@ public class ServiceRestrictionContainerImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.SERVICE_RESTRICTION_CONTAINER__SERVICERESTRICTION:
 				return getServicerestriction();
 		}
@@ -111,8 +120,10 @@ public class ServiceRestrictionContainerImpl extends MinimalEObjectImpl.Containe
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.SERVICE_RESTRICTION_CONTAINER__SERVICERESTRICTION:
 				getServicerestriction().clear();
 				getServicerestriction().addAll((Collection<? extends ServiceRestriction>)newValue);
@@ -127,8 +138,10 @@ public class ServiceRestrictionContainerImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.SERVICE_RESTRICTION_CONTAINER__SERVICERESTRICTION:
 				getServicerestriction().clear();
 				return;
@@ -142,8 +155,10 @@ public class ServiceRestrictionContainerImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.SERVICE_RESTRICTION_CONTAINER__SERVICERESTRICTION:
 				return servicerestriction != null && !servicerestriction.isEmpty();
 		}

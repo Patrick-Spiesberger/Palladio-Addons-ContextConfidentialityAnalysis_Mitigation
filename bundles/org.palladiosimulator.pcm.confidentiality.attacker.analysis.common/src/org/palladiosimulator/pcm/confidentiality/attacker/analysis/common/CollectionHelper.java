@@ -145,14 +145,16 @@ public class CollectionHelper {
 
 			final var causingElement = new ArrayList<AssemblyContextDetail>();
 			causingElement.add(component.getAffectedElement());
-
+			
 			var serviceRestrictionsCompromised = serviceRestrictions.stream().map(service -> {
 				var serviceModel = CollectionHelper.findOrCreateServiceRestriction(service, container, change);
 				return HelperCreationCompromisedElements.createCompromisedService(serviceModel, causingElement);
 			}).collect(Collectors.toList());
-
+			
+			
 			serviceRestrictionsCompromised = CollectionHelper.filterExistingService(serviceRestrictionsCompromised,
 					change);
+			
 			change.getCompromisedservice().addAll(serviceRestrictionsCompromised);
 		}
 

@@ -54,7 +54,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 						}
 					}
 				}
-				handleDataExtraction(newCompromisedComponent);
+				handleDataExtraction(newCompromisedComponent, attacker);
 				change.setChanged(true);
 				for (CompromisedAssembly component : newCompromisedComponent) {
 					change.getCompromisedassembly().add(component);
@@ -81,7 +81,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 					AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(assembly, stub));
 				}
 			}
-			handleDataExtraction(newCompromisedComponent);
+			handleDataExtraction(newCompromisedComponent, attacker);
 			change.setChanged(true);
 			change.getCompromisedassembly().addAll(newCompromisedComponent);
 			change.getCompromisedassembly().stream().filter(this::nonNull).collect(Collectors.toList());
@@ -91,7 +91,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 
 	}
 
-	private void handleDataExtraction(final Collection<CompromisedAssembly> components) {
+	private void handleDataExtraction(final Collection<CompromisedAssembly> components, Attacker attacker) {
 		// puts all data from a set of components into a list of the DataHandler
 		Collection<AssemblyContextDetail> filteredComponents = components.stream()
 				.map(CompromisedAssembly::getAffectedElement).collect(Collectors.toList());
@@ -100,7 +100,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 
 		for (AssemblyContextDetail assembly : filteredComponents) {
 			final var dataList = assembly.getCompromisedComponents().stream().distinct()
-					.flatMap(component -> DataHandler.getData(component).stream()).collect(Collectors.toList());
+					.flatMap(component -> DataHandler.getData(component, attacker).stream()).collect(Collectors.toList());
 			getDataHandler().addData(dataList);
 
 		}

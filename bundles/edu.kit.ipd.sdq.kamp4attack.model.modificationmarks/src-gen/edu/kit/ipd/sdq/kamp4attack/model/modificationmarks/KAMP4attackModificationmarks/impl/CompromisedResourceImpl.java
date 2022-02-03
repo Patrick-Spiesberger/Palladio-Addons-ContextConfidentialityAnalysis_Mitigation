@@ -16,13 +16,15 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
  *
  * @generated
  */
-public class CompromisedResourceImpl extends ModifyEntityImpl<ResourceContainer> implements CompromisedResource {
+public class CompromisedResourceImpl extends ModifyEntityImpl<ResourceContainer> implements CompromisedResource
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompromisedResourceImpl() {
+	protected CompromisedResourceImpl()
+	{
 		super();
 	}
 
@@ -32,7 +34,8 @@ public class CompromisedResourceImpl extends ModifyEntityImpl<ResourceContainer>
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return KAMP4attackModificationmarksPackage.Literals.COMPROMISED_RESOURCE;
 	}
 

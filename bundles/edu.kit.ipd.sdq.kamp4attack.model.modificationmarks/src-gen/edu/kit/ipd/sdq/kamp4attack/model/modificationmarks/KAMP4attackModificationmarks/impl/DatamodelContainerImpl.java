@@ -34,7 +34,8 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Datamodel
  *
  * @generated
  */
-public class DatamodelContainerImpl extends MinimalEObjectImpl.Container implements DatamodelContainer {
+public class DatamodelContainerImpl extends MinimalEObjectImpl.Container implements DatamodelContainer
+{
 	/**
 	 * The cached value of the '{@link #getDatamodelattacker() <em>Datamodelattacker</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -50,7 +51,8 @@ public class DatamodelContainerImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DatamodelContainerImpl() {
+	protected DatamodelContainerImpl()
+	{
 		super();
 	}
 
@@ -60,7 +62,8 @@ public class DatamodelContainerImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return KAMP4attackModificationmarksPackage.Literals.DATAMODEL_CONTAINER;
 	}
 
@@ -69,8 +72,10 @@ public class DatamodelContainerImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DatamodelAttacker> getDatamodelattacker() {
-		if (datamodelattacker == null) {
+	public EList<DatamodelAttacker> getDatamodelattacker()
+	{
+		if (datamodelattacker == null)
+		{
 			datamodelattacker = new EObjectContainmentEList<DatamodelAttacker>(DatamodelAttacker.class, this, KAMP4attackModificationmarksPackage.DATAMODEL_CONTAINER__DATAMODELATTACKER);
 		}
 		return datamodelattacker;
@@ -82,8 +87,10 @@ public class DatamodelContainerImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.DATAMODEL_CONTAINER__DATAMODELATTACKER:
 				return ((InternalEList<?>)getDatamodelattacker()).basicRemove(otherEnd, msgs);
 		}
@@ -96,8 +103,10 @@ public class DatamodelContainerImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.DATAMODEL_CONTAINER__DATAMODELATTACKER:
 				return getDatamodelattacker();
 		}
@@ -111,8 +120,10 @@ public class DatamodelContainerImpl extends MinimalEObjectImpl.Container impleme
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.DATAMODEL_CONTAINER__DATAMODELATTACKER:
 				getDatamodelattacker().clear();
 				getDatamodelattacker().addAll((Collection<? extends DatamodelAttacker>)newValue);
@@ -127,8 +138,10 @@ public class DatamodelContainerImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.DATAMODEL_CONTAINER__DATAMODELATTACKER:
 				getDatamodelattacker().clear();
 				return;
@@ -142,8 +155,10 @@ public class DatamodelContainerImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
 			case KAMP4attackModificationmarksPackage.DATAMODEL_CONTAINER__DATAMODELATTACKER:
 				return datamodelattacker != null && !datamodelattacker.isEmpty();
 		}

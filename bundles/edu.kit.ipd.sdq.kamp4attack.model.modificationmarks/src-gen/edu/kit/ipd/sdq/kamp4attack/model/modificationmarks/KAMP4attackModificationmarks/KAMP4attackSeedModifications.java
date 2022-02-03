@@ -22,7 +22,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface KAMP4attackSeedModifications extends AbstractSeedModifications {
+public interface KAMP4attackSeedModifications extends AbstractSeedModifications
+{
 	/**
 	 * Returns the value of the '<em><b>Attackcomponent</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.AttackerSelection}.

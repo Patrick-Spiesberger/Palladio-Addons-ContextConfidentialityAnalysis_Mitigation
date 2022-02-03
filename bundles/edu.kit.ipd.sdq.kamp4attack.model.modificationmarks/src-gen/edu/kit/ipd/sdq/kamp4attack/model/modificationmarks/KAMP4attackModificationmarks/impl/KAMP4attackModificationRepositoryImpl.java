@@ -15,13 +15,15 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class KAMP4attackModificationRepositoryImpl extends AbstractKAMP4attackModificationRepositoryImpl<KAMP4attackSeedModifications> implements KAMP4attackModificationRepository {
+public class KAMP4attackModificationRepositoryImpl extends AbstractKAMP4attackModificationRepositoryImpl<KAMP4attackSeedModifications> implements KAMP4attackModificationRepository
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected KAMP4attackModificationRepositoryImpl() {
+	protected KAMP4attackModificationRepositoryImpl()
+	{
 		super();
 	}
 
@@ -31,7 +33,8 @@ public class KAMP4attackModificationRepositoryImpl extends AbstractKAMP4attackMo
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return KAMP4attackModificationmarksPackage.Literals.KAMP_4ATTACK_MODIFICATION_REPOSITORY;
 	}
 

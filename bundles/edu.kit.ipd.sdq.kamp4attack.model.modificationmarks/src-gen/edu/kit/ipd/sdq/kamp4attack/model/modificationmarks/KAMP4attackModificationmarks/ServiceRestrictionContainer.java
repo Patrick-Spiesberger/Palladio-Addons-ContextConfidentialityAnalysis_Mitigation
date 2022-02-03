@@ -24,7 +24,8 @@ import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.Se
  * @model
  * @generated
  */
-public interface ServiceRestrictionContainer extends EObject {
+public interface ServiceRestrictionContainer extends EObject
+{
 	/**
 	 * Returns the value of the '<em><b>Servicerestriction</b></em>' containment reference list.
 	 * The list contents are of type {@link org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.ServiceRestriction}.

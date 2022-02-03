@@ -25,13 +25,15 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
  *
  * @generated
  */
-public abstract class AbstractKAMP4attackModificationRepositoryImpl<T extends KAMP4attackSeedModifications> extends AbstractModificationRepositoryImpl<T, ChangePropagationStep> implements AbstractKAMP4attackModificationRepository<T> {
+public abstract class AbstractKAMP4attackModificationRepositoryImpl<T extends KAMP4attackSeedModifications> extends AbstractModificationRepositoryImpl<T, ChangePropagationStep> implements AbstractKAMP4attackModificationRepository<T>
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AbstractKAMP4attackModificationRepositoryImpl() {
+	protected AbstractKAMP4attackModificationRepositoryImpl()
+	{
 		super();
 	}
 
@@ -41,7 +43,8 @@ public abstract class AbstractKAMP4attackModificationRepositoryImpl<T extends KA
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return KAMP4attackModificationmarksPackage.Literals.ABSTRACT_KAMP_4ATTACK_MODIFICATION_REPOSITORY;
 	}
 
@@ -52,7 +55,8 @@ public abstract class AbstractKAMP4attackModificationRepositoryImpl<T extends KA
 	 * @generated
 	 */
 	@Override
-	public NotificationChain basicSetSeedModifications(T newSeedModifications, NotificationChain msgs) {
+	public NotificationChain basicSetSeedModifications(T newSeedModifications, NotificationChain msgs)
+	{
 		return super.basicSetSeedModifications(newSeedModifications, msgs);
 	}
 
@@ -63,8 +67,10 @@ public abstract class AbstractKAMP4attackModificationRepositoryImpl<T extends KA
 	 * @generated
 	 */
 	@Override
-	public EList<ChangePropagationStep> getChangePropagationSteps() {
-		if (changePropagationSteps == null) {
+	public EList<ChangePropagationStep> getChangePropagationSteps()
+	{
+		if (changePropagationSteps == null)
+		{
 			changePropagationSteps = new EObjectContainmentEList<ChangePropagationStep>(ChangePropagationStep.class, this, KAMP4attackModificationmarksPackage.ABSTRACT_KAMP_4ATTACK_MODIFICATION_REPOSITORY__CHANGE_PROPAGATION_STEPS);
 		}
 		return changePropagationSteps;

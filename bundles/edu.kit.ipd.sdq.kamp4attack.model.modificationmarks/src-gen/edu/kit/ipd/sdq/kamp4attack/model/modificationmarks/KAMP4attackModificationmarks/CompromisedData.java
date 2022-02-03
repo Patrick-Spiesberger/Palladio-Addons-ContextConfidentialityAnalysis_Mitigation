@@ -14,5 +14,6 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Datamodel
  * @model
  * @generated
  */
-public interface CompromisedData extends ModifyEntity<DatamodelAttacker> {
+public interface CompromisedData extends ModifyEntity<DatamodelAttacker>
+{
 } // CompromisedData

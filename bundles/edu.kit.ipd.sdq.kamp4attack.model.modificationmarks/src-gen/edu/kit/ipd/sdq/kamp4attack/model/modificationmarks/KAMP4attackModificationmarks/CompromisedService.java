@@ -14,5 +14,6 @@ import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.Se
  * @model
  * @generated
  */
-public interface CompromisedService extends ModifyEntity<ServiceRestriction> {
+public interface CompromisedService extends ModifyEntity<ServiceRestriction>
+{
 } // CompromisedService

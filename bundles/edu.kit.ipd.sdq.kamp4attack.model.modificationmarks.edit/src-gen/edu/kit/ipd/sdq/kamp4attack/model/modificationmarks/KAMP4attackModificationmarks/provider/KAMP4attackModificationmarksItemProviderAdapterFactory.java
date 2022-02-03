@@ -32,7 +32,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP4attackModificationmarksAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP4attackModificationmarksAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable
+{
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -63,7 +64,8 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KAMP4attackModificationmarksItemProviderAdapterFactory() {
+	public KAMP4attackModificationmarksItemProviderAdapterFactory()
+	{
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
@@ -86,8 +88,10 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter createKAMP4attackModificationRepositoryAdapter() {
-		if (kamp4attackModificationRepositoryItemProvider == null) {
+	public Adapter createKAMP4attackModificationRepositoryAdapter()
+	{
+		if (kamp4attackModificationRepositoryItemProvider == null)
+		{
 			kamp4attackModificationRepositoryItemProvider = new KAMP4attackModificationRepositoryItemProvider(this);
 		}
 
@@ -109,8 +113,10 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter createKAMP4attackSeedModificationsAdapter() {
-		if (kamp4attackSeedModificationsItemProvider == null) {
+	public Adapter createKAMP4attackSeedModificationsAdapter()
+	{
+		if (kamp4attackSeedModificationsItemProvider == null)
+		{
 			kamp4attackSeedModificationsItemProvider = new KAMP4attackSeedModificationsItemProvider(this);
 		}
 
@@ -132,8 +138,10 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter createAttackerSelectionAdapter() {
-		if (attackerSelectionItemProvider == null) {
+	public Adapter createAttackerSelectionAdapter()
+	{
+		if (attackerSelectionItemProvider == null)
+		{
 			attackerSelectionItemProvider = new AttackerSelectionItemProvider(this);
 		}
 
@@ -155,8 +163,10 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter createCredentialChangeAdapter() {
-		if (credentialChangeItemProvider == null) {
+	public Adapter createCredentialChangeAdapter()
+	{
+		if (credentialChangeItemProvider == null)
+		{
 			credentialChangeItemProvider = new CredentialChangeItemProvider(this);
 		}
 
@@ -178,8 +188,10 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter createCompromisedResourceAdapter() {
-		if (compromisedResourceItemProvider == null) {
+	public Adapter createCompromisedResourceAdapter()
+	{
+		if (compromisedResourceItemProvider == null)
+		{
 			compromisedResourceItemProvider = new CompromisedResourceItemProvider(this);
 		}
 
@@ -201,8 +213,10 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter createCompromisedAssemblyAdapter() {
-		if (compromisedAssemblyItemProvider == null) {
+	public Adapter createCompromisedAssemblyAdapter()
+	{
+		if (compromisedAssemblyItemProvider == null)
+		{
 			compromisedAssemblyItemProvider = new CompromisedAssemblyItemProvider(this);
 		}
 
@@ -224,8 +238,10 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter createContextChangeAdapter() {
-		if (contextChangeItemProvider == null) {
+	public Adapter createContextChangeAdapter()
+	{
+		if (contextChangeItemProvider == null)
+		{
 			contextChangeItemProvider = new ContextChangeItemProvider(this);
 		}
 
@@ -247,8 +263,10 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter createCompromisedLinkingResourceAdapter() {
-		if (compromisedLinkingResourceItemProvider == null) {
+	public Adapter createCompromisedLinkingResourceAdapter()
+	{
+		if (compromisedLinkingResourceItemProvider == null)
+		{
 			compromisedLinkingResourceItemProvider = new CompromisedLinkingResourceItemProvider(this);
 		}
 
@@ -270,8 +288,10 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter createCompromisedServiceAdapter() {
-		if (compromisedServiceItemProvider == null) {
+	public Adapter createCompromisedServiceAdapter()
+	{
+		if (compromisedServiceItemProvider == null)
+		{
 			compromisedServiceItemProvider = new CompromisedServiceItemProvider(this);
 		}
 
@@ -293,8 +313,10 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter createServiceRestrictionContainerAdapter() {
-		if (serviceRestrictionContainerItemProvider == null) {
+	public Adapter createServiceRestrictionContainerAdapter()
+	{
+		if (serviceRestrictionContainerItemProvider == null)
+		{
 			serviceRestrictionContainerItemProvider = new ServiceRestrictionContainerItemProvider(this);
 		}
 
@@ -316,8 +338,10 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter createCompromisedDataAdapter() {
-		if (compromisedDataItemProvider == null) {
+	public Adapter createCompromisedDataAdapter()
+	{
+		if (compromisedDataItemProvider == null)
+		{
 			compromisedDataItemProvider = new CompromisedDataItemProvider(this);
 		}
 
@@ -339,8 +363,10 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter createDatamodelContainerAdapter() {
-		if (datamodelContainerItemProvider == null) {
+	public Adapter createDatamodelContainerAdapter()
+	{
+		if (datamodelContainerItemProvider == null)
+		{
 			datamodelContainerItemProvider = new DatamodelContainerItemProvider(this);
 		}
 
@@ -362,8 +388,10 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter createAssemblyContextDetailContainerAdapter() {
-		if (assemblyContextDetailContainerItemProvider == null) {
+	public Adapter createAssemblyContextDetailContainerAdapter()
+	{
+		if (assemblyContextDetailContainerItemProvider == null)
+		{
 			assemblyContextDetailContainerItemProvider = new AssemblyContextDetailContainerItemProvider(this);
 		}
 
@@ -376,7 +404,8 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComposeableAdapterFactory getRootAdapterFactory() {
+	public ComposeableAdapterFactory getRootAdapterFactory()
+	{
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
 
@@ -386,7 +415,8 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory)
+	{
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -396,7 +426,8 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object type) {
+	public boolean isFactoryForType(Object type)
+	{
 		return supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
 
@@ -407,7 +438,8 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Adapter adapt(Notifier notifier, Object type) {
+	public Adapter adapt(Notifier notifier, Object type)
+	{
 		return super.adapt(notifier, this);
 	}
 
@@ -417,10 +449,13 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * @generated
 	 */
 	@Override
-	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
+	public Object adapt(Object object, Object type)
+	{
+		if (isFactoryForType(type))
+		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
+			{
 				return adapter;
 			}
 		}
@@ -434,7 +469,8 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void addListener(INotifyChangedListener notifyChangedListener) {
+	public void addListener(INotifyChangedListener notifyChangedListener)
+	{
 		changeNotifier.addListener(notifyChangedListener);
 	}
 
@@ -444,7 +480,8 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void removeListener(INotifyChangedListener notifyChangedListener) {
+	public void removeListener(INotifyChangedListener notifyChangedListener)
+	{
 		changeNotifier.removeListener(notifyChangedListener);
 	}
 
@@ -454,10 +491,12 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void fireNotifyChanged(Notification notification) {
+	public void fireNotifyChanged(Notification notification)
+	{
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if (parentAdapterFactory != null)
+		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
@@ -468,7 +507,8 @@ public class KAMP4attackModificationmarksItemProviderAdapterFactory extends KAMP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void dispose() {
+	public void dispose()
+	{
 		if (kamp4attackModificationRepositoryItemProvider != null) kamp4attackModificationRepositoryItemProvider.dispose();
 		if (kamp4attackSeedModificationsItemProvider != null) kamp4attackSeedModificationsItemProvider.dispose();
 		if (attackerSelectionItemProvider != null) attackerSelectionItemProvider.dispose();

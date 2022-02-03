@@ -14,5 +14,6 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
  * @model
  * @generated
  */
-public interface AttackerSelection extends ModifyEntity<Attacker> {
+public interface AttackerSelection extends ModifyEntity<Attacker>
+{
 } // AttackerSelection

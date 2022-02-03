@@ -34,7 +34,7 @@ public abstract class MethodHandler extends AttackHandler {
                 .flatMap(Optional::stream).collect(Collectors.toList());
         final var newCompromisedComponent = filterExsiting(compromisedComponent, change);
         if (!newCompromisedComponent.isEmpty()) {
-            handleDataExtraction(newCompromisedComponent);
+            handleDataExtraction(newCompromisedComponent, attacker);
             change.setChanged(true);
             change.getCompromisedassembly().addAll(newCompromisedComponent);
             CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
@@ -42,7 +42,7 @@ public abstract class MethodHandler extends AttackHandler {
         }
     }
 
-    private void handleDataExtraction(final Collection<CompromisedAssembly> components) {
+    private void handleDataExtraction(final Collection<CompromisedAssembly> components, Attacker attacker) {
 
         Collection<AssemblyContextDetail> filteredComponents = components.stream()
                 .map(CompromisedAssembly::getAffectedElement).collect(Collectors.toList());
@@ -51,7 +51,7 @@ public abstract class MethodHandler extends AttackHandler {
 
 		for (AssemblyContextDetail assemblyDetailList : filteredComponents) {
 			final var dataList = assemblyDetailList.getCompromisedComponents().stream().distinct()
-					.flatMap(component -> DataHandler.getData(component).stream()).collect(Collectors.toList());
+					.flatMap(component -> DataHandler.getData(component, attacker).stream()).collect(Collectors.toList());
 
 			getDataHandler().addData(dataList);
 		}

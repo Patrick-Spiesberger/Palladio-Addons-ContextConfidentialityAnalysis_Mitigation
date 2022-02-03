@@ -31,7 +31,7 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="model/KAMP4aPSModificationsmarks.ecore#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_aJivQeklEeqxncfK2dp-RQ" name="KAMP4attackModificationmarks class diagram" repPath="#_aItBwOklEeqxncfK2dp-RQ" changeId="94e7d47f-fb2f-4e5a-bb65-19e2e573013f">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_aJivQeklEeqxncfK2dp-RQ" name="KAMP4attackModificationmarks class diagram" repPath="#_aItBwOklEeqxncfK2dp-RQ" changeId="e44f0e12-7eee-45f1-a4c3-65aaa539b4f2">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="model/KAMP4attackModificationsmarks.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -1825,6 +1825,12 @@
           <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
         </computedStyleDescriptions>
+        <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_-baAE4UUEey56_UUKjVO4g" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
+          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <labelFormat>bold</labelFormat>
+          <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+        </computedStyleDescriptions>
       </data>
     </ownedAnnotationEntries>
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_aJ3fYOklEeqxncfK2dp-RQ" source="GMF_DIAGRAMS">
@@ -2083,6 +2089,14 @@
             <children xmi:type="notation:Node" xmi:id="_b4uFsFKsEeyXINj6G2zZFA" type="3010" element="_b4mw8FKsEeyXINj6G2zZFA">
               <styles xmi:type="notation:FontStyle" xmi:id="_b4uFsVKsEeyXINj6G2zZFA" fontName="Ubuntu" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_b4uFslKsEeyXINj6G2zZFA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_-bii8IUUEey56_UUKjVO4g" type="3010" element="_-baAEoUUEey56_UUKjVO4g">
+              <styles xmi:type="notation:FontStyle" xmi:id="_-bii8YUUEey56_UUKjVO4g" fontName="Open Sans" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_-bii8oUUEey56_UUKjVO4g"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_-bii84UUEey56_UUKjVO4g" type="3010" element="_-banIYUUEey56_UUKjVO4g">
+              <styles xmi:type="notation:FontStyle" xmi:id="_-bii9IUUEey56_UUKjVO4g" fontName="Open Sans" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_-bii9YUUEey56_UUKjVO4g"/>
             </children>
             <children xmi:type="notation:Node" xmi:id="_b4uFs1KsEeyXINj6G2zZFA" type="3010" element="_b4mw8lKsEeyXINj6G2zZFA">
               <styles xmi:type="notation:FontStyle" xmi:id="_b4uFtFKsEeyXINj6G2zZFA" fontName="Ubuntu" fontHeight="8"/>
@@ -3036,6 +3050,22 @@
         <target xmi:type="ecore:EAttribute" href="platform:/resource/org.palladiosimulator.pcm.confidentiality.attacker/model/attacker.ecore#//DatamodelAttacker/referenceName"/>
         <semanticElements xmi:type="ecore:EAttribute" href="platform:/resource/org.palladiosimulator.pcm.confidentiality.attacker/model/attacker.ecore#//DatamodelAttacker/referenceName"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_b4mw8VKsEeyXINj6G2zZFA" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_-baAEoUUEey56_UUKjVO4g" name="encryptionLevel : EncryptionLevel = None" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="platform:/resource/org.palladiosimulator.pcm.confidentiality.attacker/model/attacker.ecore#//DatamodelAttacker/encryptionLevel"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="platform:/resource/org.palladiosimulator.pcm.confidentiality.attacker/model/attacker.ecore#//DatamodelAttacker/encryptionLevel"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_-banIIUUEey56_UUKjVO4g" labelAlignment="LEFT" description="_-baAE4UUEey56_UUKjVO4g">
+          <customFeatures>labelFormat</customFeatures>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_-banIYUUEey56_UUKjVO4g" name="requiredDecryptionKey : String" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="platform:/resource/org.palladiosimulator.pcm.confidentiality.attacker/model/attacker.ecore#//DatamodelAttacker/requiredDecryptionKey"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="platform:/resource/org.palladiosimulator.pcm.confidentiality.attacker/model/attacker.ecore#//DatamodelAttacker/requiredDecryptionKey"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_-banIoUUEey56_UUKjVO4g" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>

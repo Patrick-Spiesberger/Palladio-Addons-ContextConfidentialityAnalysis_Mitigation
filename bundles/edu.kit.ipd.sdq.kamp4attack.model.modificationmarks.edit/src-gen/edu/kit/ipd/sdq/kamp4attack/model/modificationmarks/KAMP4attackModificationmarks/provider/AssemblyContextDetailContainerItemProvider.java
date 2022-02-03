@@ -41,14 +41,16 @@ public class AssemblyContextDetailContainerItemProvider
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
 		IItemLabelProvider,
-		IItemPropertySource {
+		IItemPropertySource
+{
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssemblyContextDetailContainerItemProvider(AdapterFactory adapterFactory) {
+	public AssemblyContextDetailContainerItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -59,8 +61,10 @@ public class AssemblyContextDetailContainerItemProvider
 	 * @generated
 	 */
 	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addCompromisedassemblyPropertyDescriptor(object);
@@ -74,7 +78,8 @@ public class AssemblyContextDetailContainerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCompromisedassemblyPropertyDescriptor(Object object) {
+	protected void addCompromisedassemblyPropertyDescriptor(Object object)
+	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -99,8 +104,10 @@ public class AssemblyContextDetailContainerItemProvider
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(KAMP4attackModificationmarksPackage.Literals.ASSEMBLY_CONTEXT_DETAIL_CONTAINER__COMPROMISEDASSEMBLY);
 		}
@@ -113,7 +120,8 @@ public class AssemblyContextDetailContainerItemProvider
 	 * @generated
 	 */
 	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+	protected EStructuralFeature getChildFeature(Object object, Object child)
+	{
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -127,7 +135,8 @@ public class AssemblyContextDetailContainerItemProvider
 	 * @generated
 	 */
 	@Override
-	public Object getImage(Object object) {
+	public Object getImage(Object object)
+	{
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/AssemblyContextDetailContainer"));
 	}
 
@@ -138,7 +147,8 @@ public class AssemblyContextDetailContainerItemProvider
 	 * @generated
 	 */
 	@Override
-	public String getText(Object object) {
+	public String getText(Object object)
+	{
 		return getString("_UI_AssemblyContextDetailContainer_type");
 	}
 
@@ -151,10 +161,12 @@ public class AssemblyContextDetailContainerItemProvider
 	 * @generated
 	 */
 	@Override
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AssemblyContextDetailContainer.class)) {
+		switch (notification.getFeatureID(AssemblyContextDetailContainer.class))
+		{
 			case KAMP4attackModificationmarksPackage.ASSEMBLY_CONTEXT_DETAIL_CONTAINER__COMPROMISEDASSEMBLY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -170,7 +182,8 @@ public class AssemblyContextDetailContainerItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -186,7 +199,8 @@ public class AssemblyContextDetailContainerItemProvider
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return KAMP4attackModificationsmarksEditPlugin.INSTANCE;
 	}
 

@@ -16,13 +16,15 @@ import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.Se
  *
  * @generated
  */
-public class CompromisedServiceImpl extends ModifyEntityImpl<ServiceRestriction> implements CompromisedService {
+public class CompromisedServiceImpl extends ModifyEntityImpl<ServiceRestriction> implements CompromisedService
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompromisedServiceImpl() {
+	protected CompromisedServiceImpl()
+	{
 		super();
 	}
 
@@ -32,7 +34,8 @@ public class CompromisedServiceImpl extends ModifyEntityImpl<ServiceRestriction>
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return KAMP4attackModificationmarksPackage.Literals.COMPROMISED_SERVICE;
 	}
 

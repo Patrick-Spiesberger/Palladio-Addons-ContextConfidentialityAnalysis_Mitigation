@@ -28,13 +28,13 @@ public abstract class ResourceContainerHandler extends AttackHandler {
                 .flatMap(Optional::stream).distinct().collect(Collectors.toList());
         final var newCompromisedResources = filterExsiting(compromisedResources, change);
         if (!newCompromisedResources.isEmpty()) {
-            handleDataExtraction(newCompromisedResources);
+            handleDataExtraction(newCompromisedResources, attacker);
             change.setChanged(true);
             change.getCompromisedresource().addAll(newCompromisedResources);
         }
     }
 
-    private void handleDataExtraction(final Collection<CompromisedResource> resources) {
+    private void handleDataExtraction(final Collection<CompromisedResource> resources, Attacker attacker) {
 
         Collection<ResourceContainer> filteredComponents = resources.stream()
                 .map(CompromisedResource::getAffectedElement).collect(Collectors.toList());
@@ -42,7 +42,7 @@ public abstract class ResourceContainerHandler extends AttackHandler {
         filteredComponents = CollectionHelper.removeDuplicates(filteredComponents);
 
         final var dataList = filteredComponents.stream()
-                .flatMap(resource -> DataHandler.getData(resource, getModelStorage().getAllocation()).stream())
+                .flatMap(resource -> DataHandler.getData(resource, getModelStorage().getAllocation(), attacker).stream())
                 .distinct().collect(Collectors.toList());
         getDataHandler().addData(dataList);
     }

@@ -30,7 +30,8 @@ import org.palladiosimulator.pcm.core.provider.PalladioComponentModelEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class KAMP4attackModificationsmarksEditPlugin extends EMFPlugin {
+public final class KAMP4attackModificationsmarksEditPlugin extends EMFPlugin
+{
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
@@ -53,9 +54,11 @@ public final class KAMP4attackModificationsmarksEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KAMP4attackModificationsmarksEditPlugin() {
+	public KAMP4attackModificationsmarksEditPlugin()
+	{
 		super
-		  (new ResourceLocator [] {
+		  (new ResourceLocator [] 
+		   {
 		     AttackerEditPlugin.INSTANCE,
 		     ContextEditPlugin.INSTANCE,
 		     EcoreEditPlugin.INSTANCE,
@@ -76,7 +79,8 @@ public final class KAMP4attackModificationsmarksEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getPluginResourceLocator() {
+	public ResourceLocator getPluginResourceLocator()
+	{
 		return plugin;
 	}
 
@@ -87,7 +91,8 @@ public final class KAMP4attackModificationsmarksEditPlugin extends EMFPlugin {
 	 * @return the singleton instance.
 	 * @generated
 	 */
-	public static Implementation getPlugin() {
+	public static Implementation getPlugin()
+	{
 		return plugin;
 	}
 
@@ -97,14 +102,16 @@ public final class KAMP4attackModificationsmarksEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class Implementation extends EclipsePlugin {
+	public static class Implementation extends EclipsePlugin
+	{
 		/**
 		 * Creates an instance.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public Implementation() {
+		public Implementation()
+		{
 			super();
 
 			// Remember the static instance.

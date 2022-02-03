@@ -187,14 +187,14 @@ public class ListOperations {
 	 */
 	public List<List<UsageSpecification>> calculateLists(List<UsageSpecification> elements, Attacker attacker) {
 
-		if (attacker.getAttackerListEffort() == ListOperationEffort.NONE) {
+		if (attacker.getContextSelectionListEffort() == ListOperationEffort.NONE) {
 			List<List<UsageSpecification>> basicList = new LinkedList<>();
 			basicList.add(elements);
 			returnedAllElements = true;
 			return basicList;
 		}
 
-		timeLimits = calcTimeArray(attacker.getCalculateMaxTime());
+		timeLimits = calcTimeArray(attacker.getContextSelectionMaxTime());
 		// checks the estimated running time
 		boolean overTime = false;
 		for (int i = 0; i < timeLimits.length; i++) {
@@ -206,7 +206,7 @@ public class ListOperations {
 			}
 		}
 
-		switch (attacker.getAttackerListEffort()) {
+		switch (attacker.getContextSelectionListEffort()) {
 		case NONE:
 			List<List<UsageSpecification>> basicList = new LinkedList<>();
 			basicList.add(elements);
@@ -259,5 +259,12 @@ public class ListOperations {
 	 */
 	public Boolean returnedAllElements() {
 		return returnedAllElements;
+	}
+	
+	public final void prettyPrint(List<UsageSpecification> creds) {
+		for (UsageSpecification cred : creds) {
+			System.out.println("[" + cred.getEntityName() + " with ID " + cred.getId() + " and Attribut "
+					+ cred.getAttribute().getEntityName() + "]");
+		}
 	}
 }
