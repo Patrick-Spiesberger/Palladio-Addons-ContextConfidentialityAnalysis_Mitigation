@@ -17,9 +17,9 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegr
 public class EncryptionHelper {
 
 	/**
-	 * Checks whether a component is crackable. In the event that the
-	 * prevention level is low, the attacker's ability to crack the encryption is
-	 * checked. Secure components (level always) is considered unbreakable
+	 * Checks whether a component is crackable. In the event that the prevention
+	 * level is low, the attacker's ability to crack the encryption is checked.
+	 * Secure components (level always) is considered unbreakable
 	 * 
 	 * @param component : Component which should be checked for crackability
 	 * @param attacks   : List of attacks that an attacker can carry out
@@ -40,14 +40,16 @@ public class EncryptionHelper {
 			return true;
 		}
 	}
-	
+
 	public static Boolean isCrackable(DatamodelAttacker data, Attacker attacker) {
 		switch (data.getEncryptionLevel()) {
 		case NONE:
 			return true;
 		case LOW:
-			List<String> availableKeys = attacker.getDataDecyptionKeyBag();
-			return availableKeys.contains(data.getRequiredDecryptionKey());
+			if (attacker != null) {
+				List<String> availableKeys = attacker.getDataDecyptionKeyBag();
+				return availableKeys.contains(data.getRequiredDecryptionKey());
+			}
 		case HIGH:
 			return false;
 		default:
