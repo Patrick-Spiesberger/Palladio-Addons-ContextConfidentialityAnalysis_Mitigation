@@ -59,10 +59,14 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 		for (final var resource : listInfectedContainer) {
 			final var resources = getConnectedResourceContainers(resource);
 			var assemblycontext = CollectionHelper.getAssemblyContext(resources, this.modelStorage.getAllocation());
+			
+			var assemblyContextDetail = CollectionHelper.getAssemblyContextDetail(assemblycontext);
+			
 			final var handler = getAssemblyHandler();
-			assemblycontext = CollectionHelper.removeDuplicates(assemblycontext).stream()
+			assemblyContextDetail = CollectionHelper.removeDuplicates(assemblyContextDetail).stream()
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
-			handler.attackAssemblyContext(assemblycontext, this.changes, resource, getAttacker());
+			handler.attackAssemblyContextDetail(assemblyContextDetail, this.changes, resource, getAttacker());
+			
 			handleSeff(this.changes, assemblycontext, resource);
 		}
 

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AttackerFactory;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AttackerSystemSpecificationContainer;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.impl.AssemblyContextDetailImpl;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.PCMElement;
@@ -19,6 +20,7 @@ import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.Se
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.StructureFactory;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.repository.CompositeComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.seff.ResourceDemandingSEFF;
 
@@ -38,7 +40,27 @@ public class CollectionHelper {
 				.filter(container -> searchResource(container.getResourceContainer_AllocationContext(),
 						reachableResources))
 				.map(AllocationContext::getAssemblyContext_AllocationContext).distinct().collect(Collectors.toList());
-
+	}
+	
+	public static List<AssemblyContextDetail> getAssemblyContextDetail(final List<AssemblyContext> assemblies) {
+		List<AssemblyContextDetail> details = new LinkedList<>();
+		for (AssemblyContext assembly : assemblies) {
+			var type = assembly.getEncapsulatedComponent__AssemblyContext();
+			if (type instanceof CompositeComponent) {
+				AssemblyContextDetail detail = AttackerFactory.eINSTANCE.createAssemblyContextDetail();
+				detail.getCompromisedComponents().add(assembly);
+				detail.getCompromisedComponents().addAll(((CompositeComponent) type).getAssemblyContexts__ComposedStructure());
+				detail.setEntityName(assembly.getEntityName());
+				details.add(detail);
+			}
+			else {
+				AssemblyContextDetail detail = AttackerFactory.eINSTANCE.createAssemblyContextDetail();
+				detail.getCompromisedComponents().add(assembly);
+				detail.setEntityName(assembly.getEntityName());
+				details.add(detail);
+			}
+		}
+		return details;
 	}
 
 	public static List<ServiceRestriction> getProvidedRestrictions(final List<AssemblyContext> components) {
@@ -92,7 +114,6 @@ public class CollectionHelper {
 		}
 
 		return listRestriction;
-
 	}
 
 	public static List<CompromisedService> filterExistingService(final List<CompromisedService> services,
@@ -136,6 +157,7 @@ public class CollectionHelper {
 
 	}
 
+	//TODO: Mapping to AssemblyContextDetail
 	public static void addService(final Collection<CompromisedAssembly> compromisedAssemblies,
 			AttackerSystemSpecificationContainer container, final CredentialChange change) {
 
@@ -145,16 +167,15 @@ public class CollectionHelper {
 
 			final var causingElement = new ArrayList<AssemblyContextDetail>();
 			causingElement.add(component.getAffectedElement());
-			
+
 			var serviceRestrictionsCompromised = serviceRestrictions.stream().map(service -> {
 				var serviceModel = CollectionHelper.findOrCreateServiceRestriction(service, container, change);
 				return HelperCreationCompromisedElements.createCompromisedService(serviceModel, causingElement);
 			}).collect(Collectors.toList());
-			
-			
+
 			serviceRestrictionsCompromised = CollectionHelper.filterExistingService(serviceRestrictionsCompromised,
 					change);
-			
+
 			change.getCompromisedservice().addAll(serviceRestrictionsCompromised);
 		}
 

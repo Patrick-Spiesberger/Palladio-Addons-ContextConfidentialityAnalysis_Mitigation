@@ -46,6 +46,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 			}
 			final var newCompromisedComponent = filterExsitingComponent(compromisedComponents, change);
 			if (!newCompromisedComponent.isEmpty()) {
+				
 				for (CompromisedAssembly compromisedAssembly : newCompromisedComponent) {
 					for (AssemblyContext assembly : compromisedAssembly.getAffectedElement()
 							.getCompromisedComponents()) {
@@ -54,6 +55,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 						}
 					}
 				}
+				
 				handleDataExtraction(newCompromisedComponent, attacker);
 				change.setChanged(true);
 				for (CompromisedAssembly component : newCompromisedComponent) {
@@ -66,30 +68,30 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 		}
 	}
 
-	public void attackAssemblyContext(final Collection<AssemblyContext> components, final CredentialChange change,
-			final EObject source, Attacker attacker) {
-		final var compromisedComponent = components.stream().map(e -> attackComponent(e, change, source, attacker))
-				.flatMap(Optional::stream).collect(Collectors.toList());
-		final var newCompromisedComponent = filterExsitingComponent(compromisedComponent, change);
-		if (!newCompromisedComponent.isEmpty()) {
-			for (AssemblyContext assembly : components) {
-				if (!AssemblyHelper.isInList(assembly)) {
-					AssemblyContextDetail stub = new AssemblyContextDetailImpl();
-					stub.getCompromisedComponents().add(assembly);
-					stub.setEntityName(assembly.getEntityName());
-					stub.setId(assembly.getId());
-					AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(assembly, stub));
-				}
-			}
-			handleDataExtraction(newCompromisedComponent, attacker);
-			change.setChanged(true);
-			change.getCompromisedassembly().addAll(newCompromisedComponent);
-			change.getCompromisedassembly().stream().filter(this::nonNull).collect(Collectors.toList());
-			CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
-					change);
-		}
-
-	}
+//	public void attackAssemblyContext(final Collection<AssemblyContext> components, final CredentialChange change,
+//			final EObject source, Attacker attacker) {
+//		final var compromisedComponent = components.stream().map(e -> attackComponent(e, change, source, attacker))
+//				.flatMap(Optional::stream).collect(Collectors.toList());
+//		final var newCompromisedComponent = filterExsitingComponent(compromisedComponent, change);
+//		if (!newCompromisedComponent.isEmpty()) {
+//			for (AssemblyContext assembly : components) {
+//				if (!AssemblyHelper.isInList(assembly)) {
+//					AssemblyContextDetail stub = new AssemblyContextDetailImpl();
+//					stub.getCompromisedComponents().add(assembly);
+//					stub.setEntityName(assembly.getEntityName());
+//					stub.setId(assembly.getId());
+//					AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(assembly, stub));
+//				}
+//			}
+//			handleDataExtraction(newCompromisedComponent, attacker);
+//			change.setChanged(true);
+//			change.getCompromisedassembly().addAll(newCompromisedComponent);
+//			change.getCompromisedassembly().stream().filter(this::nonNull).collect(Collectors.toList());
+//			CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
+//					change);
+//		}
+//
+//	}
 
 	private void handleDataExtraction(final Collection<CompromisedAssembly> components, Attacker attacker) {
 		// puts all data from a set of components into a list of the DataHandler
@@ -100,7 +102,8 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 
 		for (AssemblyContextDetail assembly : filteredComponents) {
 			final var dataList = assembly.getCompromisedComponents().stream().distinct()
-					.flatMap(component -> DataHandler.getData(component, attacker).stream()).collect(Collectors.toList());
+					.flatMap(component -> DataHandler.getData(component, attacker).stream())
+					.collect(Collectors.toList());
 			getDataHandler().addData(dataList);
 
 		}

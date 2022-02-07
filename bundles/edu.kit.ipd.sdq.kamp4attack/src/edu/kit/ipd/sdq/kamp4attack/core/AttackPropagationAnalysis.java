@@ -11,7 +11,6 @@ import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.Assemb
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
-import org.palladiosimulator.pcm.confidentiality.attackerSpecification.impl.AssemblyContextDetailImpl;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 
 import edu.kit.ipd.sdq.kamp.propagation.AbstractChangePropagationAnalysis;
@@ -144,20 +143,11 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 			// convert affectedAssemblyContexts to changes
 			var assemblyHandler = new AssemblyContextHandler(board,
 					new DataHandlerAttacker(this.changePropagationDueToCredential)) {
+				//never used, required for abstract class AssemblyContextHandler
 				@Override
 				protected Optional<CompromisedAssembly> attackComponent(AssemblyContext component,
 						CredentialChange change, EObject source, Attacker attacker) {
-					final var compromisedComponent = KAMP4attackModificationmarksFactory.eINSTANCE
-							.createCompromisedAssembly();
-					AssemblyContextDetail stub = new AssemblyContextDetailImpl();
-					stub.getCompromisedComponents().add(component);
-					stub.setEntityName(component.getEntityName());
-					stub.setId(component.getId());
-					AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(component, stub));
-
-					compromisedComponent.setAffectedElement(stub);
-					compromisedComponent.setId(component.getId());
-					return Optional.of(compromisedComponent);
+					return Optional.empty();
 				}
 
 				/*
@@ -175,15 +165,15 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 					return Optional.of(compromisedComponent);
 				}
 			};
-			
-			//Generates mapping for all components of a list
+
+			// Generates mapping for all components of a list
 			for (AssemblyContextDetail detail : localAttacker.getCompromisedComponentsDetails()) {
 				for (AssemblyContext component : detail.getCompromisedComponents()) {
 					AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(component, detail));
 				}
 			}
-			
-			//localAttacker is required for properties of ListOperations
+
+			// localAttacker is required for properties of ListOperations
 			assemblyHandler.attackAssemblyContextDetail(localAttacker.getCompromisedComponentsDetails(),
 					this.changePropagationDueToCredential, null, localAttacker);
 

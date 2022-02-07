@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
-import org.palladiosimulator.pcm.confidentiality.attackerSpecification.impl.AssemblyContextDetailImpl;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AttackerFactory;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 
 public class AssemblyHelper {
@@ -40,7 +40,7 @@ public class AssemblyHelper {
 			}
 		}
 		// should be unreachable code
-		AssemblyContextDetail stub = new AssemblyContextDetailImpl();
+		AssemblyContextDetail stub = AttackerFactory.eINSTANCE.createAssemblyContextDetail();
 		stub.getCompromisedComponents().add(component);
 		stub.setEntityName(component.getEntityName());
 		stub.setId(component.getId());
