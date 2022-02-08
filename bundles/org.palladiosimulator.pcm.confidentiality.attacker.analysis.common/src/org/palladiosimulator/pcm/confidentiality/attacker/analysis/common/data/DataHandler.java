@@ -2,6 +2,7 @@ package org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,10 +16,12 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AttackerF
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.DatamodelAttacker;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.ServiceRestriction;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.repository.CompositeComponent;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.Parameter;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ResourceDemandingSEFF;
@@ -32,8 +35,23 @@ public class DataHandler {
 	public static Collection<DatamodelAttacker> getData(final AssemblyContext assemblyContext,
 			final Attacker attacker) {
 
+		var component = assemblyContext.getEncapsulatedComponent__AssemblyContext();
+		Collection<DatamodelAttacker> dataAttacker = new LinkedList<>();
+		if (component instanceof CompositeComponent) {
+			dataAttacker.addAll(getDataHelper(component, assemblyContext, attacker));
+			for (AssemblyContext assembly : ((CompositeComponent) component).getAssemblyContexts__ComposedStructure()) {
+				dataAttacker.addAll(getDataHelper(component, assembly, attacker));
+			}
+		}
+		else {
+			dataAttacker.addAll(getDataHelper(component, assemblyContext, attacker));
+		}
+		return dataAttacker;
+	}
+
+	private static Collection<DatamodelAttacker> getDataHelper(final RepositoryComponent component,
+			final AssemblyContext assemblyContext, final Attacker attacker) {
 		try {
-			var component = assemblyContext.getEncapsulatedComponent__AssemblyContext();
 			final var interfacesList = component.getProvidedRoles_InterfaceProvidingEntity().stream()
 					.filter(OperationProvidedRole.class::isInstance).map(OperationProvidedRole.class::cast)
 					.map(OperationProvidedRole::getProvidedInterface__OperationProvidedRole)
@@ -59,7 +77,6 @@ public class DataHandler {
 		} catch (NullPointerException e) {
 			return Collections.emptyList();
 		}
-
 	}
 
 	private static Optional<DatamodelAttacker> createDataReturnValue(final OperationSignature signature) {
@@ -84,6 +101,14 @@ public class DataHandler {
 	public static List<DatamodelAttacker> getData(final ResourceContainer resource, final Allocation allocation,
 			Attacker attacker) {
 		final var assemblyContexts = CollectionHelper.getAssemblyContext(List.of(resource), allocation);
+
+		for (AssemblyContext assembly : assemblyContexts) {
+			var type = assembly.getEncapsulatedComponent__AssemblyContext();
+			if (type instanceof CompositeComponent) {
+				assemblyContexts.addAll(((CompositeComponent) type).getAssemblyContexts__ComposedStructure());
+			}
+		}
+
 		return assemblyContexts.stream().flatMap(e -> getData(e, attacker).stream()).collect(Collectors.toList());
 	}
 

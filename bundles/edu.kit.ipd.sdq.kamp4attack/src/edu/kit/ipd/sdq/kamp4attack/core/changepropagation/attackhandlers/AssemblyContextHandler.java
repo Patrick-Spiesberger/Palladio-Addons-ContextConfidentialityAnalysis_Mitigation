@@ -15,7 +15,6 @@ import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.D
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
-import org.palladiosimulator.pcm.confidentiality.attackerSpecification.impl.AssemblyContextDetailImpl;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
@@ -47,14 +46,14 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 			final var newCompromisedComponent = filterExsitingComponent(compromisedComponents, change);
 			if (!newCompromisedComponent.isEmpty()) {
 				
-				for (CompromisedAssembly compromisedAssembly : newCompromisedComponent) {
-					for (AssemblyContext assembly : compromisedAssembly.getAffectedElement()
-							.getCompromisedComponents()) {
-						if (!AssemblyHelper.isInList(assembly)) {
-							AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(assembly, detail));
-						}
-					}
-				}
+//				for (CompromisedAssembly compromisedAssembly : newCompromisedComponent) {
+//					for (AssemblyContext assembly : compromisedAssembly.getAffectedElement()
+//							.getCompromisedComponents()) {
+//						if (!AssemblyHelper.isInList(assembly)) {
+//							AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(assembly, detail));
+//						}
+//					}
+//				}
 				
 				handleDataExtraction(newCompromisedComponent, attacker);
 				change.setChanged(true);
