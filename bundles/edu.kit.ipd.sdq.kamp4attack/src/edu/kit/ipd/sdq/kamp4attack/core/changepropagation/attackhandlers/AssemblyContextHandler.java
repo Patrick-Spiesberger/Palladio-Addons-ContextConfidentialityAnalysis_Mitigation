@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.AssemblyHelper;
-import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.AssemblyToAssemblyDetailMap;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CollectionHelper;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandler;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
@@ -45,7 +43,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 			}
 			final var newCompromisedComponent = filterExsitingComponent(compromisedComponents, change);
 			if (!newCompromisedComponent.isEmpty()) {
-				
+
 //				for (CompromisedAssembly compromisedAssembly : newCompromisedComponent) {
 //					for (AssemblyContext assembly : compromisedAssembly.getAffectedElement()
 //							.getCompromisedComponents()) {
@@ -54,7 +52,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 //						}
 //					}
 //				}
-				
+
 				handleDataExtraction(newCompromisedComponent, attacker);
 				change.setChanged(true);
 				for (CompromisedAssembly component : newCompromisedComponent) {
@@ -128,8 +126,10 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 	}
 
 	private boolean containsComponent(final CompromisedAssembly component, final CredentialChange change) {
-		return change.getCompromisedassembly().stream().anyMatch(referenceComponent -> EcoreUtil
-				.equals(referenceComponent.getAffectedElement(), component.getAffectedElement()));
+		return change.getCompromisedassembly().stream()
+				.anyMatch(referenceComponent -> EcoreUtil.equals(
+						referenceComponent.getAffectedElement().getCompromisedComponents(),
+						component.getAffectedElement().getCompromisedComponents()));
 	}
 
 	/*

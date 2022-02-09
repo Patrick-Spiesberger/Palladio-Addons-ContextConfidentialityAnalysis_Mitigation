@@ -13,7 +13,6 @@ import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AttackerFactory;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AttackerSystemSpecificationContainer;
-import org.palladiosimulator.pcm.confidentiality.attackerSpecification.impl.AssemblyContextDetailImpl;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.PCMElement;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.VulnerabilitySystemIntegration;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.ServiceRestriction;
@@ -65,7 +64,17 @@ public class CollectionHelper {
 
 	public static List<ServiceRestriction> getProvidedRestrictions(final List<AssemblyContext> components) {
 
-		return components.stream().flatMap(component -> CollectionHelper.getProvidedRestrictions(component).stream())
+		List<AssemblyContext> assemblies = new LinkedList<>();
+		for (AssemblyContext context : components) {
+			var type = context.getEncapsulatedComponent__AssemblyContext();
+			if (type instanceof CompositeComponent) {
+				assemblies.addAll(((CompositeComponent) type).getAssemblyContexts__ComposedStructure());
+			}
+			else {
+				assemblies.add(context);
+			}
+		}
+		return assemblies.stream().flatMap(component -> CollectionHelper.getProvidedRestrictions(component).stream())
 				.collect(Collectors.toList());
 	}
 
@@ -90,7 +99,7 @@ public class CollectionHelper {
 	 * @return : converted component (AssemblyContextDetail)
 	 */
 	public static AssemblyContextDetail castAssemblyToDetail(AssemblyContext component) {
-		AssemblyContextDetail stub = new AssemblyContextDetailImpl();
+		AssemblyContextDetail stub = AttackerFactory.eINSTANCE.createAssemblyContextDetail();
 		stub.getCompromisedComponents().add(component);
 		stub.setEntityName(component.getEntityName() + "Detail");
 		stub.setId(component.getId());
@@ -157,7 +166,6 @@ public class CollectionHelper {
 
 	}
 
-	//TODO: Mapping to AssemblyContextDetail
 	public static void addService(final Collection<CompromisedAssembly> compromisedAssemblies,
 			AttackerSystemSpecificationContainer container, final CredentialChange change) {
 

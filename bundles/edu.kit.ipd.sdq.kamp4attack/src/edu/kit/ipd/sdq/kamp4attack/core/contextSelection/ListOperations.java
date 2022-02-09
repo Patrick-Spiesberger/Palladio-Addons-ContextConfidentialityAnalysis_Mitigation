@@ -261,7 +261,7 @@ public class ListOperations {
 		return returnedAllElements;
 	}
 	
-	public final void prettyPrint(List<UsageSpecification> creds) {
+	protected final void prettyPrint(List<UsageSpecification> creds) {
 		for (UsageSpecification cred : creds) {
 			System.out.println("[" + cred.getEntityName() + " with ID " + cred.getId() + " and Attribut "
 					+ cred.getAttribute().getEntityName() + "]");

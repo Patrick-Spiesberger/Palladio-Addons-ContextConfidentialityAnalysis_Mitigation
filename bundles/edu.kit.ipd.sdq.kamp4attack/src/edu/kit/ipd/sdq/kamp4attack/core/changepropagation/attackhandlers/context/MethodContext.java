@@ -32,6 +32,7 @@ public class MethodContext extends MethodHandler {
 
         var serviceModel = CollectionHelper.findOrCreateServiceRestriction(service,
                 getModelStorage().getVulnerabilitySpecification(), change);
+        
         final var result = this.queryAccessForEntity(serviceModel.getAssemblycontext(), credentials,
                 serviceModel.getSignature());
 
