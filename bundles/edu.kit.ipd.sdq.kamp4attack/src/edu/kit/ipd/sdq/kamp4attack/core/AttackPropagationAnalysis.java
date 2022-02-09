@@ -166,13 +166,6 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 				}
 			};
 
-			// Generates mapping for all components of a list
-			for (AssemblyContextDetail detail : localAttacker.getCompromisedComponentsDetails()) {
-				for (AssemblyContext component : detail.getCompromisedComponents()) {
-					AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(component, detail));
-				}
-			}
-
 			// localAttacker is required for properties of ListOperations
 			assemblyHandler.attackAssemblyContextDetail(localAttacker.getCompromisedComponentsDetails(),
 					this.changePropagationDueToCredential, null, localAttacker);

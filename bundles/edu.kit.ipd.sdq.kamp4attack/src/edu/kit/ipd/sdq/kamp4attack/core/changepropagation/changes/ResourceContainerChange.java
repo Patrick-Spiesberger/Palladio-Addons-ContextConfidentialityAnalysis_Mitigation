@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
-import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.AssemblyHelper;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CollectionHelper;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.HelperCreationCompromisedElements;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.PCMAttributeProvider;
@@ -59,14 +58,14 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 		for (final var resource : listInfectedContainer) {
 			final var resources = getConnectedResourceContainers(resource);
 			var assemblycontext = CollectionHelper.getAssemblyContext(resources, this.modelStorage.getAllocation());
-			
+
 			var assemblyContextDetail = CollectionHelper.getAssemblyContextDetail(assemblycontext);
-			
+
 			final var handler = getAssemblyHandler();
 			assemblyContextDetail = CollectionHelper.removeDuplicates(assemblyContextDetail).stream()
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 			handler.attackAssemblyContextDetail(assemblyContextDetail, this.changes, resource, getAttacker());
-			
+
 			handleSeff(this.changes, assemblycontext, resource);
 		}
 
@@ -87,12 +86,13 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 					.map(AllocationContext::getAssemblyContext_AllocationContext)
 					.filter(e -> !CacheCompromised.instance().compromised(e));
 
-			final var streamChanges = localComponents.map(e -> HelperCreationCompromisedElements
-					.createCompromisedAssembly(e, AssemblyHelper.getAssemblyContextDetail(e), List.of(resource)));
+			final var streamChanges = localComponents
+					.map(e -> HelperCreationCompromisedElements.createCompromisedAssembly(e,
+							CollectionHelper.getAssemblyContextDetail(List.of(e)).get(0), List.of(resource)));
 
-			final var listChanges = streamChanges
-					.filter(e -> this.changes.getCompromisedassembly().stream()
-							.noneMatch(f -> EcoreUtil.equals(f.getAffectedElement(), e.getAffectedElement())))
+			final var listChanges = streamChanges.filter(e -> this.changes.getCompromisedassembly().stream()
+					.noneMatch(f -> EcoreUtil.equals(f.getAffectedElement().getCompromisedComponents(),
+							e.getAffectedElement().getCompromisedComponents())))
 					.collect(Collectors.toList());
 
 			if (!listChanges.isEmpty()) {

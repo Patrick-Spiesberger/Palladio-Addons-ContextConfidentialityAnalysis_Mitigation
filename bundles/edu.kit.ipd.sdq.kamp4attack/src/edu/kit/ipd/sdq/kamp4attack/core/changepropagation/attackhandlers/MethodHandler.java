@@ -24,58 +24,61 @@ import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificati
 
 public abstract class MethodHandler extends AttackHandler {
 
-    public MethodHandler(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
-        super(modelStorage, dataHandler);
-    }
+	public MethodHandler(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
+		super(modelStorage, dataHandler);
+	}
 
-    public void attackService(final Collection<ServiceRestriction> services, final CredentialChange change,
-            final EObject source, Attacker attacker) {
-        final var compromisedComponent = services.stream().map(e -> attackComponent(e, change, source, attacker))
-                .flatMap(Optional::stream).collect(Collectors.toList());
-        final var newCompromisedComponent = filterExsiting(compromisedComponent, change);
-        if (!newCompromisedComponent.isEmpty()) {
-            handleDataExtraction(newCompromisedComponent, attacker);
-            change.setChanged(true);
-            change.getCompromisedassembly().addAll(newCompromisedComponent);
-            CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
-                    change);
-        }
-    }
+	public void attackService(final Collection<ServiceRestriction> services, final CredentialChange change,
+			final EObject source, Attacker attacker) {
+		final var compromisedComponent = services.stream().map(e -> attackComponent(e, change, source, attacker))
+				.flatMap(Optional::stream).collect(Collectors.toList());
+		final var newCompromisedComponent = filterExsiting(compromisedComponent, change);
+		if (!newCompromisedComponent.isEmpty()) {
+			handleDataExtraction(newCompromisedComponent, attacker);
+			change.setChanged(true);
+			change.getCompromisedassembly().addAll(newCompromisedComponent);
+			CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
+					change);
+		}
+	}
 
-    private void handleDataExtraction(final Collection<CompromisedAssembly> components, Attacker attacker) {
+	private void handleDataExtraction(final Collection<CompromisedAssembly> components, Attacker attacker) {
 
-        Collection<AssemblyContextDetail> filteredComponents = components.stream()
-                .map(CompromisedAssembly::getAffectedElement).collect(Collectors.toList());
+		Collection<AssemblyContextDetail> filteredComponents = components.stream()
+				.map(CompromisedAssembly::getAffectedElement).collect(Collectors.toList());
 
-        filteredComponents = CollectionHelper.removeDuplicates(filteredComponents);
+		filteredComponents = CollectionHelper.removeDuplicates(filteredComponents);
 
 		for (AssemblyContextDetail assemblyDetailList : filteredComponents) {
 			final var dataList = assemblyDetailList.getCompromisedComponents().stream().distinct()
-					.flatMap(component -> DataHandler.getData(component, attacker).stream()).collect(Collectors.toList());
+					.flatMap(component -> DataHandler.getData(component, attacker).stream())
+					.collect(Collectors.toList());
 
 			getDataHandler().addData(dataList);
 		}
-    }
+	}
 
-    protected abstract Optional<CompromisedAssembly> attackComponent(ServiceRestriction component,
-            CredentialChange change, EObject source, Attacker attacker);
+	protected abstract Optional<CompromisedAssembly> attackComponent(ServiceRestriction component,
+			CredentialChange change, EObject source, Attacker attacker);
 
-    private Collection<CompromisedAssembly> filterExsiting(final Collection<CompromisedAssembly> components,
-            final CredentialChange change) {
-        return components.stream().filter(component -> !contains(component, change)).collect(Collectors.toList());
+	private Collection<CompromisedAssembly> filterExsiting(final Collection<CompromisedAssembly> components,
+			final CredentialChange change) {
+		return components.stream().filter(component -> !contains(component, change)).collect(Collectors.toList());
 
-    }
+	}
 
-    private boolean contains(final CompromisedAssembly component, final CredentialChange change) {
-        return change.getCompromisedassembly().stream().anyMatch(referenceComponent -> EcoreUtil
-                .equals(referenceComponent.getAffectedElement(), component.getAffectedElement()));
-    }
+	private boolean contains(final CompromisedAssembly component, final CredentialChange change) {
+		return change.getCompromisedassembly().stream()
+				.anyMatch(referenceComponent -> EcoreUtil.equals(
+						referenceComponent.getAffectedElement().getCompromisedComponents(),
+						component.getAffectedElement().getCompromisedComponents()));
+	}
 
-    protected Vulnerability checkVulnerability(final ServiceRestriction entity, final CredentialChange change,
-            final List<UsageSpecification> credentials, final List<Attack> attacks,
-            final List<Vulnerability> vulnerabilityList, final AttackVector attackVector) {
-        final var result = this.queryAccessForEntity(entity.getAssemblycontext(), credentials, entity.getSignature());
-        return this.checkVulnerability(change, attacks, vulnerabilityList, attackVector, result);
-    }
+	protected Vulnerability checkVulnerability(final ServiceRestriction entity, final CredentialChange change,
+			final List<UsageSpecification> credentials, final List<Attack> attacks,
+			final List<Vulnerability> vulnerabilityList, final AttackVector attackVector) {
+		final var result = this.queryAccessForEntity(entity.getAssemblycontext(), credentials, entity.getSignature());
+		return this.checkVulnerability(change, attacks, vulnerabilityList, attackVector, result);
+	}
 
 }
