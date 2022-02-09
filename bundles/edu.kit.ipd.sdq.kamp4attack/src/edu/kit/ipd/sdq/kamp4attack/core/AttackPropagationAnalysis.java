@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.osgi.service.component.annotations.Component;
-import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.AssemblyHelper;
-import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.AssemblyToAssemblyDetailMap;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
