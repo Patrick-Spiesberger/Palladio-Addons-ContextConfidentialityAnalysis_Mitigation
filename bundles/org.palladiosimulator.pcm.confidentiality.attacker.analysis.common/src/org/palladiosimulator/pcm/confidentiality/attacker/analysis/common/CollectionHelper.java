@@ -40,7 +40,13 @@ public class CollectionHelper {
 						reachableResources))
 				.map(AllocationContext::getAssemblyContext_AllocationContext).distinct().collect(Collectors.toList());
 	}
-	
+
+	/**
+	 * Converts a list from AssemblyContext to AssemblyContextDetails
+	 * 
+	 * @param assemblies : list to convert
+	 * @return : list of converted AssemblyContexts
+	 */
 	public static List<AssemblyContextDetail> getAssemblyContextDetail(final List<AssemblyContext> assemblies) {
 		List<AssemblyContextDetail> details = new LinkedList<>();
 		for (AssemblyContext assembly : assemblies) {
@@ -48,11 +54,11 @@ public class CollectionHelper {
 			if (type instanceof CompositeComponent) {
 				AssemblyContextDetail detail = AttackerFactory.eINSTANCE.createAssemblyContextDetail();
 				detail.getCompromisedComponents().add(assembly);
-				detail.getCompromisedComponents().addAll(((CompositeComponent) type).getAssemblyContexts__ComposedStructure());
+				detail.getCompromisedComponents()
+						.addAll(((CompositeComponent) type).getAssemblyContexts__ComposedStructure());
 				detail.setEntityName(assembly.getEntityName());
 				details.add(detail);
-			}
-			else {
+			} else {
 				AssemblyContextDetail detail = AttackerFactory.eINSTANCE.createAssemblyContextDetail();
 				detail.getCompromisedComponents().add(assembly);
 				detail.setEntityName(assembly.getEntityName());
@@ -69,8 +75,7 @@ public class CollectionHelper {
 			var type = context.getEncapsulatedComponent__AssemblyContext();
 			if (type instanceof CompositeComponent) {
 				assemblies.addAll(((CompositeComponent) type).getAssemblyContexts__ComposedStructure());
-			}
-			else {
+			} else {
 				assemblies.add(context);
 			}
 		}
@@ -88,22 +93,6 @@ public class CollectionHelper {
 					.collect(Collectors.toList()));
 		}
 		return serviceRestrictions;
-	}
-
-	/**
-	 * Casts an AssemblyContext to an AssemblyContextDetail. To do this, the name
-	 * and ID are adopted and the component is added as the main component (first
-	 * position) of the vulnerable components
-	 * 
-	 * @param component : component to convert
-	 * @return : converted component (AssemblyContextDetail)
-	 */
-	public static AssemblyContextDetail castAssemblyToDetail(AssemblyContext component) {
-		AssemblyContextDetail stub = AttackerFactory.eINSTANCE.createAssemblyContextDetail();
-		stub.getCompromisedComponents().add(component);
-		stub.setEntityName(component.getEntityName() + "Detail");
-		stub.setId(component.getId());
-		return stub;
 	}
 
 	public static List<ServiceRestriction> getProvidedRestrictions(AssemblyContext component) {

@@ -18,47 +18,49 @@ import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificati
 
 public abstract class ResourceContainerHandler extends AttackHandler {
 
-    public ResourceContainerHandler(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
-        super(modelStorage, dataHandler);
-    }
+	public ResourceContainerHandler(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
+		super(modelStorage, dataHandler);
+	}
 
-    public void attackResourceContainer(final Collection<ResourceContainer> containers, final CredentialChange change,
-            final EObject source, Attacker attacker) {
-        final var compromisedResources = containers.stream().map(e -> this.attackResourceContainer(e, change, source, attacker))
-                .flatMap(Optional::stream).distinct().collect(Collectors.toList());
-        final var newCompromisedResources = filterExsiting(compromisedResources, change);
-        if (!newCompromisedResources.isEmpty()) {
-            handleDataExtraction(newCompromisedResources, attacker);
-            change.setChanged(true);
-            change.getCompromisedresource().addAll(newCompromisedResources);
-        }
-    }
+	public void attackResourceContainer(final Collection<ResourceContainer> containers, final CredentialChange change,
+			final EObject source, Attacker attacker) {
+		final var compromisedResources = containers.stream()
+				.map(e -> this.attackResourceContainer(e, change, source, attacker)).flatMap(Optional::stream)
+				.distinct().collect(Collectors.toList());
+		final var newCompromisedResources = filterExsiting(compromisedResources, change);
+		if (!newCompromisedResources.isEmpty()) {
+			handleDataExtraction(newCompromisedResources, attacker);
+			change.setChanged(true);
+			change.getCompromisedresource().addAll(newCompromisedResources);
+		}
+	}
 
-    private void handleDataExtraction(final Collection<CompromisedResource> resources, Attacker attacker) {
+	private void handleDataExtraction(final Collection<CompromisedResource> resources, Attacker attacker) {
 
-        Collection<ResourceContainer> filteredComponents = resources.stream()
-                .map(CompromisedResource::getAffectedElement).collect(Collectors.toList());
+		Collection<ResourceContainer> filteredComponents = resources.stream()
+				.map(CompromisedResource::getAffectedElement).collect(Collectors.toList());
 
-        filteredComponents = CollectionHelper.removeDuplicates(filteredComponents);
+		filteredComponents = CollectionHelper.removeDuplicates(filteredComponents);
 
-        final var dataList = filteredComponents.stream()
-                .flatMap(resource -> DataHandler.getData(resource, getModelStorage().getAllocation(), attacker).stream())
-                .distinct().collect(Collectors.toList());
-        getDataHandler().addData(dataList);
-    }
+		final var dataList = filteredComponents.stream()
+				.flatMap(
+						resource -> DataHandler.getData(resource, getModelStorage().getAllocation(), attacker).stream())
+				.distinct().collect(Collectors.toList());
+		getDataHandler().addData(dataList);
+	}
 
-    protected abstract Optional<CompromisedResource> attackResourceContainer(ResourceContainer container,
-            CredentialChange change, EObject source, Attacker attacker);
+	protected abstract Optional<CompromisedResource> attackResourceContainer(ResourceContainer container,
+			CredentialChange change, EObject source, Attacker attacker);
 
-    private Collection<CompromisedResource> filterExsiting(final Collection<CompromisedResource> containers,
-            final CredentialChange change) {
-        return containers.stream().filter(container -> !contains(container, change)).collect(Collectors.toList());
+	private Collection<CompromisedResource> filterExsiting(final Collection<CompromisedResource> containers,
+			final CredentialChange change) {
+		return containers.stream().filter(container -> !contains(container, change)).collect(Collectors.toList());
 
-    }
+	}
 
-    private boolean contains(final CompromisedResource resource, final CredentialChange change) {
-        return change.getCompromisedresource().stream().anyMatch(referenceContainer -> EcoreUtil
-                .equals(referenceContainer.getAffectedElement(), resource.getAffectedElement()));
-    }
+	private boolean contains(final CompromisedResource resource, final CredentialChange change) {
+		return change.getCompromisedresource().stream().anyMatch(referenceContainer -> EcoreUtil
+				.equals(referenceContainer.getAffectedElement(), resource.getAffectedElement()));
+	}
 
 }

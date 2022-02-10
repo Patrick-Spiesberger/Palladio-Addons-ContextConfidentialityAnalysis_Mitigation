@@ -20,23 +20,23 @@ import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificati
 
 public class LinkingResourceContext extends LinkingResourceHandler {
 
-    public LinkingResourceContext(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
-        super(modelStorage, dataHandler);
-    }
+	public LinkingResourceContext(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
+		super(modelStorage, dataHandler);
+	}
 
-    @Override
-    protected Optional<CompromisedLinkingResource> attackLinkingResource(final LinkingResource linking,
-            final CredentialChange change, final EObject source, Attacker attacker) {
-        final List<? extends UsageSpecification> credentials = this.getCredentials(change);
+	@Override
+	protected Optional<CompromisedLinkingResource> attackLinkingResource(final LinkingResource linking,
+			final CredentialChange change, final EObject source, Attacker attacker) {
+		final List<? extends UsageSpecification> credentials = this.getCredentials(change);
 
-        final var result = this.queryAccessForEntity(linking, credentials);
+		final var result = this.queryAccessForEntity(linking, credentials);
 
-        if (result.isPresent() && Objects.equal(result.get().getDecision(), DecisionType.PERMIT)) {
-            final var sourceList = this.createSource(source, credentials);
-            final var compromised = HelperCreationCompromisedElements.createCompromisedLinking(linking, sourceList);
-            return Optional.of(compromised);
-        }
-        return Optional.empty();
-    }
+		if (result.isPresent() && Objects.equal(result.get().getDecision(), DecisionType.PERMIT)) {
+			final var sourceList = this.createSource(source, credentials);
+			final var compromised = HelperCreationCompromisedElements.createCompromisedLinking(linking, sourceList);
+			return Optional.of(compromised);
+		}
+		return Optional.empty();
+	}
 
 }

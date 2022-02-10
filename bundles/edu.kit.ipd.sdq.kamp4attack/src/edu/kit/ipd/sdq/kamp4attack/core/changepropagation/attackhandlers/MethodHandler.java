@@ -42,6 +42,11 @@ public abstract class MethodHandler extends AttackHandler {
 		}
 	}
 
+	/**
+	 * This method examines a list of compromised components for their data
+	 * @param components : List of compromised components
+	 * @param attacker : required for attacker skills 
+	 */
 	private void handleDataExtraction(final Collection<CompromisedAssembly> components, Attacker attacker) {
 
 		Collection<AssemblyContextDetail> filteredComponents = components.stream()

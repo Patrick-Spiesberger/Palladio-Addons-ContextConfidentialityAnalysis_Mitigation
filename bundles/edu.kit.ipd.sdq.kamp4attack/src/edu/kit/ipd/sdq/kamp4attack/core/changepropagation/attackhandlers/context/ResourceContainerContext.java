@@ -20,24 +20,24 @@ import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificati
 
 public class ResourceContainerContext extends ResourceContainerHandler {
 
-    public ResourceContainerContext(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
-        super(modelStorage, dataHandler);
-    }
+	public ResourceContainerContext(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
+		super(modelStorage, dataHandler);
+	}
 
-    @Override
-    protected Optional<CompromisedResource> attackResourceContainer(final ResourceContainer container,
-            final CredentialChange change, final EObject source, Attacker attacker) {
-        final List<? extends UsageSpecification> credentials = this.getCredentials(change);
+	@Override
+	protected Optional<CompromisedResource> attackResourceContainer(final ResourceContainer container,
+			final CredentialChange change, final EObject source, Attacker attacker) {
+		final List<? extends UsageSpecification> credentials = this.getCredentials(change);
 
-        final var result = this.queryAccessForEntity(container, credentials);
+		final var result = this.queryAccessForEntity(container, credentials);
 
-        if (result.isPresent() && Objects.equal(result.get().getDecision(), DecisionType.PERMIT)) {
-            final var sourceList = this.createSource(source, credentials);
-            final var compromised = HelperCreationCompromisedElements.createCompromisedResource(container, sourceList);
-            return Optional.of(compromised);
-        }
-        return Optional.empty();
+		if (result.isPresent() && Objects.equal(result.get().getDecision(), DecisionType.PERMIT)) {
+			final var sourceList = this.createSource(source, credentials);
+			final var compromised = HelperCreationCompromisedElements.createCompromisedResource(container, sourceList);
+			return Optional.of(compromised);
+		}
+		return Optional.empty();
 
-    }
+	}
 
 }

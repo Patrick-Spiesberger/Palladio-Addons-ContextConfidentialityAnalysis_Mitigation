@@ -25,11 +25,10 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 		super(modelStorage, dataHandler);
 	}
 
-	/*
-	 * This method separates the AssemblyContextDetails that are not composed from
-	 * the composed components. Unassembled components are considered as
-	 * AssemblyContext, assembled components are considered separately (recursively)
-	 * into their AssemblyContexts
+	/**
+	 * This method manages the vulnerability of a List of AssemblyContextDetails
+	 * @param components : potentially vulnerable AssemblyContextDetails
+	 * @param attacker : necessary for the skills of an attacker
 	 */
 	public void attackAssemblyContextDetail(final Collection<AssemblyContextDetail> components,
 			final CredentialChange change, final EObject source, Attacker attacker) {
@@ -44,15 +43,6 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 			final var newCompromisedComponent = filterExsitingComponent(compromisedComponents, change);
 			if (!newCompromisedComponent.isEmpty()) {
 
-//				for (CompromisedAssembly compromisedAssembly : newCompromisedComponent) {
-//					for (AssemblyContext assembly : compromisedAssembly.getAffectedElement()
-//							.getCompromisedComponents()) {
-//						if (!AssemblyHelper.isInList(assembly)) {
-//							AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(assembly, detail));
-//						}
-//					}
-//				}
-
 				handleDataExtraction(newCompromisedComponent, attacker);
 				change.setChanged(true);
 				for (CompromisedAssembly component : newCompromisedComponent) {
@@ -65,30 +55,6 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 		}
 	}
 
-//	public void attackAssemblyContext(final Collection<AssemblyContext> components, final CredentialChange change,
-//			final EObject source, Attacker attacker) {
-//		final var compromisedComponent = components.stream().map(e -> attackComponent(e, change, source, attacker))
-//				.flatMap(Optional::stream).collect(Collectors.toList());
-//		final var newCompromisedComponent = filterExsitingComponent(compromisedComponent, change);
-//		if (!newCompromisedComponent.isEmpty()) {
-//			for (AssemblyContext assembly : components) {
-//				if (!AssemblyHelper.isInList(assembly)) {
-//					AssemblyContextDetail stub = new AssemblyContextDetailImpl();
-//					stub.getCompromisedComponents().add(assembly);
-//					stub.setEntityName(assembly.getEntityName());
-//					stub.setId(assembly.getId());
-//					AssemblyHelper.getAllComponents().add(new AssemblyToAssemblyDetailMap(assembly, stub));
-//				}
-//			}
-//			handleDataExtraction(newCompromisedComponent, attacker);
-//			change.setChanged(true);
-//			change.getCompromisedassembly().addAll(newCompromisedComponent);
-//			change.getCompromisedassembly().stream().filter(this::nonNull).collect(Collectors.toList());
-//			CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
-//					change);
-//		}
-//
-//	}
 
 	private void handleDataExtraction(final Collection<CompromisedAssembly> components, Attacker attacker) {
 		// puts all data from a set of components into a list of the DataHandler

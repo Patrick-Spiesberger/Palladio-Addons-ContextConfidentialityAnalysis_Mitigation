@@ -170,6 +170,7 @@ public class ListOperations {
 
 	/**
 	 * Calculates all combinations of a list
+	 * 
 	 * @param elements : list of UsageSpecification
 	 * @return : list of all combinations
 	 */
@@ -207,11 +208,6 @@ public class ListOperations {
 		}
 
 		switch (attacker.getContextSelectionListEffort()) {
-		case NONE:
-			List<List<UsageSpecification>> basicList = new LinkedList<>();
-			basicList.add(elements);
-			returnedAllElements = true;
-			return basicList;
 		case STANDARD:
 			if (overTime) {
 				return calculateAdvancedList(elements);
@@ -260,7 +256,7 @@ public class ListOperations {
 	public Boolean returnedAllElements() {
 		return returnedAllElements;
 	}
-	
+
 	protected final void prettyPrint(List<UsageSpecification> creds) {
 		for (UsageSpecification cred : creds) {
 			System.out.println("[" + cred.getEntityName() + " with ID " + cred.getId() + " and Attribut "

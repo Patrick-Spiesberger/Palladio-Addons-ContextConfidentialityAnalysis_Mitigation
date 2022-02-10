@@ -55,7 +55,11 @@ public class AssemblyContextContext extends AssemblyContextHandler {
 	protected Optional<CompromisedAssembly> attackComponent(AssemblyContextDetail component, CredentialChange change,
 			EObject source, Attacker attacker) {
 		this.assemblyDetail = component;
-
+		/*
+		 * The last element of the AssemblyContextDetails is the unchecked vulnerable
+		 * component. This is attacked at this point by calling the overloaded
+		 * attackComponent(AssemblyContext ...) method
+		 */
 		Optional<CompromisedAssembly> compromisedAssembly = this
 				.attackComponent(Iterables.getLast(component.getCompromisedComponents()), change, source, attacker);
 		if (compromisedAssembly.isPresent()) {
@@ -63,14 +67,5 @@ public class AssemblyContextContext extends AssemblyContextHandler {
 		} else {
 			return Optional.empty();
 		}
-
-//		for (AssemblyContext assembly : component.getCompromisedComponents()) {
-//			Optional<CompromisedAssembly> compromisedAssembly = this.attackComponent(assembly, change, source,
-//					attacker);
-//			if (compromisedAssembly.isPresent()) {
-//				return compromisedAssembly;
-//			}
-//		}
-//		return Optional.empty();
 	}
 }
