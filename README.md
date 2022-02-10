@@ -1,4 +1,4 @@
-# Verfeinerung des Angreifermodells undFähigkeiten in einer Angriffspfadgenerierung
+# Verfeinerung des Angreifermodells und Fähigkeiten in einer Angriffspfadgenerierung
 
 ## Siehe auch
 * forked from https://github.com/FluidTrust/Palladio-Addons-ContextConfidentiality-Analysis
