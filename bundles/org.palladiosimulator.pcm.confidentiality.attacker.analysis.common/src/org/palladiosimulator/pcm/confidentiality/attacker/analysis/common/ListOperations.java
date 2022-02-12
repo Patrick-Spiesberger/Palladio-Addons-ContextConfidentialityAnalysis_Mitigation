@@ -1,7 +1,6 @@
 package org.palladiosimulator.pcm.confidentiality.attacker.analysis.common;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 

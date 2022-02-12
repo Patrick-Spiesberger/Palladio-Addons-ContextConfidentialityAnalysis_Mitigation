@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CollectionHelper;
-import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.EncryptionHelper;
+import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.MitigationHelper;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AttackerFactory;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.DatamodelAttacker;
@@ -69,7 +69,7 @@ public class DataHandler {
 					.map(DataHandler::createDataReturnValue).flatMap(Optional::stream).collect(Collectors.toList());
 
 			listDataReturnTypes = listDataReturnTypes.stream()
-					.filter(data -> EncryptionHelper.isCrackable(data, attacker)).collect(Collectors.toList());
+					.filter(data -> MitigationHelper.isCrackable(data, attacker)).collect(Collectors.toList());
 
 			listDataParameter.addAll(listDataReturnTypes);
 			listDataParameter.stream().forEach(data -> data.setSource(assemblyContext));
@@ -135,7 +135,7 @@ public class DataHandler {
 		}
 		dataSignatureList.addAll(seffList);
 
-		dataSignatureList = dataSignatureList.stream().filter(data -> EncryptionHelper.isCrackable(data, attacker))
+		dataSignatureList = dataSignatureList.stream().filter(data -> MitigationHelper.isCrackable(data, attacker))
 				.collect(Collectors.toList());
 
 		return dataSignatureList;

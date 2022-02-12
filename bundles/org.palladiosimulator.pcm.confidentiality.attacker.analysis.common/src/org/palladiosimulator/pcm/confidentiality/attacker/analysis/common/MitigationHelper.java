@@ -21,7 +21,7 @@ import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecificati
  * @author patrick
  *
  */
-public class EncryptionHelper {
+public class MitigationHelper {
 
 	/**
 	 * Checks whether a component is crackable. In the event that the prevention
