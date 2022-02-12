@@ -69,17 +69,7 @@ public class CollectionHelper {
 	}
 
 	public static List<ServiceRestriction> getProvidedRestrictions(final List<AssemblyContext> components) {
-
-		List<AssemblyContext> assemblies = new LinkedList<>();
-		for (AssemblyContext context : components) {
-			var type = context.getEncapsulatedComponent__AssemblyContext();
-			if (type instanceof CompositeComponent) {
-				assemblies.addAll(((CompositeComponent) type).getAssemblyContexts__ComposedStructure());
-			} else {
-				assemblies.add(context);
-			}
-		}
-		return assemblies.stream().flatMap(component -> CollectionHelper.getProvidedRestrictions(component).stream())
+		return components.stream().flatMap(component -> CollectionHelper.getProvidedRestrictions(component).stream())
 				.collect(Collectors.toList());
 	}
 
@@ -109,6 +99,14 @@ public class CollectionHelper {
 					listRestriction.add(specification);
 				}
 			}
+		} else if (repoComponent instanceof CompositeComponent) {
+			var listRestrictionComposite = new ArrayList<ServiceRestriction>();
+			for (AssemblyContext assembly : ((CompositeComponent) repoComponent)
+					.getAssemblyContexts__ComposedStructure()) {
+				listRestrictionComposite.addAll(getProvidedRestrictions(assembly));
+			}
+			return listRestrictionComposite;
+
 		}
 
 		return listRestriction;

@@ -81,9 +81,9 @@ public abstract class MethodHandler extends AttackHandler {
 
 	protected Vulnerability checkVulnerability(final ServiceRestriction entity, final CredentialChange change,
 			final List<UsageSpecification> credentials, final List<Attack> attacks,
-			final List<Vulnerability> vulnerabilityList, final AttackVector attackVector) {
+			final List<Vulnerability> vulnerabilityList, final AttackVector attackVector, Attacker attacker) {
 		final var result = this.queryAccessForEntity(entity.getAssemblycontext(), credentials, entity.getSignature());
-		return this.checkVulnerability(change, attacks, vulnerabilityList, attackVector, result);
+		return this.checkVulnerability(change, attacks, vulnerabilityList, attackVector, result, attacker);
 	}
 
 }

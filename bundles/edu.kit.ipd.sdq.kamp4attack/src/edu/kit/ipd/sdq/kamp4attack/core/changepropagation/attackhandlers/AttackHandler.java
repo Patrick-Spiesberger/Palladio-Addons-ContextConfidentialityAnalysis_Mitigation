@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CompromisedElementHelper;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attacker.helper.VulnerabilityHelper;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.Attack;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.AttackVector;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.ConfidentialityImpact;
@@ -159,7 +160,7 @@ public abstract class AttackHandler {
      */
     protected Vulnerability checkVulnerability(final Entity entity, final CredentialChange change,
             final List<UsageSpecification> credentials, final List<Attack> attacks,
-            final List<Vulnerability> vulnerabilityList, final AttackVector attackVector) {
+            final List<Vulnerability> vulnerabilityList, final AttackVector attackVector, Attacker attacker) {
         if (CacheVulnerability.instance().checkedBefore(entity)) {
             return null;
         }
@@ -172,7 +173,7 @@ public abstract class AttackHandler {
             result = Optional.empty();
         }
         CacheVulnerability.instance().addEntity(entity);
-        return this.checkVulnerability(change, attacks, vulnerabilityList, attackVector, result);
+        return this.checkVulnerability(change, attacks, vulnerabilityList, attackVector, result, attacker);
     }
 
     /**
@@ -195,7 +196,7 @@ public abstract class AttackHandler {
      */
     protected Vulnerability checkVulnerability(final CredentialChange change, final List<Attack> attacks,
             final List<Vulnerability> vulnerabilityList, final AttackVector attackVector,
-            final Optional<PDPResult> result) {
+            final Optional<PDPResult> result, Attacker attacker) {
         var authenticated = false;
         if (result.isPresent()) {
             authenticated = DecisionType.PERMIT.equals(result.get().getDecision());
@@ -205,7 +206,7 @@ public abstract class AttackHandler {
                 .getRoles(getModelStorage().getVulnerabilitySpecification());
 
         final var roles = roleSpecification.stream()
-                .filter(e -> CompromisedElementHelper.isHacked(e.getPcmelement(), change, attacks))
+                .filter(e -> CompromisedElementHelper.isHacked(e.getPcmelement(), change, attacks, attacker))
                 .map(RoleSystemIntegration::getRole).collect(Collectors.toList());
 
         final var vulnerability = VulnerabilityHelper.checkAttack(authenticated, vulnerabilityList, attacks,
