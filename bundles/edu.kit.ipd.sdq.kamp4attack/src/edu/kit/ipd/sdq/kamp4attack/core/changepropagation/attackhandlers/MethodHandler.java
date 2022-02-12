@@ -34,7 +34,7 @@ public abstract class MethodHandler extends AttackHandler {
 				.flatMap(Optional::stream).collect(Collectors.toList());
 		final var newCompromisedComponent = filterExsiting(compromisedComponent, change);
 		if (!newCompromisedComponent.isEmpty()) {
-			handleDataExtraction(newCompromisedComponent, attacker);
+			handleDataExtraction(newCompromisedComponent, change, attacker);
 			change.setChanged(true);
 			change.getCompromisedassembly().addAll(newCompromisedComponent);
 			CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
@@ -44,10 +44,12 @@ public abstract class MethodHandler extends AttackHandler {
 
 	/**
 	 * This method examines a list of compromised components for their data
+	 * 
 	 * @param components : List of compromised components
-	 * @param attacker : required for attacker skills 
+	 * @param attacker   : required for attacker skills
 	 */
-	private void handleDataExtraction(final Collection<CompromisedAssembly> components, Attacker attacker) {
+	private void handleDataExtraction(final Collection<CompromisedAssembly> components, CredentialChange change,
+			Attacker attacker) {
 
 		Collection<AssemblyContextDetail> filteredComponents = components.stream()
 				.map(CompromisedAssembly::getAffectedElement).collect(Collectors.toList());
@@ -56,7 +58,7 @@ public abstract class MethodHandler extends AttackHandler {
 
 		for (AssemblyContextDetail assemblyDetailList : filteredComponents) {
 			final var dataList = assemblyDetailList.getCompromisedComponents().stream().distinct()
-					.flatMap(component -> DataHandler.getData(component, attacker).stream())
+					.flatMap(component -> DataHandler.getData(component, change, attacker).stream())
 					.collect(Collectors.toList());
 
 			getDataHandler().addData(dataList);

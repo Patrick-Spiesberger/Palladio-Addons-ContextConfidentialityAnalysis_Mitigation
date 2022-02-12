@@ -15,6 +15,9 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegr
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.Prevention;
 import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecification;
 
+import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.ContextChange;
+import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
+
 /**
  * This class is responsible for handling the crackability of an entire element.
  * 
@@ -31,13 +34,14 @@ public class MitigationHelper {
 	 * @param component : Component which should be checked for crackability
 	 * @param attacks   : List of attacks that an attacker can carry out
 	 */
-	public static Boolean isCrackable(PCMElement component, final List<Attack> attacks, Attacker attacker) {
+	public static Boolean isCrackable(PCMElement component, final List<Attack> attacks, final CredentialChange change,
+			final Attacker attacker) {
 		Mitigation mitigation = component.getMitigation();
 		if (mitigation == null) { // no mitigation defined
 			return true;
 		}
 		List<Prevention> preventions = filterPrevention(mitigation.getMitigationspecification());
-		List<UsageSpecification> credentials = attacker.getCredentials();
+		List<UsageSpecification> credentials = getCredentials(change);
 		ListOperations listHelper = new ListOperations();
 		boolean crackable = false;
 
@@ -62,13 +66,14 @@ public class MitigationHelper {
 		return crackable;
 	}
 
-	public static Boolean isCrackable(DatamodelAttacker data, Attacker attacker) {
+	public static Boolean isCrackable(final DatamodelAttacker data, final CredentialChange change,
+			final Attacker attacker) {
 		Mitigation mitigation = data.getMitigation();
 		if (mitigation == null) { // no mitigation defined
 			return true;
 		}
 		List<Encryption> encryptions = filterEncryption(mitigation.getMitigationspecification());
-		List<UsageSpecification> credentials = attacker.getCredentials();
+		List<UsageSpecification> credentials = getCredentials(change);
 		ListOperations listHelper = new ListOperations();
 		boolean crackable = false;
 
@@ -115,5 +120,9 @@ public class MitigationHelper {
 			}
 		}
 		return true;
+	}
+
+	private static List<UsageSpecification> getCredentials(final CredentialChange changes) {
+		return changes.getContextchange().stream().map(ContextChange::getAffectedElement).collect(Collectors.toList());
 	}
 }

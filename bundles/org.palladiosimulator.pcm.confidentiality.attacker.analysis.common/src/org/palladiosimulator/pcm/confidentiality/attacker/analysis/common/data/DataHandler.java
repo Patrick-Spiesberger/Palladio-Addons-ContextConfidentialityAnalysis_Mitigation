@@ -26,31 +26,32 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ResourceDemandingSEFF;
 
+import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
+
 public class DataHandler {
 
 	private DataHandler() {
 
 	}
 
-	public static Collection<DatamodelAttacker> getData(final AssemblyContext assemblyContext,
+	public static Collection<DatamodelAttacker> getData(final AssemblyContext assemblyContext, CredentialChange change,
 			final Attacker attacker) {
 
 		var component = assemblyContext.getEncapsulatedComponent__AssemblyContext();
 		Collection<DatamodelAttacker> dataAttacker = new LinkedList<>();
 		if (component instanceof CompositeComponent) {
-			dataAttacker.addAll(getDataHelper(component, assemblyContext, attacker));
+			dataAttacker.addAll(getDataHelper(component, assemblyContext, change, attacker));
 			for (AssemblyContext assembly : ((CompositeComponent) component).getAssemblyContexts__ComposedStructure()) {
-				dataAttacker.addAll(getDataHelper(component, assembly, attacker));
+				dataAttacker.addAll(getDataHelper(component, assembly, change, attacker));
 			}
-		}
-		else {
-			dataAttacker.addAll(getDataHelper(component, assemblyContext, attacker));
+		} else {
+			dataAttacker.addAll(getDataHelper(component, assemblyContext, change, attacker));
 		}
 		return dataAttacker;
 	}
 
 	private static Collection<DatamodelAttacker> getDataHelper(final RepositoryComponent component,
-			final AssemblyContext assemblyContext, final Attacker attacker) {
+			final AssemblyContext assemblyContext, CredentialChange change, final Attacker attacker) {
 		try {
 			final var interfacesList = component.getProvidedRoles_InterfaceProvidingEntity().stream()
 					.filter(OperationProvidedRole.class::isInstance).map(OperationProvidedRole.class::cast)
@@ -69,7 +70,7 @@ public class DataHandler {
 					.map(DataHandler::createDataReturnValue).flatMap(Optional::stream).collect(Collectors.toList());
 
 			listDataReturnTypes = listDataReturnTypes.stream()
-					.filter(data -> MitigationHelper.isCrackable(data, attacker)).collect(Collectors.toList());
+					.filter(data -> MitigationHelper.isCrackable(data, change, attacker)).collect(Collectors.toList());
 
 			listDataParameter.addAll(listDataReturnTypes);
 			listDataParameter.stream().forEach(data -> data.setSource(assemblyContext));
@@ -99,7 +100,7 @@ public class DataHandler {
 	}
 
 	public static List<DatamodelAttacker> getData(final ResourceContainer resource, final Allocation allocation,
-			Attacker attacker) {
+			CredentialChange change, Attacker attacker) {
 		final var assemblyContexts = CollectionHelper.getAssemblyContext(List.of(resource), allocation);
 
 		for (AssemblyContext assembly : assemblyContexts) {
@@ -109,16 +110,19 @@ public class DataHandler {
 			}
 		}
 
-		return assemblyContexts.stream().flatMap(e -> getData(e, attacker).stream()).collect(Collectors.toList());
+		return assemblyContexts.stream().flatMap(e -> getData(e, change, attacker).stream())
+				.collect(Collectors.toList());
 	}
 
-	public static Collection<DatamodelAttacker> getData(ServiceRestriction serviceRestriction, Attacker attacker) {
-		var dataList = getData(serviceRestriction.getService(), attacker);
+	public static Collection<DatamodelAttacker> getData(ServiceRestriction serviceRestriction, CredentialChange change,
+			Attacker attacker) {
+		var dataList = getData(serviceRestriction.getService(), change, attacker);
 		dataList.stream().forEach(data -> data.setSource(serviceRestriction));
 		return dataList;
 	}
 
-	private static Collection<DatamodelAttacker> getData(final ResourceDemandingSEFF seff, Attacker attacker) {
+	private static Collection<DatamodelAttacker> getData(final ResourceDemandingSEFF seff, CredentialChange change,
+			Attacker attacker) {
 		final var parameterStream = ((OperationSignature) seff.getDescribedService__SEFF())
 				.getParameters__OperationSignature().stream();
 
@@ -135,8 +139,8 @@ public class DataHandler {
 		}
 		dataSignatureList.addAll(seffList);
 
-		dataSignatureList = dataSignatureList.stream().filter(data -> MitigationHelper.isCrackable(data, attacker))
-				.collect(Collectors.toList());
+		dataSignatureList = dataSignatureList.stream()
+				.filter(data -> MitigationHelper.isCrackable(data, change, attacker)).collect(Collectors.toList());
 
 		return dataSignatureList;
 	}

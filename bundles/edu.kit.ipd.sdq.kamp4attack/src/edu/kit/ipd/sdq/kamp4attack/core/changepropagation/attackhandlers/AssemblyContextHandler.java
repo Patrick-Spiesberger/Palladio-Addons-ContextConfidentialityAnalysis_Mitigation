@@ -27,8 +27,9 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 
 	/**
 	 * This method manages the vulnerability of a List of AssemblyContextDetails
+	 * 
 	 * @param components : potentially vulnerable AssemblyContextDetails
-	 * @param attacker : necessary for the skills of an attacker
+	 * @param attacker   : necessary for the skills of an attacker
 	 */
 	public void attackAssemblyContextDetail(final Collection<AssemblyContextDetail> components,
 			final CredentialChange change, final EObject source, Attacker attacker) {
@@ -43,7 +44,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 			final var newCompromisedComponent = filterExsitingComponent(compromisedComponents, change);
 			if (!newCompromisedComponent.isEmpty()) {
 
-				handleDataExtraction(newCompromisedComponent, attacker);
+				handleDataExtraction(newCompromisedComponent, change, attacker);
 				change.setChanged(true);
 				for (CompromisedAssembly component : newCompromisedComponent) {
 					change.getCompromisedassembly().add(component);
@@ -55,8 +56,8 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 		}
 	}
 
-
-	private void handleDataExtraction(final Collection<CompromisedAssembly> components, Attacker attacker) {
+	private void handleDataExtraction(final Collection<CompromisedAssembly> components, CredentialChange change,
+			Attacker attacker) {
 		// puts all data from a set of components into a list of the DataHandler
 		Collection<AssemblyContextDetail> filteredComponents = components.stream()
 				.map(CompromisedAssembly::getAffectedElement).collect(Collectors.toList());
@@ -65,7 +66,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 
 		for (AssemblyContextDetail assembly : filteredComponents) {
 			final var dataList = assembly.getCompromisedComponents().stream().distinct()
-					.flatMap(component -> DataHandler.getData(component, attacker).stream())
+					.flatMap(component -> DataHandler.getData(component, change, attacker).stream())
 					.collect(Collectors.toList());
 			getDataHandler().addData(dataList);
 
