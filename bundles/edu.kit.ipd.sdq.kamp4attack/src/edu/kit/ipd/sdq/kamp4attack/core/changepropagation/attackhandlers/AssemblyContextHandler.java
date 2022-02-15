@@ -69,7 +69,6 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 					.flatMap(component -> DataHandler.getData(component, change, attacker).stream())
 					.collect(Collectors.toList());
 			getDataHandler().addData(dataList);
-
 		}
 	}
 

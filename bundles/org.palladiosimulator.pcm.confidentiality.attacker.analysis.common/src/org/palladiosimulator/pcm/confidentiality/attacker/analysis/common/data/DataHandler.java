@@ -34,7 +34,7 @@ public class DataHandler {
 
 	}
 
-	public static Collection<DatamodelAttacker> getData(final AssemblyContext assemblyContext, CredentialChange change,
+	public static Collection<DatamodelAttacker> getData(AssemblyContext assemblyContext, CredentialChange change,
 			final Attacker attacker) {
 
 		var component = assemblyContext.getEncapsulatedComponent__AssemblyContext();
@@ -50,16 +50,16 @@ public class DataHandler {
 		return dataAttacker;
 	}
 
-	private static Collection<DatamodelAttacker> getDataHelper(final RepositoryComponent component,
+	private static Collection<DatamodelAttacker> getDataHelper(RepositoryComponent component,
 			final AssemblyContext assemblyContext, CredentialChange change, final Attacker attacker) {
 		try {
-			final var interfacesList = component.getProvidedRoles_InterfaceProvidingEntity().stream()
+			var interfacesList = component.getProvidedRoles_InterfaceProvidingEntity().stream()
 					.filter(OperationProvidedRole.class::isInstance).map(OperationProvidedRole.class::cast)
 					.map(OperationProvidedRole::getProvidedInterface__OperationProvidedRole)
 					.collect(Collectors.toUnmodifiableList());
-			final var parameters = interfacesList.stream().flatMap(e -> e.getSignatures__OperationInterface().stream())
+			var parameters = interfacesList.stream().flatMap(e -> e.getSignatures__OperationInterface().stream())
 					.flatMap(e -> e.getParameters__OperationSignature().stream());
-			final var listDataParameter = createDataFromParameter(parameters);
+			var listDataParameter = createDataFromParameter(parameters);
 
 			var interfacesRequired = component.getRequiredRoles_InterfaceRequiringEntity().stream()
 					.filter(OperationRequiredRole.class::isInstance).map(OperationRequiredRole.class::cast)
@@ -84,7 +84,7 @@ public class DataHandler {
 		if (signature.getReturnType__OperationSignature() == null) {
 			return Optional.empty();
 		}
-		final var data = AttackerFactory.eINSTANCE.createDatamodelAttacker();
+		var data = AttackerFactory.eINSTANCE.createDatamodelAttacker();
 		data.setDataType(signature.getReturnType__OperationSignature());
 		data.setMethod(signature);
 		return Optional.of(data);
@@ -92,7 +92,7 @@ public class DataHandler {
 
 	private static Collection<DatamodelAttacker> createDataFromParameter(final Stream<Parameter> parameters) {
 		return parameters.map(parameter -> {
-			final var data = AttackerFactory.eINSTANCE.createDatamodelAttacker();
+			var data = AttackerFactory.eINSTANCE.createDatamodelAttacker();
 			data.setDataType(parameter.getDataType__Parameter());
 			data.setReferenceName(parameter.getParameterName());
 			return data;
@@ -101,17 +101,18 @@ public class DataHandler {
 
 	public static List<DatamodelAttacker> getData(final ResourceContainer resource, final Allocation allocation,
 			CredentialChange change, Attacker attacker) {
-		final var assemblyContexts = CollectionHelper.getAssemblyContext(List.of(resource), allocation);
+		List<AssemblyContext> assemblyContexts = CollectionHelper.getAssemblyContext(List.of(resource), allocation);
+		List<AssemblyContext> returnList = new LinkedList<>(); // to avoid ConcurrentModificationException
 
 		for (AssemblyContext assembly : assemblyContexts) {
 			var type = assembly.getEncapsulatedComponent__AssemblyContext();
 			if (type instanceof CompositeComponent) {
-				assemblyContexts.addAll(((CompositeComponent) type).getAssemblyContexts__ComposedStructure());
+				List<AssemblyContext> structure = ((CompositeComponent) type).getAssemblyContexts__ComposedStructure();
+				returnList.addAll(structure);
 			}
 		}
 
-		return assemblyContexts.stream().flatMap(e -> getData(e, change, attacker).stream())
-				.collect(Collectors.toList());
+		return returnList.stream().flatMap(e -> getData(e, change, attacker).stream()).collect(Collectors.toList());
 	}
 
 	public static Collection<DatamodelAttacker> getData(ServiceRestriction serviceRestriction, CredentialChange change,
@@ -123,17 +124,17 @@ public class DataHandler {
 
 	private static Collection<DatamodelAttacker> getData(final ResourceDemandingSEFF seff, CredentialChange change,
 			Attacker attacker) {
-		final var parameterStream = ((OperationSignature) seff.getDescribedService__SEFF())
+		var parameterStream = ((OperationSignature) seff.getDescribedService__SEFF())
 				.getParameters__OperationSignature().stream();
 
 		var dataSignatureList = DataHandler.createDataFromParameter(parameterStream);
 
-		final var seffList = seff.getSteps_Behaviour().stream().filter(ExternalCallAction.class::isInstance)
+		var seffList = seff.getSteps_Behaviour().stream().filter(ExternalCallAction.class::isInstance)
 				.map(ExternalCallAction.class::cast).map(ExternalCallAction::getCalledService_ExternalService)
 				.map(DataHandler::createDataReturnValue).flatMap(Optional::stream)
 				.collect(Collectors.toUnmodifiableList());
 
-		final var returnData = createDataReturnValue((OperationSignature) seff.getDescribedService__SEFF());
+		var returnData = createDataReturnValue((OperationSignature) seff.getDescribedService__SEFF());
 		if (returnData.isPresent()) {
 			dataSignatureList.add(returnData.get());
 		}
