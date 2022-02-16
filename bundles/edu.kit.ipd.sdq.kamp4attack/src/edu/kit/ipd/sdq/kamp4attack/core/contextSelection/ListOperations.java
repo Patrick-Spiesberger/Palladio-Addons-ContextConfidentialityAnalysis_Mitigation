@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AttackerFactory;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.ListOperationEffort;
 import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecification;
 
@@ -187,6 +188,11 @@ public class ListOperations {
 	 * @return : List of sublists
 	 */
 	public List<List<UsageSpecification>> calculateLists(List<UsageSpecification> elements, Attacker attacker) {
+
+		if (attacker == null) {
+			attacker = AttackerFactory.eINSTANCE.createAttacker();
+			attacker.setContextSelectionListEffort(ListOperationEffort.STANDARD);
+		}
 
 		if (attacker.getContextSelectionListEffort() == ListOperationEffort.NONE) {
 			List<List<UsageSpecification>> basicList = new LinkedList<>();
