@@ -168,8 +168,8 @@ public class CollectionHelper {
 				return HelperCreationCompromisedElements.createCompromisedService(serviceModel, causingElement);
 			}).collect(Collectors.toList());
 
-			serviceRestrictionsCompromised = CollectionHelper.filterExistingService(serviceRestrictionsCompromised,
-					change);
+			serviceRestrictionsCompromised = CollectionHelper
+					.filterExistingService(CollectionHelper.removeServices(serviceRestrictionsCompromised), change);
 
 			change.getCompromisedservice().addAll(serviceRestrictionsCompromised);
 		}
@@ -177,8 +177,20 @@ public class CollectionHelper {
 	}
 
 	private static boolean containsService(final CompromisedService service, final CredentialChange change) {
-		return change.getCompromisedservice().stream().anyMatch(referenceComponent -> EcoreUtil
-				.equals(referenceComponent.getAffectedElement(), service.getAffectedElement()));
+		return change.getCompromisedservice().stream().anyMatch(referenceComponent -> referenceComponent
+				.getAffectedElement().getService().getId().equals(service.getAffectedElement().getService().getId()));
+	}
+
+	private static List<CompromisedService> removeServices(List<CompromisedService> services) {
+		List<CompromisedService> returnList = new LinkedList<>();
+		for (CompromisedService service : services) {
+			boolean contains = returnList.stream().anyMatch(serv -> serv.getAffectedElement().getService().getId()
+					.equals(service.getAffectedElement().getService().getId()));
+			if (!contains) {
+				returnList.add(service);
+			}
+		}
+		return returnList;
 	}
 
 	@SuppressWarnings("unchecked")
