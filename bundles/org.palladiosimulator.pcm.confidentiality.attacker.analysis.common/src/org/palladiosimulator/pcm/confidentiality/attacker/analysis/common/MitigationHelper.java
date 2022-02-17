@@ -1,19 +1,23 @@
 package org.palladiosimulator.pcm.confidentiality.attacker.analysis.common;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.palladiosimulator.pcm.confidentiality.attacker.helper.VulnerabilityHelper;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.DatamodelAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Encryption;
-import org.palladiosimulator.pcm.confidentiality.attackerSpecification.EncryptionLevel;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Mitigation;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.MitigationSpecification;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.Attack;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.AttackVector;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.Privileges;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.Vulnerability;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.PCMElement;
-import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.PreventLevel;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.Prevention;
 import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecification;
+import org.palladiosimulator.pcm.confidentiality.context.xacml.pdp.result.PDPResult;
 
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.ContextChange;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
@@ -27,12 +31,15 @@ import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificati
 public class MitigationHelper {
 
 	/**
-	 * Checks whether a component is crackable. In the event that the prevention
-	 * level is low, the attacker's ability to crack the encryption is checked.
-	 * Secure components (level always) is considered unbreakable
+	 * Checks whether a protection mechanism exists that can protect a PCMElement
+	 * from attacker propagation
 	 * 
-	 * @param component : Component which should be checked for crackability
-	 * @param attacks   : List of attacks that an attacker can carry out
+	 * @param component : concrete component
+	 * @param attacks   : list of attacks
+	 * @param change    : changes of credentials
+	 * @param attacker  : concrete attacker
+	 * @return : True if the PCMElement has no protection mechanism or it can be
+	 *         broken
 	 */
 	public static Boolean isCrackable(PCMElement component, final List<Attack> attacks, final CredentialChange change,
 			final Attacker attacker) {
@@ -40,66 +47,39 @@ public class MitigationHelper {
 		if (mitigation == null) { // no mitigation defined
 			return true;
 		}
-		List<Prevention> preventions = filterPrevention(mitigation.getMitigationspecification());
-		List<UsageSpecification> credentials = getCredentials(change);
-		ListOperations listHelper = new ListOperations();
-		boolean crackable = false;
-
-		for (Prevention prevention : preventions) {
-			if (prevention.getPreventionLevel() == PreventLevel.NEVER) {
+		for (Prevention specification : filterPrevention(mitigation.getMitigationspecification())) {
+			Vulnerability vulnerability = VulnerabilityHelper.checkAttack(
+					isAuthenticated(specification.getVulnerabilities()), specification.getVulnerabilities(),
+					attacker.getAttacks(), AttackVector.LOCAL, null);
+			if (vulnerability != null) {
 				return true;
 			}
 		}
-
-		for (Prevention prevention : preventions) {
-			for (List<UsageSpecification> credential : listHelper.calculateLists(credentials, attacker,
-					prevention.getNecessaryCredentials().size())) {
-				if (prevention.getPreventionLevel() == PreventLevel.SOMETIMES) {
-					crackable = checkCredentials(credential, prevention.getNecessaryCredentials());
-					if (crackable) { // At least one measure could be cracked
-						return true;
-					}
-
-				}
-			}
-		}
-		return crackable;
+		return false;
 	}
 
+	/**
+	 * Checks whether there are concrete mechanisms for protecting the data
+	 * (encryption) and whether these can be broken
+	 */
 	public static Boolean isCrackable(final DatamodelAttacker data, final CredentialChange change,
 			final Attacker attacker) {
 		Mitigation mitigation = data.getMitigation();
 		if (mitigation == null) { // no mitigation defined
 			return true;
 		}
-		List<Encryption> encryptions = filterEncryption(mitigation.getMitigationspecification());
-		List<UsageSpecification> credentials = getCredentials(change);
-		ListOperations listHelper = new ListOperations();
-		boolean crackable = false;
-
-		for (Encryption encryption : encryptions) {
-			if (encryption.getEncryptionLevel() == EncryptionLevel.NONE) {
+		for (Encryption specification : filterEncryption(mitigation.getMitigationspecification())) {
+			Vulnerability vulnerability = VulnerabilityHelper.checkAttack(
+					isAuthenticated(specification.getVulnerabilities()), specification.getVulnerabilities(),
+					attacker.getAttacks(), AttackVector.LOCAL, null);
+			if (vulnerability != null) {
 				return true;
 			}
 		}
-
-		for (Encryption encryption : encryptions) {
-			for (List<UsageSpecification> credential : listHelper.calculateLists(credentials, attacker,
-					encryption.getNecessaryCredentials().size())) {
-				if (encryption.getEncryptionLevel() == EncryptionLevel.LOW) {
-					crackable = checkCredentials(credential, encryption.getNecessaryCredentials());
-					if (crackable) { // At least one measure could be cracked
-						return true;
-					}
-				}
-				if (attacker.getDataDecyptionKeyBag().contains(data.getRequiredDecryptionKey())) {
-					return true;
-				}
-
-			}
+		if (attacker.getDataDecyptionKeyBag().contains(data.getRequiredDecryptionKey())) {
+			return true;
 		}
-		return crackable;
-
+		return false;
 	}
 
 	private static List<Prevention> filterPrevention(List<MitigationSpecification> mitigation) {
@@ -112,17 +92,13 @@ public class MitigationHelper {
 				.collect(Collectors.toList());
 	}
 
-	private static boolean checkCredentials(List<UsageSpecification> actualCredentials,
-			List<UsageSpecification> requiredCredentials) {
-		for (UsageSpecification credential : requiredCredentials) {
-			if (actualCredentials.contains(credential)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
 	private static List<UsageSpecification> getCredentials(final CredentialChange changes) {
 		return changes.getContextchange().stream().map(ContextChange::getAffectedElement).collect(Collectors.toList());
 	}
+
+	private static boolean isAuthenticated(List<Vulnerability> vulnerabilityList) {
+		// TODO: Auswertung der Ergebnisse
+		return true;
+	}
+
 }

@@ -13,3 +13,4 @@ Automatic-Module-Name: org.palladiosimulator.pcm.confidentiality.attacker.analys
 Bundle-ActivationPolicy: lazy
 Export-Package: org.palladiosimulator.pcm.confidentiality.attacker.analysis.common,
  org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data
+Import-Package: org.palladiosimulator.pcm.confidentiality.context.xacml.pdp.result

@@ -177,15 +177,18 @@ public class CollectionHelper {
 	}
 
 	private static boolean containsService(final CompromisedService service, final CredentialChange change) {
-		return change.getCompromisedservice().stream().anyMatch(referenceComponent -> referenceComponent
-				.getAffectedElement().getService().getId().equals(service.getAffectedElement().getService().getId()));
+		return change.getCompromisedservice().stream().anyMatch(referenceComponent -> EcoreUtil
+                .equals(referenceComponent.getAffectedElement(), service.getAffectedElement()));
 	}
 
 	private static List<CompromisedService> removeServices(List<CompromisedService> services) {
 		List<CompromisedService> returnList = new LinkedList<>();
 		for (CompromisedService service : services) {
-			boolean contains = returnList.stream().anyMatch(serv -> serv.getAffectedElement().getService().getId()
-					.equals(service.getAffectedElement().getService().getId()));
+			boolean contains = returnList.stream()
+					.anyMatch(serv -> (serv.getAffectedElement().getService().getId()
+							.equals(service.getAffectedElement().getService().getId())
+							&& EcoreUtil.equals(serv.getAffectedElement().getAssemblycontext(),
+									service.getAffectedElement().getAssemblycontext())));
 			if (!contains) {
 				returnList.add(service);
 			}

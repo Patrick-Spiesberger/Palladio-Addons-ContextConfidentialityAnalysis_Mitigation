@@ -68,7 +68,8 @@ public class DataHandler {
 			interfacesRequired = Stream.concat(interfacesList.stream(), interfacesRequired);
 			var listDataReturnTypes = interfacesRequired.flatMap(e -> e.getSignatures__OperationInterface().stream())
 					.map(DataHandler::createDataReturnValue).flatMap(Optional::stream).collect(Collectors.toList());
-
+			
+			//check for encrypted data
 			listDataReturnTypes = listDataReturnTypes.stream()
 					.filter(data -> MitigationHelper.isCrackable(data, change, attacker)).collect(Collectors.toList());
 
@@ -140,6 +141,7 @@ public class DataHandler {
 		}
 		dataSignatureList.addAll(seffList);
 
+		//check for encrypted data
 		dataSignatureList = dataSignatureList.stream()
 				.filter(data -> MitigationHelper.isCrackable(data, change, attacker)).collect(Collectors.toList());
 
