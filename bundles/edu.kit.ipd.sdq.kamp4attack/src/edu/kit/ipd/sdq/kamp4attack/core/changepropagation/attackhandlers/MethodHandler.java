@@ -19,6 +19,7 @@ import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecificati
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.ServiceRestriction;
 
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
+import edu.kit.ipd.sdq.kamp4attack.core.mitigation.MitigationHelper;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
@@ -59,7 +60,7 @@ public abstract class MethodHandler extends AttackHandler {
 		for (AssemblyContextDetail assemblyDetailList : filteredComponents) {
 			final var dataList = assemblyDetailList.getCompromisedComponents().stream().distinct()
 					.flatMap(component -> DataHandler.getData(component, change, attacker).stream())
-					.collect(Collectors.toList());
+					.filter(data -> MitigationHelper.isCrackable(data, change, attacker)).collect(Collectors.toList());
 
 			getDataHandler().addData(dataList);
 		}

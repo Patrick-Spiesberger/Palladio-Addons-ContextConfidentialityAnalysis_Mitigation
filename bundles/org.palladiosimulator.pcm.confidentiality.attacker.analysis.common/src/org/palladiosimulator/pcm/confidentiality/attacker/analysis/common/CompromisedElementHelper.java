@@ -28,13 +28,8 @@ public class CompromisedElementHelper {
 
 	public static boolean isHacked(final PCMElement element, final CredentialChange change, final List<Attack> attacks,
 			Attacker attacker) {
-		if (MitigationHelper.isCrackable(element, attacks, change, attacker)) {
 			return isHacked(element.getAssemblycontext(), change) && isHacked(element.getLinkingresource(), change)
 					&& isHacked(element.getResourcecontainer(), change);
-		} else {
-			return false;
-		}
-
 	}
 
 	public static boolean isHacked(final AssemblyContext component, final CredentialChange change) {

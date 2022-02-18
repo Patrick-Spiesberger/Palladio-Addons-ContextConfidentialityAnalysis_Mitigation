@@ -13,6 +13,7 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
+import edu.kit.ipd.sdq.kamp4attack.core.mitigation.MitigationHelper;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedResource;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
@@ -45,7 +46,7 @@ public abstract class ResourceContainerHandler extends AttackHandler {
 
 		final var dataList = filteredComponents.stream().flatMap(
 				resource -> DataHandler.getData(resource, getModelStorage().getAllocation(), change, attacker).stream())
-				.distinct().collect(Collectors.toList());
+				.filter(data -> MitigationHelper.isCrackable(data, change, attacker)).collect(Collectors.toList());
 		getDataHandler().addData(dataList);
 	}
 

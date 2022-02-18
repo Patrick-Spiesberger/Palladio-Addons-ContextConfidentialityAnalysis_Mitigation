@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CollectionHelper;
-import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.MitigationHelper;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AttackerFactory;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.DatamodelAttacker;
@@ -69,10 +68,6 @@ public class DataHandler {
 			var listDataReturnTypes = interfacesRequired.flatMap(e -> e.getSignatures__OperationInterface().stream())
 					.map(DataHandler::createDataReturnValue).flatMap(Optional::stream).collect(Collectors.toList());
 			
-			//check for encrypted data
-			listDataReturnTypes = listDataReturnTypes.stream()
-					.filter(data -> MitigationHelper.isCrackable(data, change, attacker)).collect(Collectors.toList());
-
 			listDataParameter.addAll(listDataReturnTypes);
 			listDataParameter.stream().forEach(data -> data.setSource(assemblyContext));
 			return listDataParameter;
@@ -140,10 +135,6 @@ public class DataHandler {
 			dataSignatureList.add(returnData.get());
 		}
 		dataSignatureList.addAll(seffList);
-
-		//check for encrypted data
-		dataSignatureList = dataSignatureList.stream()
-				.filter(data -> MitigationHelper.isCrackable(data, change, attacker)).collect(Collectors.toList());
 
 		return dataSignatureList;
 	}

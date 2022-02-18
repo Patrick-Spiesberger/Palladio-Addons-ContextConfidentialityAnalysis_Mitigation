@@ -34,183 +34,181 @@ import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificati
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
 /**
- * Generic class for handling attacks on system entities. Provides useful helper methods for
- * concrete subclasses
+ * Generic class for handling attacks on system entities. Provides useful helper
+ * methods for concrete subclasses
  *
  * @author majuwa
  *
  */
 public abstract class AttackHandler {
-    private final BlackboardWrapper modelStorage;
-    private final DataHandlerAttacker dataHandler;
+	private final BlackboardWrapper modelStorage;
+	private final DataHandlerAttacker dataHandler;
 
-    public AttackHandler(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
-        Objects.requireNonNull(modelStorage);
-        Objects.requireNonNull(dataHandler);
+	public AttackHandler(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
+		Objects.requireNonNull(modelStorage);
+		Objects.requireNonNull(dataHandler);
 
-        this.modelStorage = modelStorage;
-        this.dataHandler = dataHandler;
+		this.modelStorage = modelStorage;
+		this.dataHandler = dataHandler;
 
-    }
+	}
 
-    protected BlackboardWrapper getModelStorage() {
-        return this.modelStorage;
-    }
+	protected BlackboardWrapper getModelStorage() {
+		return this.modelStorage;
+	}
 
-    protected DataHandlerAttacker getDataHandler() {
-        return this.dataHandler;
-    }
+	protected DataHandlerAttacker getDataHandler() {
+		return this.dataHandler;
+	}
 
-    protected final List<UsageSpecification> getCredentials(final CredentialChange changes) {
-        return changes.getContextchange().stream().map(ContextChange::getAffectedElement).collect(Collectors.toList());
-    }
+	protected final List<UsageSpecification> getCredentials(final CredentialChange changes) {
+		return changes.getContextchange().stream().map(ContextChange::getAffectedElement).collect(Collectors.toList());
+	}
 
-    // TODO: Think about better location
-    protected List<Attack> getAttacks() {
-        final var listAttackers = this.modelStorage.getModificationMarkRepository().getSeedModifications()
-                .getAttackcomponent();
-        return listAttackers.stream().flatMap(e -> e.getAffectedElement().getAttacks().stream())
-                .collect(Collectors.toList());
-    }
+	// TODO: Think about better location
+	protected List<Attack> getAttacks() {
+		final var listAttackers = this.modelStorage.getModificationMarkRepository().getSeedModifications()
+				.getAttackcomponent();
+		return listAttackers.stream().flatMap(e -> e.getAffectedElement().getAttacks().stream())
+				.collect(Collectors.toList());
+	}
 
-    protected List<EObject> createSource(final EObject sourceItem,
-            final List<? extends UsageSpecification> contextSet) {
-        final List<EObject> list = new ArrayList<>();
-        list.add(sourceItem);
-        list.addAll(contextSet);
-        return list;
+	protected List<EObject> createSource(final EObject sourceItem,
+			final List<? extends UsageSpecification> contextSet) {
+		final List<EObject> list = new ArrayList<>();
+		list.add(sourceItem);
+		list.addAll(contextSet);
+		return list;
 
-    }
+	}
 
-    /**
-     * Sends an access request to the policy decision point (PDP). <br \> <b>Important:</b> before
-     * the request the PDP must be initialised. This can be done with
-     * {@link Evaluate#initialize(String)}
-     *
-     * @param target
-     *            requested system entity
-     * @param credentials
-     *            current credentials
-     * @return
-     *
-     * @see Evaluate#initialize(String)
-     */
-    protected Optional<PDPResult> queryAccessForEntity(final Entity target,
-            final List<? extends UsageSpecification> credentials, final Signature signature) {
-        final var listComponent = new LinkedList<>(Arrays.asList(target));
-        final var listSubject = new ArrayList<UsageSpecification>();
-        final var listEnvironment = new ArrayList<UsageSpecification>();
-        final var listResource = new ArrayList<UsageSpecification>();
-        final var listXML = new ArrayList<UsageSpecification>();
-        final var listOperation = new ArrayList<UsageSpecification>();
+	/**
+	 * Sends an access request to the policy decision point (PDP). <br \>
+	 * <b>Important:</b> before the request the PDP must be initialised. This can be
+	 * done with {@link Evaluate#initialize(String)}
+	 *
+	 * @param target      requested system entity
+	 * @param credentials current credentials
+	 * @return
+	 *
+	 * @see Evaluate#initialize(String)
+	 */
+	protected Optional<PDPResult> queryAccessForEntity(final Entity target,
+			final List<? extends UsageSpecification> credentials, final Signature signature) {
+		final var listComponent = new LinkedList<>(Arrays.asList(target));
+		final var listSubject = new ArrayList<UsageSpecification>();
+		final var listEnvironment = new ArrayList<UsageSpecification>();
+		final var listResource = new ArrayList<UsageSpecification>();
+		final var listXML = new ArrayList<UsageSpecification>();
+		final var listOperation = new ArrayList<UsageSpecification>();
 
-        if (signature == null) {
-            PolicyHelper.createRequestAttributes(listComponent, credentials, listSubject, listEnvironment, listResource,
-                    listXML);
-        } else {
-            var result = CachePDP.instance().get(target, signature);
-            if (result.isPresent()) {
-                return result;
-            }
-            PolicyHelper.createRequestAttributes(signature, listComponent, credentials, listSubject, listEnvironment,
-                    listResource, listOperation, listXML);
-        }
+		if (signature == null) {
+			PolicyHelper.createRequestAttributes(listComponent, credentials, listSubject, listEnvironment, listResource,
+					listXML);
+		} else {
+			var result = CachePDP.instance().get(target, signature);
+			if (result.isPresent()) {
+				return result;
+			}
+			PolicyHelper.createRequestAttributes(signature, listComponent, credentials, listSubject, listEnvironment,
+					listResource, listOperation, listXML);
+		}
 
-        final var result = getModelStorage().getEval().evaluate(listSubject, listEnvironment, listResource,
-                listOperation, listXML);
-        if (result.isPresent() && signature != null) {
-            CachePDP.instance().insert(target, signature, result.get());
-        }
-        return result;
-    }
+		final var result = getModelStorage().getEval().evaluate(listSubject, listEnvironment, listResource,
+				listOperation, listXML);
+		if (result.isPresent() && signature != null) {
+			CachePDP.instance().insert(target, signature, result.get());
+		}
+		return result;
+	}
 
-    protected Optional<PDPResult> queryAccessForEntity(final Entity target,
-            final List<? extends UsageSpecification> credentials) {
-        var result = CachePDP.instance().get(target);
-        if (result.isPresent()) {
-            return result;
-        }
-        result = this.queryAccessForEntity(target, credentials, null);
-        if (result.isPresent()) {
-            CachePDP.instance().insert(target, result.get());
-        }
-        return result;
-    }
+	protected Optional<PDPResult> queryAccessForEntity(final Entity target,
+			final List<? extends UsageSpecification> credentials) {
+		var result = CachePDP.instance().get(target);
+		if (result.isPresent()) {
+			return result;
+		}
+		result = this.queryAccessForEntity(target, credentials, null);
+		if (result.isPresent()) {
+			CachePDP.instance().insert(target, result.get());
+		}
+		return result;
+	}
 
-    // TODO: Think about better location
-    /**
-     * Checks whether the current vulnerabilities of a system entity (e.g. AssemblyContext,
-     * ResourceContainers ...) can be exploited by the capabilities of an attacker. It thereby
-     * considers the authorisation and the actual attack capabilities of the attacker
-     *
-     * @param entity
-     *            attacked system entity
-     * @param change
-     *            container with compromised entities
-     * @param credentials
-     *            credentials of the attacker
-     * @param attacks
-     *            attacks of the attacker
-     * @param vulnerabilityList
-     *            Vulnerabilities of the system entity
-     * @param attackVector
-     *            attack vector of the attacker
-     * @return the vulnerability with the highest {@link ConfidentialityImpact} for the system
-     *         entity
-     */
-    protected Vulnerability checkVulnerability(final Entity entity, final CredentialChange change,
-            final List<UsageSpecification> credentials, final List<Attack> attacks,
-            final List<Vulnerability> vulnerabilityList, final AttackVector attackVector, Attacker attacker) {
-        if (CacheVulnerability.instance().checkedBefore(entity)) {
-            return null;
-        }
-        Optional<PDPResult> result;
-        var authenticatedNeeded = vulnerabilityList.stream().anyMatch(
-                e -> Privileges.LOW.equals(e.getPrivileges()) || Privileges.SPECIAL.equals(e.getPrivileges()));
-        if (authenticatedNeeded) {
-            result = this.queryAccessForEntity(entity, credentials);
-        } else {
-            result = Optional.empty();
-        }
-        CacheVulnerability.instance().addEntity(entity);
-        return this.checkVulnerability(change, attacks, vulnerabilityList, attackVector, result, attacker);
-    }
+	// TODO: Think about better location
+	/**
+	 * Checks whether the current vulnerabilities of a system entity (e.g.
+	 * AssemblyContext, ResourceContainers ...) can be exploited by the capabilities
+	 * of an attacker. It thereby considers the authorisation and the actual attack
+	 * capabilities of the attacker
+	 *
+	 * @param entity            attacked system entity
+	 * @param change            container with compromised entities
+	 * @param credentials       credentials of the attacker
+	 * @param attacks           attacks of the attacker
+	 * @param vulnerabilityList Vulnerabilities of the system entity
+	 * @param attackVector      attack vector of the attacker
+	 * @return the vulnerability with the highest {@link ConfidentialityImpact} for
+	 *         the system entity
+	 */
+	protected Vulnerability checkVulnerability(final Entity entity, final CredentialChange change,
+			final List<UsageSpecification> credentials, final List<Attack> attacks,
+			final List<Vulnerability> vulnerabilityList, final AttackVector attackVector, Attacker attacker) {
+		if (CacheVulnerability.instance().checkedBefore(entity)) {
+			return null;
+		}
+		Optional<PDPResult> result;
+		var authenticatedNeeded = vulnerabilityList.stream().anyMatch(
+				e -> Privileges.LOW.equals(e.getPrivileges()) || Privileges.SPECIAL.equals(e.getPrivileges()));
+		if (authenticatedNeeded) {
+			result = this.queryAccessForEntity(entity, credentials);
+		} else {
+			result = Optional.empty();
+		}
+		CacheVulnerability.instance().addEntity(entity);
+		return this.checkVulnerability(change, attacks, vulnerabilityList, attackVector, result, attacker);
+	}
 
-    /**
-     * Checks whether the current vulnerabilities of a system entity (e.g. AssemblyContext,
-     * ResourceContainers ...) can be exploited by the capabilities of an attacker. It thereby
-     * considers the authorisation and the actual attack capabilities of the attacker
-     *
-     * @param change
-     *            container with compromised entities
-     * @param credentials
-     *            credentials of the attacker
-     * @param attacks
-     *            attacks of the attacker
-     * @param vulnerabilityList
-     *            Vulnerabilities of the system entity
-     * @param attackVector
-     *            attack vector of the attacker
-     * @return the vulnerability with the highest {@link ConfidentialityImpact} for the system
-     *         entity
-     */
-    protected Vulnerability checkVulnerability(final CredentialChange change, final List<Attack> attacks,
-            final List<Vulnerability> vulnerabilityList, final AttackVector attackVector,
-            final Optional<PDPResult> result, Attacker attacker) {
-        var authenticated = false;
-        if (result.isPresent()) {
-            authenticated = DecisionType.PERMIT.equals(result.get().getDecision());
-        }
+	/**
+	 * Checks whether the current vulnerabilities of a system entity (e.g.
+	 * AssemblyContext, ResourceContainers ...) can be exploited by the capabilities
+	 * of an attacker. It thereby considers the authorisation and the actual attack
+	 * capabilities of the attacker
+	 *
+	 * @param change            container with compromised entities
+	 * @param credentials       credentials of the attacker
+	 * @param attacks           attacks of the attacker
+	 * @param vulnerabilityList Vulnerabilities of the system entity
+	 * @param attackVector      attack vector of the attacker
+	 * @return the vulnerability with the highest {@link ConfidentialityImpact} for
+	 *         the system entity
+	 */
+	protected Vulnerability checkVulnerability(final CredentialChange change, final List<Attack> attacks,
+			final List<Vulnerability> vulnerabilityList, final AttackVector attackVector,
+			final Optional<PDPResult> result, Attacker attacker) {
+		var authenticated = false;
+		if (result.isPresent()) {
+			authenticated = DecisionType.PERMIT.equals(result.get().getDecision());
+		}
 
-        final var roleSpecification = VulnerabilityHelper
-                .getRoles(getModelStorage().getVulnerabilitySpecification());
+		final var roleSpecification = VulnerabilityHelper.getRoles(getModelStorage().getVulnerabilitySpecification());
 
-        final var roles = roleSpecification.stream()
-                .filter(e -> CompromisedElementHelper.isHacked(e.getPcmelement(), change, attacks, attacker))
-                .map(RoleSystemIntegration::getRole).collect(Collectors.toList());
+		final var roles = roleSpecification.stream()
+				.filter(e -> CompromisedElementHelper.isHacked(e.getPcmelement(), change, attacks, attacker))
+				.map(RoleSystemIntegration::getRole).collect(Collectors.toList());
 
-        final var vulnerability = VulnerabilityHelper.checkAttack(authenticated, vulnerabilityList, attacks,
-                attackVector, roles);
-        return vulnerability;
-    }
+		final var vulnerability = VulnerabilityHelper.checkAttack(authenticated, vulnerabilityList, attacks,
+				attackVector, roles);
+		return vulnerability;
+	}
+
+	public boolean changeAttackVector() {
+		final var roleSpecification = VulnerabilityHelper.getRoles(getModelStorage().getVulnerabilitySpecification());
+		for (RoleSystemIntegration role : roleSpecification) {
+			if (role.isChangeAttackVectorToLocal()) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

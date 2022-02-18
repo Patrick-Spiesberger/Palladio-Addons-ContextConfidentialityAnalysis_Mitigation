@@ -71,7 +71,7 @@ public abstract class LinkingChange extends Change<LinkingResource> implements L
 			var reachableAssembliesDetails = CollectionHelper.getAssemblyContextDetail(reachableAssemblies);
 			final var handler = getAssemblyContextHandler();
 			reachableAssembliesDetails = CollectionHelper.removeDuplicates(reachableAssembliesDetails);
-			handler.attackAssemblyContextDetail(reachableAssembliesDetails, this.changes, linking, getAttacker());
+			handler.attackAssemblyContext(reachableAssembliesDetails, this.changes, linking, getAttacker());
 
 			handleSeff(this.changes, reachableAssemblies, linking);
 		}

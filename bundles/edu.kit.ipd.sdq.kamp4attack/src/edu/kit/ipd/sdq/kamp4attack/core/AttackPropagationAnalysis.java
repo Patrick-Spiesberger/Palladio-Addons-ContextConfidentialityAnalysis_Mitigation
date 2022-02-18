@@ -165,7 +165,7 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 			};
 
 			// localAttacker is required for properties of ListOperations
-			assemblyHandler.attackAssemblyContextDetail(localAttacker.getCompromisedComponentsDetails(),
+			assemblyHandler.attackAssemblyContext(localAttacker.getCompromisedComponentsDetails(),
 					this.changePropagationDueToCredential, null, localAttacker);
 
 			// convert affectedLinkingResources to changes

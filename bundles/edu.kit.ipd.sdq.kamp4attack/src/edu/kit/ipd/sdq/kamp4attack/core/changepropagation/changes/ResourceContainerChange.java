@@ -64,7 +64,7 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 			final var handler = getAssemblyHandler();
 			assemblyContextDetail = CollectionHelper.removeDuplicates(assemblyContextDetail).stream()
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
-			handler.attackAssemblyContextDetail(assemblyContextDetail, this.changes, resource, getAttacker());
+			handler.attackAssemblyContext(assemblyContextDetail, this.changes, resource, getAttacker());
 
 			handleSeff(this.changes, assemblycontext, resource);
 		}

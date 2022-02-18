@@ -16,6 +16,7 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
+import edu.kit.ipd.sdq.kamp4attack.core.mitigation.MitigationHelper;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
@@ -31,7 +32,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 	 * @param components : potentially vulnerable AssemblyContextDetails
 	 * @param attacker   : necessary for the skills of an attacker
 	 */
-	public void attackAssemblyContextDetail(final Collection<AssemblyContextDetail> components,
+	public void attackAssemblyContext(final Collection<AssemblyContextDetail> components,
 			final CredentialChange change, final EObject source, Attacker attacker) {
 
 		List<CompromisedAssembly> compromisedComponents = new LinkedList<>();
@@ -49,7 +50,6 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 				for (CompromisedAssembly component : newCompromisedComponent) {
 					change.getCompromisedassembly().add(component);
 				}
-				change.getCompromisedassembly().stream().filter(this::nonNull).collect(Collectors.toList());
 				CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
 						change);
 			}
@@ -67,7 +67,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 		for (AssemblyContextDetail assembly : filteredComponents) {
 			final var dataList = assembly.getCompromisedComponents().stream().distinct()
 					.flatMap(component -> DataHandler.getData(component, change, attacker).stream())
-					.collect(Collectors.toList());
+					.filter(data -> MitigationHelper.isCrackable(data, change, attacker)).collect(Collectors.toList());
 			getDataHandler().addData(dataList);
 		}
 	}
@@ -97,13 +97,4 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 						referenceComponent.getAffectedElement().getCompromisedComponents(),
 						component.getAffectedElement().getCompromisedComponents()));
 	}
-
-	/*
-	 * Helps to filter null components, which result from an empty list of
-	 * vulnerable components
-	 */
-	private boolean nonNull(CompromisedAssembly element) {
-		return element.getAffectedElement() != null;
-	}
-
 }

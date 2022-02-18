@@ -225,7 +225,6 @@ public class ListOperations {
 		case PART:
 			return calculateAdvancedList(elements);
 		default:
-			System.out.println("Please check the UsageSpecification. The attacker can not perform some ListOperations");
 			returnedAllElements = true;
 			return Collections.emptyList();
 		}
@@ -259,14 +258,7 @@ public class ListOperations {
 	 * 
 	 * @return : status of return values
 	 */
-	public Boolean returnedAllElements() {
+	public boolean returnedAllElements() {
 		return returnedAllElements;
-	}
-
-	protected final void prettyPrint(List<UsageSpecification> creds) {
-		for (UsageSpecification cred : creds) {
-			System.out.println("[" + cred.getEntityName() + " with ID " + cred.getId() + " and Attribut "
-					+ cred.getAttribute().getEntityName() + "]");
-		}
 	}
 }
