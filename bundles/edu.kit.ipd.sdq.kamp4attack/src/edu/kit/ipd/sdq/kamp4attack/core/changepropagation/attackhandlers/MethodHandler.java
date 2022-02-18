@@ -57,10 +57,13 @@ public abstract class MethodHandler extends AttackHandler {
 
 		filteredComponents = CollectionHelper.removeDuplicates(filteredComponents);
 
+		MitigationHelper mitigationHelper = new MitigationHelper();
+
 		for (AssemblyContextDetail assemblyDetailList : filteredComponents) {
 			final var dataList = assemblyDetailList.getCompromisedComponents().stream().distinct()
 					.flatMap(component -> DataHandler.getData(component, change, attacker).stream())
-					.filter(data -> MitigationHelper.isCrackable(data, change, attacker)).collect(Collectors.toList());
+					.filter(data -> mitigationHelper.isCrackable(data, attacker.getAttacks(), change))
+					.collect(Collectors.toList());
 
 			getDataHandler().addData(dataList);
 		}

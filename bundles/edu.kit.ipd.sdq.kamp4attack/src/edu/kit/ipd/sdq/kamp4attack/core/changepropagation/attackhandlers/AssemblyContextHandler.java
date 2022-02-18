@@ -64,10 +64,12 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 
 		filteredComponents = CollectionHelper.removeDuplicates(filteredComponents);
 
+		MitigationHelper mitigationHelper = new MitigationHelper();
+		
 		for (AssemblyContextDetail assembly : filteredComponents) {
 			final var dataList = assembly.getCompromisedComponents().stream().distinct()
 					.flatMap(component -> DataHandler.getData(component, change, attacker).stream())
-					.filter(data -> MitigationHelper.isCrackable(data, change, attacker)).collect(Collectors.toList());
+					.filter(data -> mitigationHelper.isCrackable(data, attacker.getAttacks(), change)).collect(Collectors.toList());
 			getDataHandler().addData(dataList);
 		}
 	}

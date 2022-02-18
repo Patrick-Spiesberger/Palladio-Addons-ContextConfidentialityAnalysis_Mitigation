@@ -30,6 +30,7 @@ import org.palladiosimulator.pcm.repository.Signature;
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
 import edu.kit.ipd.sdq.kamp4attack.core.CachePDP;
 import edu.kit.ipd.sdq.kamp4attack.core.CacheVulnerability;
+import edu.kit.ipd.sdq.kamp4attack.core.mitigation.MitigationHelper;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.ContextChange;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
@@ -193,7 +194,10 @@ public abstract class AttackHandler {
 
 		final var roleSpecification = VulnerabilityHelper.getRoles(getModelStorage().getVulnerabilitySpecification());
 
+		MitigationHelper mitigationHelper = new MitigationHelper();
+
 		final var roles = roleSpecification.stream()
+				.filter(e -> mitigationHelper.isCrackable(e.getPcmelement(), attacks, change))
 				.filter(e -> CompromisedElementHelper.isHacked(e.getPcmelement(), change, attacks, attacker))
 				.map(RoleSystemIntegration::getRole).collect(Collectors.toList());
 

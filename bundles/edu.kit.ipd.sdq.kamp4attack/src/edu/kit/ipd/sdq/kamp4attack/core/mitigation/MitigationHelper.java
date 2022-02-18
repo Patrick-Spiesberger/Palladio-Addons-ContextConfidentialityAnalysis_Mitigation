@@ -27,6 +27,10 @@ import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificati
  */
 public class MitigationHelper {
 
+	public MitigationHelper() {
+
+	}
+
 	/**
 	 * Checks whether a protection mechanism exists that can protect a PCMElement
 	 * from attacker propagation
@@ -38,7 +42,7 @@ public class MitigationHelper {
 	 * @return : True if the PCMElement has no protection mechanism or it can be
 	 *         broken
 	 */
-	public static boolean isCrackable(PCMElement component, final List<Attack> attacks, final CredentialChange change) {
+	public boolean isCrackable(PCMElement component, final List<Attack> attacks, final CredentialChange change) {
 		List<MitigationSpecification> mitigation = component.getMitigation().getMitigationspecification();
 		if (mitigation.size() == 0) { // no mitigation defined
 			return true;
@@ -60,15 +64,14 @@ public class MitigationHelper {
 	 * Checks whether there are concrete mechanisms for protecting the data
 	 * (encryption) and whether these can be broken
 	 */
-	public static boolean isCrackable(final DatamodelAttacker data, final CredentialChange change,
-			final Attacker attacker) {
+	public boolean isCrackable(final DatamodelAttacker data,final List<Attack> attacks, final CredentialChange change) {
 		List<MitigationSpecification> mitigation = data.getMitigation().getMitigationspecification();
 		if (mitigation.size() == 0) { // no mitigation defined
 			return true;
 		}
 		for (Encryption encryption : filterEncryption(mitigation)) {
 			var vulnerability = VulnerabilityHelper.checkAttack(false, encryption.getVulnerabilities(),
-					attacker.getAttacks(), AttackVector.LOCAL, null);
+					attacks, AttackVector.LOCAL, null);
 			if (vulnerability != null) {
 				if (mitigationIsBreakable(encryption.getNecessaryCredentials(),
 						getCredentials(change, vulnerability))) {
@@ -79,25 +82,24 @@ public class MitigationHelper {
 		return false;
 	}
 
-	private static List<Prevention> filterPrevention(List<MitigationSpecification> mitigation) {
+	private List<Prevention> filterPrevention(List<MitigationSpecification> mitigation) {
 		return mitigation.stream().filter(Prevention.class::isInstance).map(Prevention.class::cast)
 				.collect(Collectors.toList());
 	}
 
-	private static List<Encryption> filterEncryption(List<MitigationSpecification> mitigation) {
+	private List<Encryption> filterEncryption(List<MitigationSpecification> mitigation) {
 		return mitigation.stream().filter(Encryption.class::isInstance).map(Encryption.class::cast)
 				.collect(Collectors.toList());
 	}
 
-	private static List<UsageSpecification> getCredentials(final CredentialChange changes,
-			final Vulnerability vulnerabilty) {
+	private List<UsageSpecification> getCredentials(final CredentialChange changes, final Vulnerability vulnerabilty) {
 		var permissions = changes.getContextchange().stream().map(ContextChange::getAffectedElement)
 				.collect(Collectors.toList());
 		permissions.addAll(vulnerabilty.getGainedAttributes());
 		return permissions;
 	}
 
-	private static boolean mitigationIsBreakable(List<UsageSpecification> requiredPermissions,
+	private boolean mitigationIsBreakable(List<UsageSpecification> requiredPermissions,
 			List<UsageSpecification> permissions) {
 		boolean contains = false;
 		for (UsageSpecification specification : requiredPermissions) {
