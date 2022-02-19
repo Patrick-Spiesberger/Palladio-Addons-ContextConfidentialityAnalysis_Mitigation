@@ -64,33 +64,6 @@ public class DataHandler {
 		}
 	}
 
-//	private static Collection<DatamodelAttacker> getDataHelper(RepositoryComponent component,
-//			final AssemblyContext assemblyContext, CredentialChange change, final Attacker attacker) {
-//		try {
-//			var interfacesList = component.getProvidedRoles_InterfaceProvidingEntity().stream()
-//					.filter(OperationProvidedRole.class::isInstance).map(OperationProvidedRole.class::cast)
-//					.map(OperationProvidedRole::getProvidedInterface__OperationProvidedRole)
-//					.collect(Collectors.toUnmodifiableList());
-//			var parameters = interfacesList.stream().flatMap(e -> e.getSignatures__OperationInterface().stream())
-//					.flatMap(e -> e.getParameters__OperationSignature().stream());
-//			var listDataParameter = createDataFromParameter(parameters);
-//
-//			var interfacesRequired = component.getRequiredRoles_InterfaceRequiringEntity().stream()
-//					.filter(OperationRequiredRole.class::isInstance).map(OperationRequiredRole.class::cast)
-//					.map(OperationRequiredRole::getRequiredInterface__OperationRequiredRole);
-//
-//			interfacesRequired = Stream.concat(interfacesList.stream(), interfacesRequired);
-//			var listDataReturnTypes = interfacesRequired.flatMap(e -> e.getSignatures__OperationInterface().stream())
-//					.map(DataHandler::createDataReturnValue).flatMap(Optional::stream).collect(Collectors.toList());
-//			
-//			listDataParameter.addAll(listDataReturnTypes);
-//			listDataParameter.stream().forEach(data -> data.setSource(assemblyContext));
-//			return listDataParameter;
-//		} catch (NullPointerException e) {
-//			return Collections.emptyList();
-//		}
-//	}
-
 	private static Optional<DatamodelAttacker> createDataReturnValue(final OperationSignature signature) {
 		if (signature.getReturnType__OperationSignature() == null) {
 			return Optional.empty();

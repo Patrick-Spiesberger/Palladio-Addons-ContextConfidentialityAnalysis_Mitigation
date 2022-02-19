@@ -24,6 +24,8 @@ hs_err_pid*
 bin/
 
 
+bundles/.project
+
 
 target/
 pom.xml.tag
