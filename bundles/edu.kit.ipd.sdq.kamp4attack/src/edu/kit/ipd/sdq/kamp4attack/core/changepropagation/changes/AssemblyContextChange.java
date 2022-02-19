@@ -165,8 +165,8 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 				final var handler = getAssemblyHandler();
 				targetComponents = CollectionHelper.removeDuplicates(targetComponents).stream()
 						.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
-				handler.attackAssemblyContext(CollectionHelper.getAssemblyContextDetail(targetComponents),
-						this.changes, component, getAttacker());
+				handler.attackAssemblyContext(CollectionHelper.getAssemblyContextDetail(targetComponents), this.changes,
+						component, getAttacker());
 				this.handleSeff(component);
 			}
 		}
@@ -192,9 +192,14 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 				handler.attackAssemblyContext(CollectionHelper.getAssemblyContextDetail(reachableAssemblies),
 						this.changes, component, getAttacker());
 
-				var listServices = CollectionHelper.getProvidedRestrictions(reachableAssemblies).stream()
-						.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
-				handleSeff(this.changes, listServices, component);
+				for (AssemblyContext context : reachableAssemblies) {
+					var listServices = CollectionHelper.getProvidedRestrictions(CollectionHelper
+							.getAssemblyContextDetail(List.of(context))
+							.get(0)).stream()
+							.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
+					handleSeff(this.changes, listServices, component);
+				}
+
 			}
 		}
 

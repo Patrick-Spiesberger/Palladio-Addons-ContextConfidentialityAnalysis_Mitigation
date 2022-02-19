@@ -50,65 +50,63 @@ public class CollectionHelper {
 	public static List<AssemblyContextDetail> getAssemblyContextDetail(final List<AssemblyContext> assemblies) {
 		List<AssemblyContextDetail> details = new LinkedList<>();
 		for (AssemblyContext assembly : assemblies) {
+			AssemblyContextDetail detail = AttackerFactory.eINSTANCE.createAssemblyContextDetail();
+			detail.getCompromisedComponents().add(assembly);
+
 			var type = assembly.getEncapsulatedComponent__AssemblyContext();
+
 			if (type instanceof CompositeComponent) {
-				AssemblyContextDetail detail = AttackerFactory.eINSTANCE.createAssemblyContextDetail();
-				detail.getCompromisedComponents().add(assembly);
-				detail.getCompromisedComponents()
-						.addAll(((CompositeComponent) type).getAssemblyContexts__ComposedStructure());
-				detail.setEntityName(assembly.getEntityName());
-				details.add(detail);
-			} else {
-				AssemblyContextDetail detail = AttackerFactory.eINSTANCE.createAssemblyContextDetail();
-				detail.getCompromisedComponents().add(assembly);
-				detail.setEntityName(assembly.getEntityName());
-				details.add(detail);
+				List<AssemblyContext> compositeAssemblies = ((CompositeComponent) type)
+						.getAssemblyContexts__ComposedStructure();
+				for (AssemblyContext element : compositeAssemblies) {
+					detail.getCompromisedComponents().addAll(getAllBasicComponents(element));
+				}
+
 			}
+
+			detail.setEntityName(assembly.getEntityName());
+			details.add(detail);
 		}
 		return details;
 	}
 
-	public static List<ServiceRestriction> getProvidedRestrictions(final List<AssemblyContext> components) {
-		return components.stream().flatMap(component -> CollectionHelper.getProvidedRestrictions(component).stream())
-				.collect(Collectors.toList());
-	}
-
-	public static List<ServiceRestriction> getProvidedRestrictionsDetails(
-			final List<AssemblyContextDetail> components) {
-		List<ServiceRestriction> serviceRestrictions = new LinkedList<>();
-
-		for (AssemblyContextDetail detail : components) {
-			serviceRestrictions.addAll(detail.getCompromisedComponents().stream()
-					.flatMap(component -> CollectionHelper.getProvidedRestrictions(component).stream())
-					.collect(Collectors.toList()));
+	public static List<AssemblyContext> getAllBasicComponents(AssemblyContext assembly) {
+		List<AssemblyContext> returnList = new LinkedList<>();
+		if (assembly.getEncapsulatedComponent__AssemblyContext() instanceof BasicComponent) {
+			returnList.add(assembly);
+		} else { // CompositeComponent
+			List<AssemblyContext> structure = ((CompositeComponent) assembly
+					.getEncapsulatedComponent__AssemblyContext()).getAssemblyContexts__ComposedStructure();
+			for (AssemblyContext element : structure) {
+				returnList.addAll(getAllBasicComponents(element));
+			}
 		}
-		return serviceRestrictions;
+		return returnList;
 	}
 
-	public static List<ServiceRestriction> getProvidedRestrictions(AssemblyContext component) {
+	public static List<ServiceRestriction> getProvidedRestrictions(AssemblyContextDetail detail) {
 		var listRestriction = new ArrayList<ServiceRestriction>();
 
-		var repoComponent = component.getEncapsulatedComponent__AssemblyContext();
-		if (repoComponent instanceof BasicComponent) {
-			for (var seff : ((BasicComponent) repoComponent).getServiceEffectSpecifications__BasicComponent()) {
-				if (seff instanceof ResourceDemandingSEFF) {
-					var specification = StructureFactory.eINSTANCE.createServiceRestriction();
-					specification.setAssemblycontext(component);
-					specification.setService((ResourceDemandingSEFF) seff);
-					specification.setSignature(seff.getDescribedService__SEFF());
-					listRestriction.add(specification);
+		for (AssemblyContext component : detail.getCompromisedComponents()) {
+			var repoComponent = component.getEncapsulatedComponent__AssemblyContext();
+			if (repoComponent instanceof BasicComponent) {
+				for (var seff : ((BasicComponent) repoComponent).getServiceEffectSpecifications__BasicComponent()) {
+					if (seff instanceof ResourceDemandingSEFF) {
+						var specification = StructureFactory.eINSTANCE.createServiceRestriction();
+						specification.setAssemblycontext(component);
+						specification.setService((ResourceDemandingSEFF) seff);
+						specification.setSignature(seff.getDescribedService__SEFF());
+						listRestriction.add(specification);
+					}
+				}
+			} else if (repoComponent instanceof CompositeComponent) {
+				List<AssemblyContextDetail> details = getAssemblyContextDetail(
+						((CompositeComponent) repoComponent).getAssemblyContexts__ComposedStructure());
+				for (AssemblyContextDetail assemblyDetail : details) {
+					listRestriction.addAll(getProvidedRestrictions(assemblyDetail));
 				}
 			}
-		} else if (repoComponent instanceof CompositeComponent) {
-			var listRestrictionComposite = new ArrayList<ServiceRestriction>();
-			for (AssemblyContext assembly : ((CompositeComponent) repoComponent)
-					.getAssemblyContexts__ComposedStructure()) {
-				listRestrictionComposite.addAll(getProvidedRestrictions(assembly));
-			}
-			return listRestrictionComposite;
-
 		}
-
 		return listRestriction;
 	}
 
@@ -157,8 +155,7 @@ public class CollectionHelper {
 			AttackerSystemSpecificationContainer container, final CredentialChange change) {
 
 		for (final var component : compromisedAssemblies) {
-			final var serviceRestrictions = CollectionHelper
-					.getProvidedRestrictions(component.getAffectedElement().getCompromisedComponents());
+			final var serviceRestrictions = CollectionHelper.getProvidedRestrictions(component.getAffectedElement());
 
 			final var causingElement = new ArrayList<AssemblyContextDetail>();
 			causingElement.add(component.getAffectedElement());
@@ -178,7 +175,7 @@ public class CollectionHelper {
 
 	private static boolean containsService(final CompromisedService service, final CredentialChange change) {
 		return change.getCompromisedservice().stream().anyMatch(referenceComponent -> EcoreUtil
-                .equals(referenceComponent.getAffectedElement(), service.getAffectedElement()));
+				.equals(referenceComponent.getAffectedElement(), service.getAffectedElement()));
 	}
 
 	private static List<CompromisedService> removeServices(List<CompromisedService> services) {

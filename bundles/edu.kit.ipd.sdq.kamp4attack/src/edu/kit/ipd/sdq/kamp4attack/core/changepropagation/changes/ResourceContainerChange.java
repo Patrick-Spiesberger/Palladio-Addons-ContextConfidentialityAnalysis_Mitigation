@@ -8,8 +8,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CollectionHelper;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.HelperCreationCompromisedElements;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.PCMAttributeProvider;
-import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import edu.kit.ipd.sdq.kamp.architecture.ArchitectureModelLookup;
@@ -66,12 +66,12 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 			handler.attackAssemblyContext(assemblyContextDetail, this.changes, resource, getAttacker());
 
-			handleSeff(this.changes, assemblycontext, resource);
+			handleSeff(this.changes, assemblyContextDetail, resource);
 		}
 
 	}
 
-	protected abstract void handleSeff(CredentialChange changes, List<AssemblyContext> components,
+	protected abstract void handleSeff(CredentialChange changes, List<AssemblyContextDetail> components,
 			ResourceContainer source);
 
 	protected abstract AssemblyContextHandler getAssemblyHandler();

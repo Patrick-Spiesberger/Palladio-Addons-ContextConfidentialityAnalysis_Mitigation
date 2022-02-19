@@ -142,10 +142,10 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 					new DataHandlerAttacker(this.changePropagationDueToCredential)) {
 
 				/*
-				 * A component is always represented as an AssemblyContextDetail.
-				 * An unassembled component has a length of one. This method goes through each
-				 * component and checks the vulnerability for each component for vulnerability
-				 * and returns the list of compromiseable components in the inital step
+				 * A component is always represented as an AssemblyContextDetail. An unassembled
+				 * component has a length of one. This method goes through each component and
+				 * checks the vulnerability for each component for vulnerability and returns the
+				 * list of compromiseable components in the inital step
 				 */
 				@Override
 				protected Optional<CompromisedAssembly> attackComponent(AssemblyContextDetail component,

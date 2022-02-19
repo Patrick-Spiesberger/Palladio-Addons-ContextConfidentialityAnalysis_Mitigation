@@ -31,8 +31,8 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 	 * @param components : potentially vulnerable AssemblyContextDetails
 	 * @param attacker   : necessary for the skills of an attacker
 	 */
-	public void attackAssemblyContext(final Collection<AssemblyContextDetail> components,
-			final CredentialChange change, final EObject source, Attacker attacker) {
+	public void attackAssemblyContext(final Collection<AssemblyContextDetail> components, final CredentialChange change,
+			final EObject source, Attacker attacker) {
 
 		List<CompromisedAssembly> compromisedComponents = new LinkedList<>();
 
@@ -46,9 +46,11 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 
 				handleDataExtraction(newCompromisedComponent, change, attacker);
 				change.setChanged(true);
+				
 				for (CompromisedAssembly component : newCompromisedComponent) {
 					change.getCompromisedassembly().add(component);
 				}
+				
 				CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
 						change);
 			}
@@ -64,11 +66,12 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 		filteredComponents = CollectionHelper.removeDuplicates(filteredComponents);
 
 		MitigationHelper mitigationHelper = new MitigationHelper();
-		
+
 		for (AssemblyContextDetail assembly : filteredComponents) {
 			final var dataList = assembly.getCompromisedComponents().stream().distinct()
 					.flatMap(component -> DataHandler.getData(component, change, attacker).stream())
-					.filter(data -> mitigationHelper.isCrackable(data, attacker.getAttacks(), change)).collect(Collectors.toList());
+					.filter(data -> mitigationHelper.isCrackable(data, attacker.getAttacks(), change))
+					.collect(Collectors.toList());
 			getDataHandler().addData(dataList);
 		}
 	}

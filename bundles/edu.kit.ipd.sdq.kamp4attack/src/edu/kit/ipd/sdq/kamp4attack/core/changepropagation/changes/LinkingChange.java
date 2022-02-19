@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CollectionHelper;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.PCMAttributeProvider;
-import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
 
 import edu.kit.ipd.sdq.kamp.architecture.ArchitectureModelLookup;
@@ -73,11 +73,11 @@ public abstract class LinkingChange extends Change<LinkingResource> implements L
 			reachableAssembliesDetails = CollectionHelper.removeDuplicates(reachableAssembliesDetails);
 			handler.attackAssemblyContext(reachableAssembliesDetails, this.changes, linking, getAttacker());
 
-			handleSeff(this.changes, reachableAssemblies, linking);
+			handleSeff(this.changes, reachableAssembliesDetails, linking);
 		}
 	}
 
-	protected abstract void handleSeff(CredentialChange changes, List<AssemblyContext> components,
+	protected abstract void handleSeff(CredentialChange changes, List<AssemblyContextDetail> components,
 			LinkingResource source);
 
 	protected List<LinkingResource> getCompromisedLinkingResources() {
