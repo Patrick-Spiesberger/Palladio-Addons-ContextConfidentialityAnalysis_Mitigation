@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.confidentiality.attacker.helper.VulnerabilityHelper;
-import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.DatamodelAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Encryption;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.MitigationSpecification;
@@ -43,6 +42,9 @@ public class MitigationHelper {
 	 *         broken
 	 */
 	public boolean isCrackable(PCMElement component, final List<Attack> attacks, final CredentialChange change) {
+		if (component.getMitigation() == null) {
+			return true;
+		}
 		List<MitigationSpecification> mitigation = component.getMitigation().getMitigationspecification();
 		if (mitigation.size() == 0) { // no mitigation defined
 			return true;
@@ -64,7 +66,10 @@ public class MitigationHelper {
 	 * Checks whether there are concrete mechanisms for protecting the data
 	 * (encryption) and whether these can be broken
 	 */
-	public boolean isCrackable(final DatamodelAttacker data,final List<Attack> attacks, final CredentialChange change) {
+	public boolean isCrackable(final DatamodelAttacker data, final List<Attack> attacks, final CredentialChange change) {
+		if (data.getMitigation() == null) {
+			return true;
+		}
 		List<MitigationSpecification> mitigation = data.getMitigation().getMitigationspecification();
 		if (mitigation.size() == 0) { // no mitigation defined
 			return true;

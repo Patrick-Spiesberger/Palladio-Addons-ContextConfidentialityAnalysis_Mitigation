@@ -29,8 +29,7 @@ public class AssemblyContextContext extends AssemblyContextHandler {
 
 	private AssemblyContextDetail assemblyDetail;
 
-	@Override
-	protected Optional<CompromisedAssembly> attackComponent(final AssemblyContext component,
+	private Optional<CompromisedAssembly> attackComponent(final AssemblyContext component,
 			final CredentialChange change, final EObject source, Attacker attacker) {
 		final List<? extends UsageSpecification> credentials = this.getCredentials(change);
 

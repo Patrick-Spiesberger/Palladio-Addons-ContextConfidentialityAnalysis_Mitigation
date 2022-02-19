@@ -13,7 +13,6 @@ import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.D
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
-import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
 import edu.kit.ipd.sdq.kamp4attack.core.mitigation.MitigationHelper;
@@ -82,9 +81,6 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 	 */
 	protected abstract Optional<CompromisedAssembly> attackComponent(AssemblyContextDetail component,
 			CredentialChange change, EObject source, Attacker attacker);
-
-	protected abstract Optional<CompromisedAssembly> attackComponent(AssemblyContext component, CredentialChange change,
-			EObject source, Attacker attacker);
 
 	private Collection<CompromisedAssembly> filterExsitingComponent(final Collection<CompromisedAssembly> components,
 			final CredentialChange change) {

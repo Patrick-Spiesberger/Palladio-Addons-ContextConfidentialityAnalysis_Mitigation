@@ -9,7 +9,6 @@ import org.osgi.service.component.annotations.Component;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
-import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 
 import edu.kit.ipd.sdq.kamp.propagation.AbstractChangePropagationAnalysis;
 import edu.kit.ipd.sdq.kamp4attack.core.changepropagation.attackhandlers.AssemblyContextHandler;
@@ -141,12 +140,6 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 			// convert affectedAssemblyContexts to changes
 			var assemblyHandler = new AssemblyContextHandler(board,
 					new DataHandlerAttacker(this.changePropagationDueToCredential)) {
-				//never used, required for abstract class AssemblyContextHandler
-				@Override
-				protected Optional<CompromisedAssembly> attackComponent(AssemblyContext component,
-						CredentialChange change, EObject source, Attacker attacker) {
-					return Optional.empty();
-				}
 
 				/*
 				 * A component is always represented as an AssemblyContextDetail.
