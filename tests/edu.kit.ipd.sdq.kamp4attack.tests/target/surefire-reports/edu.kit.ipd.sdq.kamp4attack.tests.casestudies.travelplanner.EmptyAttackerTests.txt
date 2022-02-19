@@ -1,6 +1,0 @@
--------------------------------------------------------------------------------
-Test set: edu.kit.ipd.sdq.kamp4attack.tests.casestudies.travelplanner.EmptyAttackerTests
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.116 s - in edu.kit.ipd.sdq.kamp4attack.tests.casestudies.travelplanner.EmptyAttackerTests
-defaultCase  Time elapsed: 0.057 s
-noPropagation  Time elapsed: 0.058 s

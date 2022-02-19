@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.kit.ipd.sdq.kamp4attack.tests.change.ConvertingInputModelTest" time="0.685" tests="5" errors="0" skipped="0" failures="0">
-  <properties/>
-  <testcase name="testTransformationContext" classname="edu.kit.ipd.sdq.kamp4attack.tests.change.ConvertingInputModelTest" time="0.072"/>
-  <testcase name="testTransformationAssembly" classname="edu.kit.ipd.sdq.kamp4attack.tests.change.ConvertingInputModelTest" time="0.172"/>
-  <testcase name="testTransformationResource" classname="edu.kit.ipd.sdq.kamp4attack.tests.change.ConvertingInputModelTest" time="0.112"/>
-  <testcase name="testAllTransfomations" classname="edu.kit.ipd.sdq.kamp4attack.tests.change.ConvertingInputModelTest" time="0.171"/>
-  <testcase name="testTransformationLinking" classname="edu.kit.ipd.sdq.kamp4attack.tests.change.ConvertingInputModelTest" time="0.153"/>
-</testsuite>

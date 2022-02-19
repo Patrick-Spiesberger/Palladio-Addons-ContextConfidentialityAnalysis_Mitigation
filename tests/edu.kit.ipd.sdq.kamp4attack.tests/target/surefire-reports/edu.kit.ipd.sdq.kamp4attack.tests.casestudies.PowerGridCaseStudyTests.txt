@@ -1,6 +1,0 @@
--------------------------------------------------------------------------------
-Test set: edu.kit.ipd.sdq.kamp4attack.tests.casestudies.PowerGridCaseStudyTests
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.956 s - in edu.kit.ipd.sdq.kamp4attack.tests.casestudies.PowerGridCaseStudyTests
-defaultCase  Time elapsed: 0.5 s
-defaultCaseCorrectAssemblyNumber  Time elapsed: 0.455 s

@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.palladiosimulator.pcm.confidentiality.attacker.analysis.rollout.tests.RolloutTest
--------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.81 s - in org.palladiosimulator.pcm.confidentiality.attacker.analysis.rollout.tests.RolloutTest
-testRollOutRole  Time elapsed: 1.709 s
-testNoRollOut  Time elapsed: 0.033 s
-testRollOutVulnerability  Time elapsed: 0.023 s
-testRollOutNonglobalCommunication  Time elapsed: 0.025 s

@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: edu.kit.ipd.sdq.kamp4attack.tests.ModelsTest
--------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.283 s - in edu.kit.ipd.sdq.kamp4attack.tests.ModelsTest
-testCorrectReturnValues  Time elapsed: 2.192 s
-testCorrectReturnTypes  Time elapsed: 0.376 s
-testCorrectReturnSize  Time elapsed: 0.327 s
-testNoNullValue  Time elapsed: 0.294 s
