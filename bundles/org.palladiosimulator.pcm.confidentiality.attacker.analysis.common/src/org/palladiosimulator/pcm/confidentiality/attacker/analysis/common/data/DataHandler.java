@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CollectionHelper;
-import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AttackerFactory;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.DatamodelAttacker;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.ServiceRestriction;
@@ -20,7 +19,6 @@ import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.Parameter;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ResourceDemandingSEFF;
@@ -33,8 +31,7 @@ public class DataHandler {
 
 	}
 
-	public static Collection<DatamodelAttacker> getData(AssemblyContext assemblyContext, CredentialChange change,
-			final Attacker attacker) {
+	public static Collection<DatamodelAttacker> getData(AssemblyContext assemblyContext, CredentialChange change) {
 
 		var component = assemblyContext.getEncapsulatedComponent__AssemblyContext();
 		try {
@@ -84,7 +81,7 @@ public class DataHandler {
 	}
 
 	public static List<DatamodelAttacker> getData(final ResourceContainer resource, final Allocation allocation,
-			CredentialChange change, Attacker attacker) {
+			CredentialChange change) {
 		List<AssemblyContext> assemblyContexts = CollectionHelper.getAssemblyContext(List.of(resource), allocation);
 		List<AssemblyContext> returnList = new LinkedList<>(); // to avoid ConcurrentModificationException
 
@@ -96,18 +93,16 @@ public class DataHandler {
 			}
 		}
 
-		return returnList.stream().flatMap(e -> getData(e, change, attacker).stream()).collect(Collectors.toList());
+		return returnList.stream().flatMap(e -> getData(e, change).stream()).collect(Collectors.toList());
 	}
 
-	public static Collection<DatamodelAttacker> getData(ServiceRestriction serviceRestriction, CredentialChange change,
-			Attacker attacker) {
-		var dataList = getData(serviceRestriction.getService(), change, attacker);
+	public static Collection<DatamodelAttacker> getData(ServiceRestriction serviceRestriction, CredentialChange change) {
+		var dataList = getData(serviceRestriction.getService(), change);
 		dataList.stream().forEach(data -> data.setSource(serviceRestriction));
 		return dataList;
 	}
 
-	private static Collection<DatamodelAttacker> getData(final ResourceDemandingSEFF seff, CredentialChange change,
-			Attacker attacker) {
+	private static Collection<DatamodelAttacker> getData(final ResourceDemandingSEFF seff, CredentialChange change) {
 		var parameterStream = ((OperationSignature) seff.getDescribedService__SEFF())
 				.getParameters__OperationSignature().stream();
 

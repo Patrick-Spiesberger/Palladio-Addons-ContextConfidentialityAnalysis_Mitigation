@@ -49,7 +49,7 @@ class DataTest {
 
         final var component = this.systemFactory.newAssemblyContext()
                 .withEncapsulatedComponent(this.repositoryFactory.fetchOfBasicComponent("TestComponent")).build();
-        final var data = DataHandler.getData(component, null, null);
+        final var data = DataHandler.getData(component, null);
 
         assertEquals(1, data.size());
 
@@ -77,7 +77,7 @@ class DataTest {
 
         final var component = this.systemFactory.newAssemblyContext()
                 .withEncapsulatedComponent(this.repositoryFactory.fetchOfBasicComponent("TestComponent")).build();
-        final var data = DataHandler.getData(component, null, null);
+        final var data = DataHandler.getData(component, null);
 
         assertEquals(1, data.size());
 
@@ -104,7 +104,7 @@ class DataTest {
 
         final var component = this.systemFactory.newAssemblyContext()
                 .withEncapsulatedComponent(this.repositoryFactory.fetchOfBasicComponent("TestComponent")).build();
-        final var data = DataHandler.getData(component, null, null);
+        final var data = DataHandler.getData(component, null);
 
         assertEquals(1, data.size());
 
@@ -131,7 +131,7 @@ class DataTest {
 
         final var component = this.systemFactory.newAssemblyContext()
                 .withEncapsulatedComponent(this.repositoryFactory.fetchOfBasicComponent("TestComponent")).build();
-        final var data = DataHandler.getData(component, null, null);
+        final var data = DataHandler.getData(component, null);
 
         assertEquals(1, data.size());
 
@@ -159,7 +159,7 @@ class DataTest {
 
         final var component = this.systemFactory.newAssemblyContext()
                 .withEncapsulatedComponent(this.repositoryFactory.fetchOfBasicComponent("TestComponent")).build();
-        final var data = DataHandler.getData(component, null, null);
+        final var data = DataHandler.getData(component, null);
 
         assertEquals(2, data.size());
 
@@ -192,7 +192,7 @@ class DataTest {
         final var component = this.repositoryFactory.fetchOfBasicComponent("TestComponent");
         var serviceRestriction = createServiceRestrictions(component);
         final var data = DataHandler
-                .getData(serviceRestriction, null, null);
+                .getData(serviceRestriction, null);
 
         assertEquals(2, data.size());
 
@@ -238,7 +238,7 @@ class DataTest {
         final var component = this.repositoryFactory.fetchOfBasicComponent("TestComponent");
         var serviceRestriction = createServiceRestrictions(component);
         final var data = DataHandler
-                .getData(serviceRestriction, null, null);
+                .getData(serviceRestriction, null);
 
         assertEquals(3, data.size());
 
@@ -300,7 +300,7 @@ class DataTest {
 
         final var component = this.systemFactory.newAssemblyContext()
                 .withEncapsulatedComponent(this.repositoryFactory.fetchOfBasicComponent("TestComponent")).build();
-        final var data = DataHandler.getData(component, null, null);
+        final var data = DataHandler.getData(component, null);
 
         assertEquals(3, data.size());
 

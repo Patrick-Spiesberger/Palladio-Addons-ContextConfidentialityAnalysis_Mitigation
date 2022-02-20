@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AttackerFactory;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.ServiceRestriction;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
@@ -48,7 +49,12 @@ public class HelperCreationCompromisedElements {
 			final AssemblyContextDetail detail, final Collection<? extends EObject> list) {
 		final var compromisedResource = KAMP4attackModificationmarksFactory.eINSTANCE.createCompromisedAssembly();
 		compromisedResource.setToolderived(true);
-		compromisedResource.setAffectedElement(detail);
+		AssemblyContextDetail assemblyDetail = AttackerFactory.eINSTANCE.createAssemblyContextDetail();
+		assemblyDetail.getCompromisedComponents().add(detail.getCompromisedComponents().get(0));
+		assemblyDetail.getCompromisedComponents().add(container);
+		assemblyDetail.setEntityName(detail.getEntityName());
+		assemblyDetail.setId(detail.getId());
+		compromisedResource.setAffectedElement(assemblyDetail);
 		compromisedResource.getCausingElements().addAll(list);
 		return compromisedResource;
 	}

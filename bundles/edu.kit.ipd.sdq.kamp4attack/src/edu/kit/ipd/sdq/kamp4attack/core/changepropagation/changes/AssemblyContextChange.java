@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CollectionHelper;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AttackerFactory;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.NonGlobalCommunication;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.PCMAttributeProvider;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.ServiceRestriction;
@@ -165,8 +166,17 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 				final var handler = getAssemblyHandler();
 				targetComponents = CollectionHelper.removeDuplicates(targetComponents).stream()
 						.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
-				handler.attackAssemblyContext(CollectionHelper.getAssemblyContextDetail(targetComponents), this.changes,
-						component, getAttacker());
+
+				List<AssemblyContextDetail> detailsToAttack = new LinkedList<>();
+				for (AssemblyContext assembly : targetComponents) {
+					AssemblyContextDetail assemblyDetail = AttackerFactory.eINSTANCE.createAssemblyContextDetail();
+					assemblyDetail.getCompromisedComponents().addAll(detail.getCompromisedComponents());
+					assemblyDetail.getCompromisedComponents().add(assembly);
+					assemblyDetail.setEntityName(detail.getEntityName());
+					assemblyDetail.setId(detail.getId());
+					detailsToAttack.add(assemblyDetail);
+				}
+				handler.attackAssemblyContext(detailsToAttack, this.changes, component, getAttacker());
 				this.handleSeff(component);
 			}
 		}
@@ -193,10 +203,10 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 						this.changes, component, getAttacker());
 
 				for (AssemblyContext context : reachableAssemblies) {
-					var listServices = CollectionHelper.getProvidedRestrictions(CollectionHelper
-							.getAssemblyContextDetail(List.of(context))
-							.get(0)).stream()
-							.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
+					var listServices = CollectionHelper
+							.getProvidedRestrictions(CollectionHelper.getAssemblyContextDetail(List.of(context)).get(0))
+							.stream().filter(e -> !CacheCompromised.instance().compromised(e))
+							.collect(Collectors.toList());
 					handleSeff(this.changes, listServices, component);
 				}
 

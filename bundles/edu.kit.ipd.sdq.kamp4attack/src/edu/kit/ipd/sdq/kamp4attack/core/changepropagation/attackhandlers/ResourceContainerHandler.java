@@ -47,7 +47,7 @@ public abstract class ResourceContainerHandler extends AttackHandler {
 		MitigationHelper mitigationHelper = new MitigationHelper();
 		
 		final var dataList = filteredComponents.stream().flatMap(
-				resource -> DataHandler.getData(resource, getModelStorage().getAllocation(), change, attacker).stream())
+				resource -> DataHandler.getData(resource, getModelStorage().getAllocation(), change).stream())
 				.filter(data -> mitigationHelper.isCrackable(data, attacker.getAttacks(), change)).collect(Collectors.toList());
 		getDataHandler().addData(dataList);
 	}

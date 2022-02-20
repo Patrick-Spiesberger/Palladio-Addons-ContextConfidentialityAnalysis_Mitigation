@@ -61,7 +61,7 @@ public abstract class MethodHandler extends AttackHandler {
 
 		for (AssemblyContextDetail assemblyDetailList : filteredComponents) {
 			final var dataList = assemblyDetailList.getCompromisedComponents().stream().distinct()
-					.flatMap(component -> DataHandler.getData(component, change, attacker).stream())
+					.flatMap(component -> DataHandler.getData(component, change).stream())
 					.filter(data -> mitigationHelper.isCrackable(data, attacker.getAttacks(), change))
 					.collect(Collectors.toList());
 
