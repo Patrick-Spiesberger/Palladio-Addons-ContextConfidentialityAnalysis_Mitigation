@@ -14,26 +14,43 @@ import org.palladiosimulator.pcm.repository.CompositeComponent;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.system.System;
 
+/**
+ * Helper class for handling composite components
+ * 
+ * @author Patrick Spiesberger
+ *
+ */
 public class CompositeHelper {
 
+	/**
+	 * checks if given component is a CompositeComponent
+	 */
 	public static boolean isCompositeComponent(AssemblyContext context) {
 		if (context.getEncapsulatedComponent__AssemblyContext() instanceof CompositeComponent) {
 			return true;
 		}
 		return false; // BasicComponent
 	}
-	
+
+	/**
+	 * Returns nearby components. If it is a compound component, the sub-items are
+	 * returned, otherwise the neighboring ones
+	 */
 	public static List<AssemblyContext> getConnectedComponents(final AssemblyContext component, final System system) {
 		if (isCompositeComponent(component)) {
 			return getDeligatedCompositeComponents(component, system);
-		}
-		else {
+		} else {
 			return getConnectedBasicComponents(component, system);
 		}
-		
+
 	}
 
-	private static List<AssemblyContext> getConnectedBasicComponents(final AssemblyContext component, System system) {
+	/*
+	 * Returns all connected components. Caution: No components within a composite
+	 * component are returned. The getDeligatedCompositeComponents method is used
+	 * for this
+	 */
+	public static List<AssemblyContext> getConnectedBasicComponents(final AssemblyContext component, System system) {
 		final var targetConnectors = getTargetedConnectors(component, system);
 
 		final var targetComponents = targetConnectors.stream()
@@ -46,7 +63,7 @@ public class CompositeHelper {
 		return targetComponents;
 	}
 
-	private static List<AssemblyConnector> getTargetedConnectors(final AssemblyContext component, final System system) {
+	public static List<AssemblyConnector> getTargetedConnectors(final AssemblyContext component, final System system) {
 		return system.getConnectors__ComposedStructure().stream().filter(AssemblyConnector.class::isInstance)
 				.map(AssemblyConnector.class::cast)
 				.filter(e -> EcoreUtil.equals(e.getRequiringAssemblyContext_AssemblyConnector(), component)
@@ -62,7 +79,8 @@ public class CompositeHelper {
 				.collect(Collectors.toList());
 	}
 
-	private static List<AssemblyContext> getDeligatedCompositeComponents(final AssemblyContext component, System system) {
+	public static List<AssemblyContext> getDeligatedCompositeComponents(final AssemblyContext component,
+			System system) {
 		final var targetConnectors = getDelicatedConnectors(component, system);
 
 		AssemblyContextDetail detail = CollectionHelper.getAssemblyContextDetail(List.of(component)).get(0);

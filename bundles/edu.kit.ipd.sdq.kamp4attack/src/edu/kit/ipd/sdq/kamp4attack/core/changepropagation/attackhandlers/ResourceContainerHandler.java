@@ -17,6 +17,13 @@ import edu.kit.ipd.sdq.kamp4attack.core.mitigation.MitigationHelper;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedResource;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
+/**
+ * this class provides all the necessary methods for attacking ResourceContainers
+ * 
+ * @author Maximilian Walter
+ * @author Patrick Spiesberger
+ *
+ */
 public abstract class ResourceContainerHandler extends AttackHandler {
 
 	public ResourceContainerHandler(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
@@ -43,7 +50,8 @@ public abstract class ResourceContainerHandler extends AttackHandler {
 				.map(CompromisedResource::getAffectedElement).collect(Collectors.toList());
 
 		filteredComponents = CollectionHelper.removeDuplicates(filteredComponents);
-
+		
+		//considers the case as to whether encryption is possible
 		MitigationHelper mitigationHelper = new MitigationHelper();
 		
 		final var dataList = filteredComponents.stream().flatMap(

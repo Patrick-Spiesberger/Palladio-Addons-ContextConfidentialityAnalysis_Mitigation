@@ -18,6 +18,12 @@ import edu.kit.ipd.sdq.kamp4attack.core.changepropagation.attackhandlers.Linking
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedLinkingResource;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
+/**
+ * This class implements a concrete attack on a LinkingResource
+ * 
+ * @author Maximilian Walter
+ *
+ */
 public class LinkingResourceContext extends LinkingResourceHandler {
 
 	public LinkingResourceContext(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {

@@ -1,15 +1,18 @@
 package edu.kit.ipd.sdq.kamp4attack.core.changepropagation.changes;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CollectionHelper;
+import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.CompositeHelper;
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.HelperCreationCompromisedElements;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.PCMAttributeProvider;
+import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import edu.kit.ipd.sdq.kamp.architecture.ArchitectureModelLookup;
@@ -84,9 +87,19 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 			final var localComponents = this.modelStorage.getAllocation().getAllocationContexts_Allocation().stream()
 					.filter(e -> EcoreUtil.equals(resource, e.getResourceContainer_AllocationContext()))
 					.map(AllocationContext::getAssemblyContext_AllocationContext)
-					.filter(e -> !CacheCompromised.instance().compromised(e));
+					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
+			//TODO: schauen ob subkomponente und dann einzeln in Lste hinzufügen
 
-			final var streamChanges = localComponents
+			List<AssemblyContext> assemblies = new LinkedList<>();
+			for (AssemblyContext assembly : localComponents) {
+				assemblies
+						.addAll(CompositeHelper.getDeligatedCompositeComponents(assembly, this.modelStorage.getAssembly()));
+			}
+			
+			System.out.println(assemblies.get(0).getEntityName());
+			System.out.println(assemblies.get(1).getEntityName());
+
+			final var streamChanges = assemblies.stream()
 					.map(e -> HelperCreationCompromisedElements.createCompromisedAssembly(e,
 							CollectionHelper.getAssemblyContextDetail(List.of(e)).get(0), List.of(resource)));
 

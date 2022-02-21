@@ -19,7 +19,8 @@ import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificati
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
 /**
- * This class is responsible for handling the crackability of an entire element.
+ * This class is responsible for handling the crackability of encrypted data or
+ * the prevention of an entire component
  * 
  * @author Patrick Spiesberger
  *
@@ -66,7 +67,8 @@ public class MitigationHelper {
 	 * Checks whether there are concrete mechanisms for protecting the data
 	 * (encryption) and whether these can be broken
 	 */
-	public boolean isCrackable(final DatamodelAttacker data, final List<Attack> attacks, final CredentialChange change) {
+	public boolean isCrackable(final DatamodelAttacker data, final List<Attack> attacks,
+			final CredentialChange change) {
 		if (data.getMitigation() == null) {
 			return true;
 		}
@@ -75,8 +77,8 @@ public class MitigationHelper {
 			return true;
 		}
 		for (Encryption encryption : filterEncryption(mitigation)) {
-			var vulnerability = VulnerabilityHelper.checkAttack(false, encryption.getVulnerabilities(),
-					attacks, AttackVector.LOCAL, null);
+			var vulnerability = VulnerabilityHelper.checkAttack(false, encryption.getVulnerabilities(), attacks,
+					AttackVector.LOCAL, null);
 			if (vulnerability != null) {
 				if (mitigationIsBreakable(encryption.getNecessaryCredentials(),
 						getCredentials(change, vulnerability))) {
@@ -104,6 +106,15 @@ public class MitigationHelper {
 		return permissions;
 	}
 
+	/**
+	 * Checks whether the attacker has all the necessary attributes
+	 * (UsageSpecification) to break the mitigation
+	 * 
+	 * @param requiredPermissions : permissions to break mitigation
+	 * @param permissions         : actual permissions of the attacker
+	 * @return true if mitigation is breakable (will therefore not be considered in
+	 *         the further course)
+	 */
 	private boolean mitigationIsBreakable(List<UsageSpecification> requiredPermissions,
 			List<UsageSpecification> permissions) {
 		boolean contains = false;

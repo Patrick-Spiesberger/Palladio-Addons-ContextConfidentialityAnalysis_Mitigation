@@ -19,6 +19,12 @@ import edu.kit.ipd.sdq.kamp4attack.core.changepropagation.attackhandlers.MethodH
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
+/**
+ * This class implements a concrete attack on an assembly context
+ * 
+ * @author Maximilian Walter
+ *
+ */
 public class MethodContext extends MethodHandler {
 
 	public MethodContext(BlackboardWrapper modelStorage, DataHandlerAttacker dataHandler) {

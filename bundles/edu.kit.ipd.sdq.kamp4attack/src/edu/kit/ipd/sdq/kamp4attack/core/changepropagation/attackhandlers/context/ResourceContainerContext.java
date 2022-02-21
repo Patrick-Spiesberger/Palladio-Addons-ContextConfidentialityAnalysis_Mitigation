@@ -18,6 +18,12 @@ import edu.kit.ipd.sdq.kamp4attack.core.changepropagation.attackhandlers.Resourc
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedResource;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
+/**
+ * This class implements a concrete attack on a ResourceContainer
+ * 
+ * @author Maximilian Walter
+ *
+ */
 public class ResourceContainerContext extends ResourceContainerHandler {
 
 	public ResourceContainerContext(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {

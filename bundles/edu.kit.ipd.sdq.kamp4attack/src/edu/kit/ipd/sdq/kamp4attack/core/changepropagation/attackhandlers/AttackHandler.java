@@ -39,6 +39,7 @@ import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificati
  * methods for concrete subclasses
  *
  * @author majuwa
+ * @author Patrick Spiesberger
  *
  */
 public abstract class AttackHandler {
@@ -194,6 +195,7 @@ public abstract class AttackHandler {
 
 		final var roleSpecification = VulnerabilityHelper.getRoles(getModelStorage().getVulnerabilitySpecification());
 
+		//considers the case as to whether prevention is possible
 		MitigationHelper mitigationHelper = new MitigationHelper();
 
 		final var roles = roleSpecification.stream()
@@ -206,6 +208,12 @@ public abstract class AttackHandler {
 		return vulnerability;
 	}
 
+	/**
+	 * For subcomponents, it may be possible for the attack vector to change to
+	 * local. This property is returned in this method
+	 * 
+	 * @return true if subcomponent should be treated with a local attack vector
+	 */
 	public boolean changeAttackVector() {
 		final var roleSpecification = VulnerabilityHelper.getRoles(getModelStorage().getVulnerabilitySpecification());
 		for (RoleSystemIntegration role : roleSpecification) {

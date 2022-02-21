@@ -23,6 +23,13 @@ import edu.kit.ipd.sdq.kamp4attack.core.mitigation.MitigationHelper;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
+/**
+ * This class handles the attack on services
+ * 
+ * @author Maximilian Walter
+ * @author patrick
+ *
+ */
 public abstract class MethodHandler extends AttackHandler {
 
 	public MethodHandler(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
@@ -57,6 +64,7 @@ public abstract class MethodHandler extends AttackHandler {
 
 		filteredComponents = CollectionHelper.removeDuplicates(filteredComponents);
 
+		//considers the case as to whether encryption is possible
 		MitigationHelper mitigationHelper = new MitigationHelper();
 
 		for (AssemblyContextDetail assemblyDetailList : filteredComponents) {
@@ -72,6 +80,9 @@ public abstract class MethodHandler extends AttackHandler {
 	protected abstract Optional<CompromisedAssembly> attackComponent(ServiceRestriction component,
 			CredentialChange change, EObject source, Attacker attacker);
 
+	/*
+	 * filters out compromised assemblies already present in the changes
+	 */
 	private Collection<CompromisedAssembly> filterExsiting(final Collection<CompromisedAssembly> components,
 			final CredentialChange change) {
 		return components.stream().filter(component -> !contains(component, change)).collect(Collectors.toList());

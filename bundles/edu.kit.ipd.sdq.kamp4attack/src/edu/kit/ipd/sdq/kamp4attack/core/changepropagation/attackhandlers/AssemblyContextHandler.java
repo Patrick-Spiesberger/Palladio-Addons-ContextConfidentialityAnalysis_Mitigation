@@ -19,6 +19,13 @@ import edu.kit.ipd.sdq.kamp4attack.core.mitigation.MitigationHelper;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
+/**
+ * this class provides all the necessary methods for attacking AssemblyContexts
+ * 
+ * @author Maximilian Walter
+ * @author Patrick Spiesberger
+ *
+ */
 public abstract class AssemblyContextHandler extends AttackHandler {
 
 	protected AssemblyContextHandler(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
@@ -46,11 +53,11 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 
 				handleDataExtraction(newCompromisedComponent, change, attacker);
 				change.setChanged(true);
-				
+
 				for (CompromisedAssembly component : newCompromisedComponent) {
 					change.getCompromisedassembly().add(component);
 				}
-				
+
 				CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
 						change);
 			}

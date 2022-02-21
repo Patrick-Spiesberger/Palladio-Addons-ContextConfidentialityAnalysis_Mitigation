@@ -16,7 +16,6 @@ import com.google.common.collect.Lists;
  * This class is responsible for the list operations related to access control
  * 
  * @author Patrick Spiesberger
- * @version 1.0
  *
  */
 public class ListOperations {

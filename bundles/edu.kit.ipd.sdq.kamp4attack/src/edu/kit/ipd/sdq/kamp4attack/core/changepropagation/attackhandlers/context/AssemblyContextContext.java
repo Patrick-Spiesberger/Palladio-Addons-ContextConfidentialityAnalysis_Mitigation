@@ -20,12 +20,19 @@ import edu.kit.ipd.sdq.kamp4attack.core.changepropagation.attackhandlers.Assembl
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
+/**
+ * This class implements a concrete attack on an AssemblyContext
+ * 
+ * @author Maximilian Walter
+ * @author Patrick Spiesberger
+ *
+ */
 public class AssemblyContextContext extends AssemblyContextHandler {
 
 	public AssemblyContextContext(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
 		super(modelStorage, dataHandler);
 	}
-
+	
 	@Override
 	protected Optional<CompromisedAssembly> attackComponent(AssemblyContextDetail component, CredentialChange change,
 			EObject source, Attacker attacker) {

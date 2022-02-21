@@ -29,6 +29,7 @@ import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificati
  * Entry point for attack propagation
  *
  * @author majuwa
+ * @author Patrick Spiesberger
  *
  */
 
