@@ -69,6 +69,14 @@ public class CollectionHelper {
 		}
 		return details;
 	}
+	
+	public static AssemblyContextDetail createAssemblyContextDetail(AssemblyContext context) {
+		AssemblyContextDetail detail = AttackerFactory.eINSTANCE.createAssemblyContextDetail();
+		detail.getCompromisedComponents().add(context);
+		detail.setEntityName(context.getEntityName());
+		detail.setId(context.getId());
+		return detail;
+	}
 
 	public static List<AssemblyContext> getAllBasicComponents(AssemblyContext assembly) {
 		List<AssemblyContext> returnList = new LinkedList<>();
