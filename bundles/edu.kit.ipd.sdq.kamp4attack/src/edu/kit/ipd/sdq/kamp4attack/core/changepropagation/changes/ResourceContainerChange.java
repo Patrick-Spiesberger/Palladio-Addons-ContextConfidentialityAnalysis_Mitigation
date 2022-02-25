@@ -62,7 +62,24 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 			final var resources = getConnectedResourceContainers(resource);
 			var assemblycontext = CollectionHelper.getAssemblyContext(resources, this.modelStorage.getAllocation());
 
-			var assemblyContextDetail = CollectionHelper.getAssemblyContextDetail(assemblycontext);
+			List<AssemblyContext> otherCompositeComponents = new LinkedList<>(assemblycontext);
+
+			List<AssemblyContextDetail> assemblyContextDetail = new LinkedList<>();
+			for (AssemblyContext assembly : assemblycontext) {
+				if (CompositeHelper.isCompositeComponent(assembly)) {
+					var delegatedComponents = CompositeHelper.getDelegatedCompositeComponents(assembly,
+							this.modelStorage.getAssembly());
+					assemblyContextDetail.addAll(CompositeHelper.createDetails(
+							CollectionHelper.createAssemblyContextDetail(assembly), delegatedComponents));
+					for (AssemblyContext duplicatedElement : delegatedComponents) {
+						otherCompositeComponents.remove(duplicatedElement);
+					}
+				}
+			}
+
+			for (AssemblyContext context : otherCompositeComponents) {
+				assemblyContextDetail.add(CollectionHelper.createAssemblyContextDetail(context));
+			}
 
 			final var handler = getAssemblyHandler();
 			assemblyContextDetail = CollectionHelper.removeDuplicates(assemblyContextDetail).stream()
@@ -88,24 +105,17 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 					.filter(e -> EcoreUtil.equals(resource, e.getResourceContainer_AllocationContext()))
 					.map(AllocationContext::getAssemblyContext_AllocationContext)
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
-			//TODO: schauen ob subkomponente und dann einzeln in Lste hinzufügen
 
-			List<AssemblyContext> assemblies = new LinkedList<>();
-			for (AssemblyContext assembly : localComponents) {
-				assemblies
-						.addAll(CompositeHelper.getDeligatedCompositeComponents(assembly, this.modelStorage.getAssembly()));
-			}
+			var streamChanges = localComponents.stream()
+					.map(e -> HelperCreationCompromisedElements.createCompromisedAssembly(
+							CollectionHelper.getAssemblyContextDetail(List.of(e)).get(0), List.of(resource)))
+					.collect(Collectors.toList());
 			
-			System.out.println(assemblies.get(0).getEntityName());
-			System.out.println(assemblies.get(1).getEntityName());
-
-			final var streamChanges = assemblies.stream()
-					.map(e -> HelperCreationCompromisedElements.createCompromisedAssembly(e,
-							CollectionHelper.getAssemblyContextDetail(List.of(e)).get(0), List.of(resource)));
-
-			final var listChanges = streamChanges.filter(e -> this.changes.getCompromisedassembly().stream()
-					.noneMatch(f -> EcoreUtil.equals(f.getAffectedElement().getCompromisedComponents(),
-							e.getAffectedElement().getCompromisedComponents())))
+			var listChanges = streamChanges
+					.stream().filter(
+							e -> this.changes.getCompromisedassembly().stream()
+									.noneMatch(f -> EcoreUtil.equals(f.getAffectedElement().getCompromisedComponents(),
+											e.getAffectedElement().getCompromisedComponents())))
 					.collect(Collectors.toList());
 
 			if (!listChanges.isEmpty()) {

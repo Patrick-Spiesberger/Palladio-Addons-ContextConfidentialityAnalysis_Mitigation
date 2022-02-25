@@ -32,25 +32,13 @@ public class CompositeHelper {
 		return false; // BasicComponent
 	}
 
-	/**
-	 * Returns nearby components. If it is a compound component, the sub-items are
-	 * returned, otherwise the neighboring ones
-	 */
-	public static List<AssemblyContext> getConnectedComponents(final AssemblyContext component, final System system) {
-		if (isCompositeComponent(component)) {
-			return getDeligatedCompositeComponents(component, system);
-		} else {
-			return getConnectedBasicComponents(component, system);
-		}
-
-	}
 
 	/*
 	 * Returns all connected components. Caution: No components within a composite
 	 * component are returned. The getDeligatedCompositeComponents method is used
 	 * for this
 	 */
-	public static List<AssemblyContext> getConnectedBasicComponents(final AssemblyContext component, System system) {
+	public static List<AssemblyContext> getAdjacentComponents(final AssemblyContext component, System system) {
 		final var targetConnectors = getTargetedConnectors(component, system);
 
 		final var targetComponents = targetConnectors.stream()
@@ -79,7 +67,12 @@ public class CompositeHelper {
 				.collect(Collectors.toList());
 	}
 
-	public static List<AssemblyContext> getDeligatedCompositeComponents(final AssemblyContext component,
+	/*
+	 * Returns all delegated components. Caution: the returned subcomponents are part of
+	 * the main component. The getAdjacentComponents method is used
+	 * for adjacent components, which are not part of the composite component
+	 */
+	public static List<AssemblyContext> getDelegatedCompositeComponents(final AssemblyContext component,
 			System system) {
 		final var targetConnectors = getDelicatedConnectors(component, system);
 

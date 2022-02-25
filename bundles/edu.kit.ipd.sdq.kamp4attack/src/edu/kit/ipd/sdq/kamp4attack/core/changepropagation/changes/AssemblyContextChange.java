@@ -75,7 +75,7 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 		for (final var detail : listCompromisedContexts) {
 			for (AssemblyContext component : detail.getCompromisedComponents()) {
 
-				final var connected = CompositeHelper.getConnectedComponents(component,
+				final var connected = CompositeHelper.getAdjacentComponents(component,
 						this.modelStorage.getAssembly());
 				final var containers = connected.stream().map(this::getResourceContainer).distinct()
 						.collect(Collectors.toList());
@@ -162,25 +162,37 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 		final var listCompromisedContexts = getCompromisedAssemblyContexts();
 		for (final var detail : listCompromisedContexts) {
 			AssemblyContext component = Iterables.getLast(detail.getCompromisedComponents());
-			var targetComponents = CompositeHelper.getConnectedComponents(component, this.modelStorage.getAssembly())
-					.stream().filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
+			var targetComponents = CompositeHelper
+					.getAdjacentComponents(component, this.modelStorage.getAssembly()).stream()
+					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
+
+			var delegatedComponents = CompositeHelper
+					.getDelegatedCompositeComponents(component, this.modelStorage.getAssembly()).stream()
+					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 
 			final var handler = getAssemblyHandler();
 			targetComponents = CollectionHelper.removeDuplicates(targetComponents).stream()
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 
-			List<AssemblyContextDetail> nonCompositeAssemblies = new LinkedList<>();
+			delegatedComponents = CollectionHelper.removeDuplicates(delegatedComponents).stream()
+					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 
+			List<AssemblyContextDetail> adjacentAssemblies = new LinkedList<>();
+
+			// adjacent components (not part of the main composite component)
 			for (AssemblyContext assembly : targetComponents) {
-				if (CompositeHelper.detailContainsAssembly(detail, assembly)) {
-					handler.attackAssemblyContext(CompositeHelper.createDetails(detail, targetComponents), this.changes,
-							detail, getAttacker());
-				} else {
-					nonCompositeAssemblies.add(CollectionHelper.createAssemblyContextDetail(assembly));
+				if (!CompositeHelper.detailContainsAssembly(detail, assembly)) {
+					adjacentAssemblies.add(CollectionHelper.createAssemblyContextDetail(assembly));
 				}
 			}
+
+			// Delegated components
+			handler.attackAssemblyContext(CompositeHelper.createDetails(detail, targetComponents), this.changes, detail,
+					getAttacker());
+
+			handler.attackAssemblyContext(adjacentAssemblies, this.changes, detail, getAttacker());
+
 			this.handleSeff(component);
-			handler.attackAssemblyContext(nonCompositeAssemblies, this.changes, detail, getAttacker());
 		}
 	}
 
@@ -201,22 +213,38 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 			reachableAssemblies = CollectionHelper.removeDuplicates(reachableAssemblies).stream()
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 
-			List<AssemblyContextDetail> nonCompositeAssemblies = new LinkedList<>();
+			var delegatedComponents = CompositeHelper
+					.getDelegatedCompositeComponents(component, this.modelStorage.getAssembly()).stream()
+					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 
-			for (AssemblyContext context : reachableAssemblies) {
-				if (CompositeHelper.detailContainsAssembly(detail, context)) {
-					handler.attackAssemblyContext(CompositeHelper.createDetails(detail, reachableAssemblies),
-							this.changes, detail, getAttacker());
-				} else {
-					nonCompositeAssemblies.add(CollectionHelper.createAssemblyContextDetail(context));
+			delegatedComponents = CollectionHelper.removeDuplicates(delegatedComponents).stream()
+					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
+
+			List<AssemblyContextDetail> adjacentAssemblies = new LinkedList<>();
+
+			// adjacent components (not part of the main composite component)
+			for (AssemblyContext assembly : delegatedComponents) {
+				if (!CompositeHelper.detailContainsAssembly(detail, assembly)) {
+					adjacentAssemblies.add(CollectionHelper.createAssemblyContextDetail(assembly));
 				}
+			}
 
-				var listServices = CollectionHelper
-						.getProvidedRestrictions(CompositeHelper.createDetails(detail, List.of(context)).get(0))
-						.stream().filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
+			// delegated components
+			handler.attackAssemblyContext(CompositeHelper.createDetails(detail, delegatedComponents), this.changes,
+					detail, getAttacker());
+			for (AssemblyContextDetail element : CompositeHelper.createDetails(detail, delegatedComponents)) {
+				var listServices = CollectionHelper.getProvidedRestrictions(element).stream()
+						.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 				handleSeff(this.changes, listServices, component);
 			}
-			handler.attackAssemblyContext(nonCompositeAssemblies, this.changes, detail, getAttacker());
+
+			// adjacent components
+			handler.attackAssemblyContext(adjacentAssemblies, this.changes, detail, getAttacker());
+			for (AssemblyContextDetail element : adjacentAssemblies) {
+				var listServices = CollectionHelper.getProvidedRestrictions(element).stream()
+						.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
+				handleSeff(this.changes, listServices, component);
+			}
 		}
 	}
 
