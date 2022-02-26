@@ -184,13 +184,16 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 				}
 			}
 
-			// Delegated components
+			// delegated components
 			if (delegatedComponents.size() != 0) {
 				handler.attackAssemblyContext(CompositeHelper.createDetails(detail, delegatedComponents), this.changes,
 						detail, getAttacker());
 			}
 
-			handler.attackAssemblyContext(adjacentAssemblies, this.changes, detail, getAttacker());
+			// adjacent basic or composite components
+			if (adjacentAssemblies.size() != 0) {
+				handler.attackAssemblyContext(adjacentAssemblies, this.changes, detail, getAttacker());
+			}
 
 			this.handleSeff(component);
 		}
@@ -230,12 +233,14 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 			}
 
 			// delegated components
-			handler.attackAssemblyContext(CompositeHelper.createDetails(detail, delegatedComponents), this.changes,
-					detail, getAttacker());
-			for (AssemblyContextDetail element : CompositeHelper.createDetails(detail, delegatedComponents)) {
-				var listServices = CollectionHelper.getProvidedRestrictions(element).stream()
-						.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
-				handleSeff(this.changes, listServices, component);
+			if (delegatedComponents.size() != 0) {
+				handler.attackAssemblyContext(CompositeHelper.createDetails(detail, delegatedComponents), this.changes,
+						detail, getAttacker());
+				for (AssemblyContextDetail element : CompositeHelper.createDetails(detail, delegatedComponents)) {
+					var listServices = CollectionHelper.getProvidedRestrictions(element).stream()
+							.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
+					handleSeff(this.changes, listServices, component);
+				}
 			}
 
 			// adjacent components

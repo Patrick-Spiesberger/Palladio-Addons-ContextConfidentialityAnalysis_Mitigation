@@ -130,6 +130,17 @@ public class CompositeHelper {
 		return false;
 	}
 
+	/**
+	 * This method gets an AssemblyContextDetail and a list of reachable components,
+	 * and returns a list of AssemblyContextDetails that have one of those reachable
+	 * components as the last element.
+	 * 
+	 * @param detail           : previously compromised AssemblyContextDetail
+	 * @param targetComponents : List of reachable components from the last
+	 *                         compromised element of the AssemblyContextDetails
+	 * @return e.g: D is detail and [a,b,c] targetComponents -> [[D|a], [D|b],
+	 *         [D|c]]
+	 */
 	public static List<AssemblyContextDetail> createDetails(AssemblyContextDetail detail,
 			List<AssemblyContext> targetComponents) {
 		List<AssemblyContextDetail> detailsToAttack = new LinkedList<>();

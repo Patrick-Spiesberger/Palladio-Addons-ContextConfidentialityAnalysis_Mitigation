@@ -144,8 +144,8 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 
 				/*
 				 * A component is always represented as an AssemblyContextDetail. An unassembled
-				 * component has a length of one. This method goes through each component and
-				 * checks the vulnerability for each component for vulnerability and returns the
+				 * component (BasicComponent) has a length of one. This method goes through each component and
+				 * checks the vulnerability for the last component for vulnerability and returns the
 				 * list of compromiseable components in the inital step
 				 */
 				@Override
