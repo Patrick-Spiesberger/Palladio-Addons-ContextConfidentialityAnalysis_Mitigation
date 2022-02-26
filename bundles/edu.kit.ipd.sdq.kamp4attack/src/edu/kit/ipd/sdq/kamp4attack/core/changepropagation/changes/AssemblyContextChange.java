@@ -75,8 +75,7 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 		for (final var detail : listCompromisedContexts) {
 			for (AssemblyContext component : detail.getCompromisedComponents()) {
 
-				final var connected = CompositeHelper.getAdjacentComponents(component,
-						this.modelStorage.getAssembly());
+				final var connected = CompositeHelper.getAdjacentComponents(component, this.modelStorage.getAssembly());
 				final var containers = connected.stream().map(this::getResourceContainer).distinct()
 						.collect(Collectors.toList());
 				final var handler = getRemoteResourceHandler();
@@ -162,12 +161,11 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 		final var listCompromisedContexts = getCompromisedAssemblyContexts();
 		for (final var detail : listCompromisedContexts) {
 			AssemblyContext component = Iterables.getLast(detail.getCompromisedComponents());
-			var targetComponents = CompositeHelper
-					.getAdjacentComponents(component, this.modelStorage.getAssembly()).stream()
-					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
+			var targetComponents = CompositeHelper.getAdjacentComponents(component, this.modelStorage.getAssembly())
+					.stream().filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 
 			var delegatedComponents = CompositeHelper
-					.getDelegatedCompositeComponents(component, this.modelStorage.getAssembly()).stream()
+					.getDelegatedCompositeComponents(detail, this.modelStorage.getAssembly()).stream()
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 
 			final var handler = getAssemblyHandler();
@@ -187,8 +185,10 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 			}
 
 			// Delegated components
-			handler.attackAssemblyContext(CompositeHelper.createDetails(detail, targetComponents), this.changes, detail,
-					getAttacker());
+			if (delegatedComponents.size() != 0) {
+				handler.attackAssemblyContext(CompositeHelper.createDetails(detail, delegatedComponents), this.changes,
+						detail, getAttacker());
+			}
 
 			handler.attackAssemblyContext(adjacentAssemblies, this.changes, detail, getAttacker());
 
@@ -214,7 +214,7 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 
 			var delegatedComponents = CompositeHelper
-					.getDelegatedCompositeComponents(component, this.modelStorage.getAssembly()).stream()
+					.getDelegatedCompositeComponents(detail, this.modelStorage.getAssembly()).stream()
 					.filter(e -> !CacheCompromised.instance().compromised(e)).collect(Collectors.toList());
 
 			delegatedComponents = CollectionHelper.removeDuplicates(delegatedComponents).stream()

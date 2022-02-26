@@ -172,10 +172,10 @@ public class CollectionHelper {
 				var serviceModel = CollectionHelper.findOrCreateServiceRestriction(service, container, change);
 				return HelperCreationCompromisedElements.createCompromisedService(serviceModel, causingElement);
 			}).collect(Collectors.toList());
-
+			
 			serviceRestrictionsCompromised = CollectionHelper
 					.filterExistingService(CollectionHelper.removeServices(serviceRestrictionsCompromised), change);
-
+			
 			change.getCompromisedservice().addAll(serviceRestrictionsCompromised);
 		}
 

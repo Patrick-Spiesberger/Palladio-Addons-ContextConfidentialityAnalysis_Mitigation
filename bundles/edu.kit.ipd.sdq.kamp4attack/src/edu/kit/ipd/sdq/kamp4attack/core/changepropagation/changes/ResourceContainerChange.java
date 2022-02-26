@@ -67,8 +67,8 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 			List<AssemblyContextDetail> assemblyContextDetail = new LinkedList<>();
 			for (AssemblyContext assembly : assemblycontext) {
 				if (CompositeHelper.isCompositeComponent(assembly)) {
-					var delegatedComponents = CompositeHelper.getDelegatedCompositeComponents(assembly,
-							this.modelStorage.getAssembly());
+					var delegatedComponents = CompositeHelper.getDelegatedCompositeComponents(
+							CollectionHelper.createAssemblyContextDetail(assembly), this.modelStorage.getAssembly());
 					assemblyContextDetail.addAll(CompositeHelper.createDetails(
 							CollectionHelper.createAssemblyContextDetail(assembly), delegatedComponents));
 					for (AssemblyContext duplicatedElement : delegatedComponents) {
@@ -110,7 +110,7 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 					.map(e -> HelperCreationCompromisedElements.createCompromisedAssembly(
 							CollectionHelper.getAssemblyContextDetail(List.of(e)).get(0), List.of(resource)))
 					.collect(Collectors.toList());
-			
+
 			var listChanges = streamChanges
 					.stream().filter(
 							e -> this.changes.getCompromisedassembly().stream()

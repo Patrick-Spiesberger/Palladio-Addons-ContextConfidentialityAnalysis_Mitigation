@@ -50,7 +50,6 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 			}
 			final var newCompromisedComponent = filterExsitingComponent(compromisedComponents, change);
 			if (!newCompromisedComponent.isEmpty()) {
-
 				handleDataExtraction(newCompromisedComponent, change, attacker);
 				change.setChanged(true);
 

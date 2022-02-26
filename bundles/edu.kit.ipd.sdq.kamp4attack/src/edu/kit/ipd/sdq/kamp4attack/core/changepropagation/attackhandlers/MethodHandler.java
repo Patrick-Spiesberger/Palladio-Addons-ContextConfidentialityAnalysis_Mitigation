@@ -40,7 +40,7 @@ public abstract class MethodHandler extends AttackHandler {
 			final EObject source, Attacker attacker) {
 		final var compromisedComponent = services.stream().map(e -> attackComponent(e, change, source, attacker))
 				.flatMap(Optional::stream).collect(Collectors.toList());
-		final var newCompromisedComponent = filterExsiting(compromisedComponent, change);
+		final Collection<CompromisedAssembly> newCompromisedComponent = filterExsiting(compromisedComponent, change);
 		if (!newCompromisedComponent.isEmpty()) {
 			handleDataExtraction(newCompromisedComponent, change, attacker);
 			change.setChanged(true);
@@ -64,7 +64,7 @@ public abstract class MethodHandler extends AttackHandler {
 
 		filteredComponents = CollectionHelper.removeDuplicates(filteredComponents);
 
-		//considers the case as to whether encryption is possible
+		// considers the case as to whether encryption is possible
 		MitigationHelper mitigationHelper = new MitigationHelper();
 
 		for (AssemblyContextDetail assemblyDetailList : filteredComponents) {

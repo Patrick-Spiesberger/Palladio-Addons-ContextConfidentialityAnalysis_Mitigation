@@ -1,5 +1,6 @@
 package org.palladiosimulator.pcm.confidentiality.attacker.analysis.common;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +14,8 @@ import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.repository.CompositeComponent;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.system.System;
+
+import com.google.common.collect.Iterables;
 
 /**
  * Helper class for handling composite components
@@ -31,7 +34,6 @@ public class CompositeHelper {
 		}
 		return false; // BasicComponent
 	}
-
 
 	/*
 	 * Returns all connected components. Caution: No components within a composite
@@ -59,24 +61,38 @@ public class CompositeHelper {
 				.collect(Collectors.toList());
 	}
 
-	private static List<ProvidedDelegationConnector> getDelicatedConnectors(final AssemblyContext component,
+	/**
+	 * This method calculates all connections to delegated components as long as
+	 * they are in a CompositeComponent. This means that a check is made whether the
+	 * first (and by notation in the case of a BasicComponent) is a compound
+	 * component and then for the last element of the list the connections are
+	 * returned
+	 * 
+	 * @param component : component of type basic oder composite component
+	 * @param system    : (sub)system to check
+	 * @return : list of all connectors that have a connection to the last component
+	 *         of the AssemblyContextDetail
+	 */
+	private static List<ProvidedDelegationConnector> getDelicatedConnectors(final AssemblyContextDetail component,
 			final System system) {
-		return system.getConnectors__ComposedStructure().stream().filter(ProvidedDelegationConnector.class::isInstance)
-				.map(ProvidedDelegationConnector.class::cast)
-				.filter(e -> EcoreUtil.equals(e.getAssemblyContext_ProvidedDelegationConnector(), component))
-				.collect(Collectors.toList());
+		if (CompositeHelper.isCompositeComponent(component.getCompromisedComponents().get(0))) {
+			return system.getConnectors__ComposedStructure().stream()
+					.filter(ProvidedDelegationConnector.class::isInstance).map(ProvidedDelegationConnector.class::cast)
+					.filter(e -> EcoreUtil.equals(e.getAssemblyContext_ProvidedDelegationConnector(),
+							Iterables.getLast(component.getCompromisedComponents())))
+					.collect(Collectors.toList());
+		}
+		return Collections.emptyList();
 	}
 
 	/*
-	 * Returns all delegated components. Caution: the returned subcomponents are part of
-	 * the main component. The getAdjacentComponents method is used
-	 * for adjacent components, which are not part of the composite component
+	 * Returns all delegated components. Caution: the returned subcomponents are
+	 * part of the main component. The getAdjacentComponents method is used for
+	 * adjacent components, which are not part of the composite component
 	 */
-	public static List<AssemblyContext> getDelegatedCompositeComponents(final AssemblyContext component,
+	public static List<AssemblyContext> getDelegatedCompositeComponents(final AssemblyContextDetail component,
 			System system) {
 		final var targetConnectors = getDelicatedConnectors(component, system);
-
-		AssemblyContextDetail detail = CollectionHelper.getAssemblyContextDetail(List.of(component)).get(0);
 
 		List<AssemblyContext> assemblies = new LinkedList<>();
 		for (ProvidedDelegationConnector connector : targetConnectors) {
@@ -86,7 +102,7 @@ public class CompositeHelper {
 			var outerRole = connector.getOuterProvidedRole_ProvidedDelegationConnector()
 					.getProvidedInterface__OperationProvidedRole();
 
-			for (AssemblyContext assembly : detail.getCompromisedComponents()) {
+			for (AssemblyContext assembly : component.getCompromisedComponents()) {
 				var element = assembly.getEncapsulatedComponent__AssemblyContext();
 
 				var interfacesList = element.getProvidedRoles_InterfaceProvidingEntity().stream()
