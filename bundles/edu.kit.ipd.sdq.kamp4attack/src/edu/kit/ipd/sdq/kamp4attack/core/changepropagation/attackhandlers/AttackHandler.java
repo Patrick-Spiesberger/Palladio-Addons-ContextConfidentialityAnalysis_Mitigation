@@ -18,6 +18,7 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpe
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.ConfidentialityImpact;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.Privileges;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.Vulnerability;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.AttackVectorIntegration;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.RoleSystemIntegration;
 import org.palladiosimulator.pcm.confidentiality.context.helper.PolicyHelper;
 import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecification;
@@ -195,7 +196,7 @@ public abstract class AttackHandler {
 
 		final var roleSpecification = VulnerabilityHelper.getRoles(getModelStorage().getVulnerabilitySpecification());
 
-		//considers the case as to whether prevention is possible
+		// considers the case as to whether prevention is possible
 		MitigationHelper mitigationHelper = new MitigationHelper();
 
 		final var roles = roleSpecification.stream()
@@ -215,9 +216,10 @@ public abstract class AttackHandler {
 	 * @return true if subcomponent should be treated with a local attack vector
 	 */
 	public boolean changeAttackVector() {
-		final var roleSpecification = VulnerabilityHelper.getRoles(getModelStorage().getVulnerabilitySpecification());
-		for (RoleSystemIntegration role : roleSpecification) {
-			if (role.isChangeAttackVectorToLocal()) {
+		final var attackVectorSpecification = VulnerabilityHelper
+				.getAttackVector(getModelStorage().getVulnerabilitySpecification());
+		for (AttackVectorIntegration vector : attackVectorSpecification) {
+			if (vector.isChangeAttackVectorToLocal()) {
 				return true;
 			}
 		}
