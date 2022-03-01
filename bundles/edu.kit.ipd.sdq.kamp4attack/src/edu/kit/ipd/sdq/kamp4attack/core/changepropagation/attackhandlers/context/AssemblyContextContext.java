@@ -17,6 +17,7 @@ import com.google.common.collect.Iterables;
 
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
 import edu.kit.ipd.sdq.kamp4attack.core.changepropagation.attackhandlers.AssemblyContextHandler;
+import edu.kit.ipd.sdq.kamp4attack.core.contextSelection.ListOperations;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
@@ -32,23 +33,32 @@ public class AssemblyContextContext extends AssemblyContextHandler {
 	public AssemblyContextContext(final BlackboardWrapper modelStorage, final DataHandlerAttacker dataHandler) {
 		super(modelStorage, dataHandler);
 	}
-	
+
 	@Override
 	protected Optional<CompromisedAssembly> attackComponent(AssemblyContextDetail component, CredentialChange change,
 			EObject source, Attacker attacker) {
 
-		final List<? extends UsageSpecification> credentials = this.getCredentials(change);
-		
+		final var credentials = this.getCredentials(change);
+
 		AssemblyContext lastComponent = Iterables.getLast(component.getCompromisedComponents());
 
-		final var result = this.queryAccessForEntity(lastComponent, credentials);
+		ListOperations listHelper = new ListOperations();
 
-		if (result.isPresent() && Objects.equal(result.get().getDecision(), DecisionType.PERMIT)) {
-			final var sourceList = this.createSource(source, credentials);
+		// If only partial lists are returned, this is executed until all lists are
+		// returned or a vulnerable component is found
+		while (!listHelper.returnedAllElements()) {
+			for (List<UsageSpecification> credential : listHelper.calculateLists(credentials, attacker)) {
+				final var result = this.queryAccessForEntity(lastComponent, credential);
 
-			final var compromised = HelperCreationCompromisedElements.createCompromisedAssembly(lastComponent, component, sourceList);
+				if (result.isPresent() && Objects.equal(result.get().getDecision(), DecisionType.PERMIT)) {
+					final var sourceList = this.createSource(source, credential);
 
-			return Optional.of(compromised);
+					final var compromised = HelperCreationCompromisedElements.createCompromisedAssembly(lastComponent,
+							component, sourceList);
+
+					return Optional.of(compromised);
+				}
+			}
 		}
 		return Optional.empty();
 	}

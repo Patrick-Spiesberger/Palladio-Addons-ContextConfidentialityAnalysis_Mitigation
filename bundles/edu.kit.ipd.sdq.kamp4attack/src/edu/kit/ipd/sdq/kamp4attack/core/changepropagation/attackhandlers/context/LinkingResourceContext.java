@@ -15,6 +15,7 @@ import com.google.common.base.Objects;
 
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
 import edu.kit.ipd.sdq.kamp4attack.core.changepropagation.attackhandlers.LinkingResourceHandler;
+import edu.kit.ipd.sdq.kamp4attack.core.contextSelection.ListOperations;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedLinkingResource;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
@@ -22,6 +23,7 @@ import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificati
  * This class implements a concrete attack on a LinkingResource
  * 
  * @author Maximilian Walter
+ * @author Patrick Spiesberger
  *
  */
 public class LinkingResourceContext extends LinkingResourceHandler {
@@ -33,14 +35,22 @@ public class LinkingResourceContext extends LinkingResourceHandler {
 	@Override
 	protected Optional<CompromisedLinkingResource> attackLinkingResource(final LinkingResource linking,
 			final CredentialChange change, final EObject source, Attacker attacker) {
-		final List<? extends UsageSpecification> credentials = this.getCredentials(change);
+		final var credentials = this.getCredentials(change);
 
-		final var result = this.queryAccessForEntity(linking, credentials);
+		ListOperations listHelper = new ListOperations();
 
-		if (result.isPresent() && Objects.equal(result.get().getDecision(), DecisionType.PERMIT)) {
-			final var sourceList = this.createSource(source, credentials);
-			final var compromised = HelperCreationCompromisedElements.createCompromisedLinking(linking, sourceList);
-			return Optional.of(compromised);
+		// If only partial lists are returned, this is executed until all lists are
+		// returned or a vulnerable component is found
+		while (!listHelper.returnedAllElements()) {
+			for (List<UsageSpecification> credential : listHelper.calculateLists(credentials, attacker)) {
+				final var result = this.queryAccessForEntity(linking, credential);
+				if (result.isPresent() && Objects.equal(result.get().getDecision(), DecisionType.PERMIT)) {
+					final var sourceList = this.createSource(source, credential);
+					final var compromised = HelperCreationCompromisedElements.createCompromisedLinking(linking,
+							sourceList);
+					return Optional.of(compromised);
+				}
+			}
 		}
 		return Optional.empty();
 	}
