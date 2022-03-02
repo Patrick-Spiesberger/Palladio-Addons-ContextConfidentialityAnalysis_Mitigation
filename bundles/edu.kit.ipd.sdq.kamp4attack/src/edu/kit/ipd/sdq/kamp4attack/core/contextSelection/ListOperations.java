@@ -187,7 +187,7 @@ public class ListOperations {
 	 * @return : List of sublists
 	 */
 	public List<List<UsageSpecification>> calculateLists(List<UsageSpecification> elements, Attacker attacker) {
-
+		System.out.println(elements.size());
 		if (attacker == null) {
 			attacker = AttackerFactory.eINSTANCE.createAttacker();
 			attacker.setContextSelectionListEffort(ListOperationEffort.STANDARD);
