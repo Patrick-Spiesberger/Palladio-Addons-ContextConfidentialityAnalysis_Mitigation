@@ -12,6 +12,8 @@ import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecificati
 
 import com.google.common.collect.Lists;
 
+import edu.kit.ipd.sdq.kamp4attack.core.CachePDP;
+
 /**
  * This class is responsible for the list operations related to access control
  * 
@@ -22,8 +24,6 @@ public class ListOperations {
 
 	private int runningTimes;
 	private boolean returnedAllElements = false;
-	private int timeLimits[] = { 0, 0, 0, 12, 0, 0 }; // {years, months, days, hours, minutes, seconds}
-	private double timePerCheck = 1.0;
 	private boolean alternating = false;
 
 	/**
@@ -61,7 +61,8 @@ public class ListOperations {
 	 * @param data : list to be subdivided
 	 * @return : list of partial length
 	 */
-	private List<List<UsageSpecification>> getCombinationsAll(List<UsageSpecification> data) {
+	private List<List<UsageSpecification>> getCombinationsAll(List<UsageSpecification> data, boolean generateAll,
+			int maxElementsToGenerate) {
 		List<List<UsageSpecification>> combinations = new ArrayList<List<UsageSpecification>>();
 		for (int i = 0; i < Math.pow(2, data.size()); i++) {
 			List<UsageSpecification> element = new ArrayList<UsageSpecification>();
@@ -71,6 +72,11 @@ public class ListOperations {
 				}
 			}
 			combinations.add(element);
+			if (!generateAll) {
+				if (combinations.size() >= maxElementsToGenerate) {
+					return Lists.reverse(combinations);
+				}
+			}
 		}
 		return Lists.reverse(combinations);
 	}
@@ -108,23 +114,6 @@ public class ListOperations {
 		time[3] = (timePerOption % 86400) / 3600; // hours
 		time[4] = (timePerOption % 3600) / 60; // minutes
 		time[5] = (timePerOption % 60); // seconds
-		return time;
-	}
-
-	/**
-	 * Converts a number of seconds into an array of common units of time
-	 * 
-	 * @param seconds
-	 * @return : max runtime [years, months, days, hours, minutes, seconds]
-	 */
-	private int[] calcTimeArray(int seconds) {
-		int time[] = new int[6];
-		time[0] = seconds / 31536000; // years
-		time[1] = (seconds % 31536000) / 2628000; // months
-		time[2] = (seconds % 2628000) / 86400; // days
-		time[3] = (seconds % 86400) / 3600; // hours
-		time[4] = (seconds % 3600) / 60; // minutes
-		time[5] = (seconds % 60); // seconds
 		return time;
 	}
 
@@ -174,9 +163,10 @@ public class ListOperations {
 	 * @param elements : list of UsageSpecification
 	 * @return : list of all combinations
 	 */
-	public List<List<UsageSpecification>> calculateSimpleList(List<UsageSpecification> elements) {
+	public List<List<UsageSpecification>> calculateSimpleList(List<UsageSpecification> elements, boolean generateAll,
+			int maxElementsToGenerate) {
 		returnedAllElements = true;
-		return getCombinationsAll(elements);
+		return getCombinationsAll(elements, generateAll, maxElementsToGenerate);
 	}
 
 	/**
@@ -187,7 +177,6 @@ public class ListOperations {
 	 * @return : List of sublists
 	 */
 	public List<List<UsageSpecification>> calculateLists(List<UsageSpecification> elements, Attacker attacker) {
-		System.out.println(elements.size());
 		if (attacker == null) {
 			attacker = AttackerFactory.eINSTANCE.createAttacker();
 			attacker.setContextSelectionListEffort(ListOperationEffort.STANDARD);
@@ -200,28 +189,13 @@ public class ListOperations {
 			return basicList;
 		}
 
-		timeLimits = calcTimeArray(attacker.getContextSelectionMaxTime());
-		// checks the estimated running time
-		boolean overTime = false;
-		for (int i = 0; i < timeLimits.length; i++) {
-			if (calculateTime(elements.size(), timePerCheck)[i] > timeLimits[i]) {
-				overTime = true;
-			}
-			if (timeLimits[i] != 0) {
-				break;
-			}
-		}
-
 		switch (attacker.getContextSelectionListEffort()) {
 		case STANDARD:
-			if (overTime) {
-				return calculateAdvancedList(elements);
-			} else {
-				return calculateSimpleList(elements);
-			}
+			return calculateSimpleList(elements, false, attacker.getContextSelectionMaxTime());
 		case ALL:
-			return calculateSimpleList(elements);
+			return calculateSimpleList(elements, true, attacker.getContextSelectionMaxTime());
 		case PART:
+			CachePDP.instance().clearCache();
 			return calculateAdvancedList(elements);
 		default:
 			returnedAllElements = true;
