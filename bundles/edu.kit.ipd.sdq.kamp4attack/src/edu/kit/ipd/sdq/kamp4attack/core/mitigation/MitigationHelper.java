@@ -1,5 +1,6 @@
 package edu.kit.ipd.sdq.kamp4attack.core.mitigation;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,6 +8,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.confidentiality.attacker.helper.VulnerabilityHelper;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.DatamodelAttacker;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Encryption;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Mitigation;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.MitigationSpecification;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.Attack;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.AttackVector;
@@ -67,26 +69,37 @@ public class MitigationHelper {
 	 * Checks whether there are concrete mechanisms for protecting the data
 	 * (encryption) and whether these can be broken
 	 */
-	public boolean isCrackable(final DatamodelAttacker data, final List<Attack> attacks,
-			final CredentialChange change) {
-		if (data.getMitigation() == null) {
+	public boolean isCrackable(final List<Mitigation> mitigations, final DatamodelAttacker data,
+			final List<Attack> attacks, final CredentialChange change) {
+		if (data == null) {
 			return true;
 		}
-		List<MitigationSpecification> mitigation = data.getMitigation().getMitigationspecification();
-		if (mitigation.size() == 0) { // no mitigation defined
+		if (mitigations == null || mitigations.size() == 0) { // no mitigation defined
 			return true;
 		}
-		for (Encryption encryption : filterEncryption(mitigation)) {
+
+		List<MitigationSpecification> mitigationSpecifications = new LinkedList<>();
+
+		for (Mitigation mitigation : mitigations) {
+			if (checkEqualityOfData(data, mitigation.getDatamodelattacker())) {
+				if (mitigation.getMitigationspecification() != null) {
+					mitigationSpecifications.addAll(mitigation.getMitigationspecification());
+				}
+			}
+		}
+
+		for (Encryption encryption : filterEncryption(mitigationSpecifications)) {
 			var vulnerability = VulnerabilityHelper.checkAttack(false, encryption.getVulnerabilities(), attacks,
 					AttackVector.LOCAL, null);
 			if (vulnerability != null) {
 				if (mitigationIsBreakable(encryption.getNecessaryCredentials(),
 						getCredentials(change, vulnerability))) {
 					return true;
-				}
+				} 
 			}
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	private List<Prevention> filterPrevention(List<MitigationSpecification> mitigation) {
@@ -130,5 +143,14 @@ public class MitigationHelper {
 			contains = false;
 		}
 		return true;
+	}
+
+	
+	private boolean checkEqualityOfData(DatamodelAttacker a, DatamodelAttacker b) {
+		if (a.getMethod() == null || b.getMethod() == null) {
+			return a.getReferenceName().equals(b.getReferenceName());
+		} else {
+			return a.getMethod().getEntityName().equals(b.getMethod().getEntityName());
+		}
 	}
 }

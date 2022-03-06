@@ -18,6 +18,8 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpe
 import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecification;
 import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.ServiceRestriction;
 
+import com.google.common.collect.Iterables;
+
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
 import edu.kit.ipd.sdq.kamp4attack.core.mitigation.MitigationHelper;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
@@ -67,14 +69,12 @@ public abstract class MethodHandler extends AttackHandler {
 		// considers the case as to whether encryption is possible
 		MitigationHelper mitigationHelper = new MitigationHelper();
 
-		for (AssemblyContextDetail assemblyDetailList : filteredComponents) {
-			final var dataList = assemblyDetailList.getCompromisedComponents().stream().distinct()
-					.flatMap(component -> DataHandler.getData(component, change).stream())
-					.filter(data -> mitigationHelper.isCrackable(data, attacker.getAttacks(), change))
-					.collect(Collectors.toList());
+		var dataList = filteredComponents.stream().map(e -> Iterables.getLast(e.getCompromisedComponents())).distinct()
+				.flatMap(component -> DataHandler.getData(component, change).stream()).filter(data -> mitigationHelper
+						.isCrackable(getMitigations(), data, attacker.getAttacks(), change))
+				.collect(Collectors.toList());
 
 			getDataHandler().addData(dataList);
-		}
 	}
 
 	protected abstract Optional<CompromisedAssembly> attackComponent(ServiceRestriction component,

@@ -32,7 +32,7 @@ public class DataHandler {
 	}
 
 	public static Collection<DatamodelAttacker> getData(AssemblyContext assemblyContext, CredentialChange change) {
-
+		
 		var component = assemblyContext.getEncapsulatedComponent__AssemblyContext();
 		try {
 			final var interfacesList = component.getProvidedRoles_InterfaceProvidingEntity().stream()

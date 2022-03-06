@@ -113,6 +113,7 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 		final var repository = board.getModificationMarkRepository();
 		final var seedModification = repository.getSeedModifications();
 		final var attackers = seedModification.getAttackcomponent();
+		
 		if (attackers == null) {
 			throw new IllegalStateException("No seed modification found");
 		}
@@ -144,9 +145,10 @@ public class AttackPropagationAnalysis implements AbstractChangePropagationAnaly
 
 				/*
 				 * A component is always represented as an AssemblyContextDetail. An unassembled
-				 * component (BasicComponent) has a length of one. This method goes through each component and
-				 * checks the vulnerability for the last component for vulnerability and returns the
-				 * list of compromiseable components in the inital step
+				 * component (BasicComponent) has a length of one. This method goes through each
+				 * component and checks the vulnerability for the last component for
+				 * vulnerability and returns the list of compromiseable components in the inital
+				 * step
 				 */
 				@Override
 				protected Optional<CompromisedAssembly> attackComponent(AssemblyContextDetail component,

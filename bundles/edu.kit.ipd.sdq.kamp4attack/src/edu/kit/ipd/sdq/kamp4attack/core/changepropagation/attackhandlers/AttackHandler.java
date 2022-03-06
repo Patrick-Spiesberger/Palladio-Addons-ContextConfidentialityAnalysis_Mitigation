@@ -13,6 +13,7 @@ import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.Compro
 import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.DataHandlerAttacker;
 import org.palladiosimulator.pcm.confidentiality.attacker.helper.VulnerabilityHelper;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
+import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Mitigation;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.Attack;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.AttackVector;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpecification.ConfidentialityImpact;
@@ -224,5 +225,9 @@ public abstract class AttackHandler {
 			}
 		}
 		return false;
+	}
+
+	public List<Mitigation> getMitigations() {
+		return VulnerabilityHelper.getMitigations(getModelStorage().getVulnerabilitySpecification());
 	}
 }

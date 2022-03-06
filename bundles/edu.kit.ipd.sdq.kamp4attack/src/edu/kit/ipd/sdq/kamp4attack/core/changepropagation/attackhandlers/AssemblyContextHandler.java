@@ -14,6 +14,8 @@ import org.palladiosimulator.pcm.confidentiality.attacker.analysis.common.data.D
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.AssemblyContextDetail;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.Attacker;
 
+import com.google.common.collect.Iterables;
+
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
 import edu.kit.ipd.sdq.kamp4attack.core.mitigation.MitigationHelper;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
@@ -73,13 +75,12 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 
 		MitigationHelper mitigationHelper = new MitigationHelper();
 
-		for (AssemblyContextDetail assembly : filteredComponents) {
-			final var dataList = assembly.getCompromisedComponents().stream().distinct()
-					.flatMap(component -> DataHandler.getData(component, change).stream())
-					.filter(data -> mitigationHelper.isCrackable(data, attacker.getAttacks(), change))
-					.collect(Collectors.toList());
-			getDataHandler().addData(dataList);
-		}
+		var dataList = filteredComponents.stream().map(e -> Iterables.getLast(e.getCompromisedComponents())).distinct()
+				.flatMap(component -> DataHandler.getData(component, change).stream()).filter(data -> mitigationHelper
+						.isCrackable(getMitigations(), data, attacker.getAttacks(), change))
+				.collect(Collectors.toList());
+
+		getDataHandler().addData(dataList);
 	}
 
 	/**

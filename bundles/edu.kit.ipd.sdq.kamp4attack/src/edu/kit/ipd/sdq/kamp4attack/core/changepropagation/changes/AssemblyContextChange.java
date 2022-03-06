@@ -255,6 +255,7 @@ public abstract class AssemblyContextChange extends Change<AssemblyContext> impl
 
 	private boolean isGlobalElement(AssemblyContextDetail assemblyContext) {
 		return this.modelStorage.getVulnerabilitySpecification().getVulnerabilities().stream()
+				.filter(systemElement -> (systemElement.getPcmelement() != null)) //false in case of mitigation
 				.filter(systemElement -> EcoreUtil.equals(systemElement.getPcmelement().getAssemblycontext(),
 						assemblyContext.getCompromisedComponents().get(0)))
 				.noneMatch(NonGlobalCommunication.class::isInstance);
