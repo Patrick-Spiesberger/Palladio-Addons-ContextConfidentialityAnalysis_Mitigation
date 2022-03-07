@@ -17,6 +17,7 @@ import com.google.common.base.Objects;
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
 import edu.kit.ipd.sdq.kamp4attack.core.changepropagation.attackhandlers.MethodHandler;
 import edu.kit.ipd.sdq.kamp4attack.core.contextSelection.ListOperations;
+import edu.kit.ipd.sdq.kamp4attack.core.mitigation.MitigationHelper;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
@@ -40,6 +41,11 @@ public class MethodContext extends MethodHandler {
 
 		var serviceModel = CollectionHelper.findOrCreateServiceRestriction(service,
 				getModelStorage().getVulnerabilitySpecification(), change);
+
+		MitigationHelper mitigation = new MitigationHelper();
+		if (!mitigation.isCrackable(getMitigations(), serviceModel.getAssemblycontext(), getAttacks(), change)) {
+			return Optional.empty();
+		}
 
 		ListOperations listHelper = new ListOperations();
 

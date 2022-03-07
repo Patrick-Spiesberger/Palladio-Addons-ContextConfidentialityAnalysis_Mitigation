@@ -16,6 +16,7 @@ import org.palladiosimulator.pcm.confidentiality.attackerSpecification.attackSpe
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.PCMElement;
 import org.palladiosimulator.pcm.confidentiality.attackerSpecification.pcmIntegration.Prevention;
 import org.palladiosimulator.pcm.confidentiality.context.system.UsageSpecification;
+import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.ContextChange;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
@@ -66,6 +67,54 @@ public class MitigationHelper {
 	}
 
 	/**
+	 * Checks whether a protection mechanism exists that can protect a AssemblyContext
+	 * from attacker propagation
+	 * 
+	 * @param mitigations : list of available mitigations
+	 * @param component : component to check
+	 * @param attacks   : list of attacks
+	 * @param change    : changes of credentials
+	 * @param attacker  : concrete attacker
+	 * @return : True if the AssemblyContext has no protection mechanism or it can be
+	 *         broken
+	 */
+	public boolean isCrackable(final List<Mitigation> mitigations, AssemblyContext component,
+			final List<Attack> attacks, final CredentialChange change) {
+		if (component == null) {
+			return true;
+		}
+
+		if (mitigations == null || mitigations.size() == 0) { // no mitigation defined
+			return true;
+		}
+
+		List<MitigationSpecification> mitigationSpecifications = new LinkedList<>();
+
+		for (Mitigation mitigation : mitigations) {
+			if (mitigation.getPcmelement() != null && mitigation.getPcmelement().getAssemblycontext() != null) {
+				if (EcoreUtil.equals(mitigation.getPcmelement().getAssemblycontext(), component)) {
+					if (mitigation.getMitigationspecification() != null) {
+						mitigationSpecifications.addAll(mitigation.getMitigationspecification());
+					}
+				}
+			}
+		}
+
+		for (Prevention prevention : filterPrevention(mitigationSpecifications)) {
+			var vulnerability = VulnerabilityHelper.checkAttack(false, prevention.getVulnerabilities(), attacks,
+					AttackVector.LOCAL, null);
+			if (vulnerability != null) {
+				if (mitigationIsBreakable(prevention.getNecessaryCredentials(),
+						getCredentials(change, vulnerability))) {
+					return true;
+				}
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Checks whether there are concrete mechanisms for protecting the data
 	 * (encryption) and whether these can be broken
 	 */
@@ -95,7 +144,7 @@ public class MitigationHelper {
 				if (mitigationIsBreakable(encryption.getNecessaryCredentials(),
 						getCredentials(change, vulnerability))) {
 					return true;
-				} 
+				}
 			}
 			return false;
 		}
@@ -145,12 +194,15 @@ public class MitigationHelper {
 		return true;
 	}
 
-	
 	private boolean checkEqualityOfData(DatamodelAttacker a, DatamodelAttacker b) {
-		if (a.getMethod() == null || b.getMethod() == null) {
-			return a.getReferenceName().equals(b.getReferenceName());
-		} else {
-			return a.getMethod().getEntityName().equals(b.getMethod().getEntityName());
+		try {
+			if (a.getMethod() == null || b.getMethod() == null) {
+				return a.getReferenceName().equals(b.getReferenceName());
+			} else {
+				return a.getMethod().getEntityName().equals(b.getMethod().getEntityName());
+			}
+		} catch (NullPointerException e) {
+			return false;
 		}
 	}
 }

@@ -40,7 +40,12 @@ public abstract class MethodHandler extends AttackHandler {
 
 	public void attackService(final Collection<ServiceRestriction> services, final CredentialChange change,
 			final EObject source, Attacker attacker) {
+		MitigationHelper mitigationHelper = new MitigationHelper();
 		final var compromisedComponent = services.stream().map(e -> attackComponent(e, change, source, attacker))
+				.filter(e -> e.isPresent())
+				.filter(e -> mitigationHelper.isCrackable(getMitigations(),
+						Iterables.getLast(e.get().getAffectedElement().getCompromisedComponents()), getAttacks(),
+						change))
 				.flatMap(Optional::stream).collect(Collectors.toList());
 		final Collection<CompromisedAssembly> newCompromisedComponent = filterExsiting(compromisedComponent, change);
 		if (!newCompromisedComponent.isEmpty()) {
@@ -70,11 +75,12 @@ public abstract class MethodHandler extends AttackHandler {
 		MitigationHelper mitigationHelper = new MitigationHelper();
 
 		var dataList = filteredComponents.stream().map(e -> Iterables.getLast(e.getCompromisedComponents())).distinct()
-				.flatMap(component -> DataHandler.getData(component, change).stream()).filter(data -> mitigationHelper
-						.isCrackable(getMitigations(), data, attacker.getAttacks(), change))
+				.filter(component -> mitigationHelper.isCrackable(getMitigations(), component, getAttacks(), change))
+				.flatMap(component -> DataHandler.getData(component, change).stream())
+				.filter(data -> mitigationHelper.isCrackable(getMitigations(), data, attacker.getAttacks(), change))
 				.collect(Collectors.toList());
 
-			getDataHandler().addData(dataList);
+		getDataHandler().addData(dataList);
 	}
 
 	protected abstract Optional<CompromisedAssembly> attackComponent(ServiceRestriction component,

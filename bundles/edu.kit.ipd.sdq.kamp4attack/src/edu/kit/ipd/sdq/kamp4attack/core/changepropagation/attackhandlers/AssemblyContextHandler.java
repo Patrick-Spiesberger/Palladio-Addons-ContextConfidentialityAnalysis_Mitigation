@@ -46,21 +46,27 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 		List<CompromisedAssembly> compromisedComponents = new LinkedList<>();
 
 		for (AssemblyContextDetail detail : components) {
-			Optional<CompromisedAssembly> componentDetail = attackComponent(detail, change, source, attacker);
-			if (componentDetail.isPresent()) {
-				compromisedComponents.add(componentDetail.get());
-			}
-			final var newCompromisedComponent = filterExsitingComponent(compromisedComponents, change);
-			if (!newCompromisedComponent.isEmpty()) {
-				handleDataExtraction(newCompromisedComponent, change, attacker);
-				change.setChanged(true);
+			MitigationHelper mitigationHelper = new MitigationHelper();
+			if (mitigationHelper.isCrackable(getMitigations(), Iterables.getLast(detail.getCompromisedComponents()),
+					getAttacks(), change)) {
 
-				for (CompromisedAssembly component : newCompromisedComponent) {
-					change.getCompromisedassembly().add(component);
+				Optional<CompromisedAssembly> componentDetail = attackComponent(detail, change, source, attacker);
+				if (componentDetail.isPresent()) {
+					compromisedComponents.add(componentDetail.get());
 				}
+				final var newCompromisedComponent = filterExsitingComponent(compromisedComponents, change);
+				if (!newCompromisedComponent.isEmpty()) {
+					handleDataExtraction(newCompromisedComponent, change, attacker);
+					change.setChanged(true);
 
-				CollectionHelper.addService(newCompromisedComponent, getModelStorage().getVulnerabilitySpecification(),
-						change);
+					for (CompromisedAssembly component : newCompromisedComponent) {
+
+						change.getCompromisedassembly().add(component);
+					}
+
+					CollectionHelper.addService(newCompromisedComponent,
+							getModelStorage().getVulnerabilitySpecification(), change);
+				}
 			}
 		}
 	}
@@ -76,8 +82,8 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 		MitigationHelper mitigationHelper = new MitigationHelper();
 
 		var dataList = filteredComponents.stream().map(e -> Iterables.getLast(e.getCompromisedComponents())).distinct()
-				.flatMap(component -> DataHandler.getData(component, change).stream()).filter(data -> mitigationHelper
-						.isCrackable(getMitigations(), data, attacker.getAttacks(), change))
+				.flatMap(component -> DataHandler.getData(component, change).stream())
+				.filter(data -> mitigationHelper.isCrackable(getMitigations(), data, attacker.getAttacks(), change))
 				.collect(Collectors.toList());
 
 		getDataHandler().addData(dataList);

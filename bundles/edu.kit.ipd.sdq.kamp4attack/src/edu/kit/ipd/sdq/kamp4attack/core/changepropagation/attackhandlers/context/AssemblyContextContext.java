@@ -18,6 +18,7 @@ import com.google.common.collect.Iterables;
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
 import edu.kit.ipd.sdq.kamp4attack.core.changepropagation.attackhandlers.AssemblyContextHandler;
 import edu.kit.ipd.sdq.kamp4attack.core.contextSelection.ListOperations;
+import edu.kit.ipd.sdq.kamp4attack.core.mitigation.MitigationHelper;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
@@ -41,6 +42,11 @@ public class AssemblyContextContext extends AssemblyContextHandler {
 		final var credentials = this.getCredentials(change);
 
 		AssemblyContext lastComponent = Iterables.getLast(component.getCompromisedComponents());
+		
+		MitigationHelper mitigation = new MitigationHelper();
+		if (!mitigation.isCrackable(getMitigations(), lastComponent, getAttacks(), change)) {
+			return Optional.empty();
+		}
 
 		ListOperations listHelper = new ListOperations();
 
