@@ -46,6 +46,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 		List<CompromisedAssembly> compromisedComponents = new LinkedList<>();
 
 		for (AssemblyContextDetail detail : components) {
+
 			MitigationHelper mitigationHelper = new MitigationHelper();
 			if (mitigationHelper.isCrackable(getMitigations(), Iterables.getLast(detail.getCompromisedComponents()),
 					getAttacks(), change)) {

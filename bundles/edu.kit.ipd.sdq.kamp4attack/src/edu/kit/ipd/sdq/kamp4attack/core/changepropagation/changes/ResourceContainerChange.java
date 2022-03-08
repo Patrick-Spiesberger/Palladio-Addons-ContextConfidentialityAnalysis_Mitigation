@@ -15,6 +15,8 @@ import org.palladiosimulator.pcm.confidentiality.context.system.pcm.structure.PC
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
+import com.google.common.collect.Iterables;
+
 import edu.kit.ipd.sdq.kamp.architecture.ArchitectureModelLookup;
 import edu.kit.ipd.sdq.kamp4attack.core.BlackboardWrapper;
 import edu.kit.ipd.sdq.kamp4attack.core.CacheCompromised;
@@ -22,6 +24,8 @@ import edu.kit.ipd.sdq.kamp4attack.core.changepropagation.attackhandlers.Assembl
 import edu.kit.ipd.sdq.kamp4attack.core.changepropagation.attackhandlers.LinkingResourceHandler;
 import edu.kit.ipd.sdq.kamp4attack.core.changepropagation.attackhandlers.ResourceContainerHandler;
 import edu.kit.ipd.sdq.kamp4attack.core.changepropagation.changes.propagationsteps.ResourceContainerPropagation;
+import edu.kit.ipd.sdq.kamp4attack.core.mitigation.MitigationHelper;
+import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedAssembly;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CompromisedResource;
 import edu.kit.ipd.sdq.kamp4attack.model.modificationmarks.KAMP4attackModificationmarks.CredentialChange;
 
@@ -118,9 +122,24 @@ public abstract class ResourceContainerChange extends Change<ResourceContainer>
 											e.getAffectedElement().getCompromisedComponents())))
 					.collect(Collectors.toList());
 
-			if (!listChanges.isEmpty()) {
-				this.changes.getCompromisedassembly().addAll(listChanges);
-				CollectionHelper.addService(listChanges, this.modelStorage.getVulnerabilitySpecification(),
+			/**
+			 * The following section checks which components of a resource container are
+			 * protected
+			 */
+			List<CompromisedAssembly> nonPreventedChanges = new LinkedList<>();
+			MitigationHelper mitigationHelper = new MitigationHelper();
+
+			for (CompromisedAssembly assembly : listChanges) {
+				if (mitigationHelper.isCrackable(getAssemblyHandler().getMitigations(),
+						Iterables.getLast(assembly.getAffectedElement().getCompromisedComponents()),
+						getAttacker().getAttacks(), changes)) {
+					nonPreventedChanges.add(assembly);
+				}
+			}
+
+			if (!nonPreventedChanges.isEmpty()) {
+				this.changes.getCompromisedassembly().addAll(nonPreventedChanges);
+				CollectionHelper.addService(nonPreventedChanges, this.modelStorage.getVulnerabilitySpecification(),
 						this.changes);
 				this.changes.setChanged(true);
 			}
