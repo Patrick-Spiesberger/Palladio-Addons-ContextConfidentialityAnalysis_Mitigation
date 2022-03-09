@@ -49,7 +49,7 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 
 			MitigationHelper mitigationHelper = new MitigationHelper();
 			if (mitigationHelper.isCrackable(getMitigations(), Iterables.getLast(detail.getCompromisedComponents()),
-					getAttacks(), change)) {
+					getAttacks(), change) && !lastElementDelegatesToMainComponent(detail)) {
 
 				Optional<CompromisedAssembly> componentDetail = attackComponent(detail, change, source, attacker);
 				if (componentDetail.isPresent()) {
@@ -111,5 +111,23 @@ public abstract class AssemblyContextHandler extends AttackHandler {
 				.anyMatch(referenceComponent -> EcoreUtil.equals(
 						referenceComponent.getAffectedElement().getCompromisedComponents(),
 						component.getAffectedElement().getCompromisedComponents()));
+	}
+
+	/**
+	 * By adding the CompositeComponents it can happen that subcomponents delegate
+	 * to their main component. This would lead to erroneous output. Accordingly,
+	 * the connection between subcomponent -> main component should not be added,
+	 * because the main component is already at the top of the list by specification
+	 * 
+	 * @param detail : Component to be checked for this cycle
+	 * @return : Is the last component in the list (if size > 1) the main component?
+	 */
+	private boolean lastElementDelegatesToMainComponent(AssemblyContextDetail detail) {
+		if (detail.getCompromisedComponents().size() > 1) {
+			return EcoreUtil.equals(detail.getCompromisedComponents().get(0),
+					Iterables.getLast(detail.getCompromisedComponents()));
+		} else {
+			return false;
+		}
 	}
 }

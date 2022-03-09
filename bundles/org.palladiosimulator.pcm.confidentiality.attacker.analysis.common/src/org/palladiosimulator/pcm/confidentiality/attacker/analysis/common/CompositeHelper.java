@@ -76,7 +76,7 @@ public class CompositeHelper {
 	private static List<ProvidedDelegationConnector> getDelicatedConnectors(final AssemblyContextDetail component,
 			final System system) {
 		if (CompositeHelper.isCompositeComponent(component.getCompromisedComponents().get(0))
-				|| component.getCompromisedComponents().size() > 1) { //component is subcomponent
+				|| component.getCompromisedComponents().size() > 1) { // component is subcomponent
 			return system.getConnectors__ComposedStructure().stream()
 					.filter(ProvidedDelegationConnector.class::isInstance).map(ProvidedDelegationConnector.class::cast)
 					.filter(e -> EcoreUtil.equals(e.getAssemblyContext_ProvidedDelegationConnector(),

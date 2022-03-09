@@ -99,7 +99,7 @@ public class MitigationHelper {
 				}
 			}
 		}
-		
+
 		if (filterPrevention(mitigationSpecifications).size() == 0) {
 			return true;
 		}
@@ -202,6 +202,16 @@ public class MitigationHelper {
 		return true;
 	}
 
+	/**
+	 * checks whether the DatamodelAttacker a and b have the same content. This is
+	 * necessary because the DatamodelAttacker is generated on the fly and is part
+	 * of the output model. Therefore, these elements are specified in the
+	 * mitigation and their content is checked
+	 * 
+	 * @param a : generated DatamodelAttacker
+	 * @param b : specified DatamodelAttacker
+	 * @return : are DatamodelAttacker equal?
+	 */
 	private boolean checkEqualityOfData(DatamodelAttacker a, DatamodelAttacker b) {
 		try {
 			if (a.getMethod() == null || b.getMethod() == null) {
