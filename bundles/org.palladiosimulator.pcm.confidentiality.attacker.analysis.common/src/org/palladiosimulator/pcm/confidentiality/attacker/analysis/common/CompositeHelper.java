@@ -103,19 +103,18 @@ public class CompositeHelper {
 			var outerRole = connector.getOuterProvidedRole_ProvidedDelegationConnector()
 					.getProvidedInterface__OperationProvidedRole();
 
-			for (AssemblyContext assembly : component.getCompromisedComponents()) {
-				var element = assembly.getEncapsulatedComponent__AssemblyContext();
+			var element = Iterables.getLast(component.getCompromisedComponents())
+					.getEncapsulatedComponent__AssemblyContext();
 
-				var interfacesList = element.getProvidedRoles_InterfaceProvidingEntity().stream()
-						.filter(OperationProvidedRole.class::isInstance).map(OperationProvidedRole.class::cast)
-						.map(OperationProvidedRole::getProvidedInterface__OperationProvidedRole)
-						.collect(Collectors.toList());
+			var interfacesList = element.getProvidedRoles_InterfaceProvidingEntity().stream()
+					.filter(OperationProvidedRole.class::isInstance).map(OperationProvidedRole.class::cast)
+					.map(OperationProvidedRole::getProvidedInterface__OperationProvidedRole)
+					.collect(Collectors.toList());
 
-				if (interfacesList.contains(innerRole)) {
-					assemblies.add(assembly);
-				} else if (interfacesList.contains(outerRole)) {
-					assemblies.add(assembly);
-				}
+			if (interfacesList.contains(innerRole)) {
+				assemblies.add(Iterables.getLast(component.getCompromisedComponents()));
+			} else if (interfacesList.contains(outerRole)) {
+				assemblies.add(Iterables.getLast(component.getCompromisedComponents()));
 			}
 		}
 		return assemblies;
